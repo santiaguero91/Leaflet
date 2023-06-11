@@ -17,6 +17,7 @@ import {
 import leafIcon from "../components/leaf.png";
 import L from "leaflet";
 import { statesData } from "../data";
+import adressPoints from "../data2";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -37,8 +38,8 @@ function Mapa2() {
       <button onClick={() => cambiar()}>CAMBIAR</button>
       <MapContainer
         center={center}
-        zoom={13}
-        scrollWheelZoom={false}
+        zoom={7}
+        scrollWheelZoom={true}
         style={{ width: "70vw", height: "70vh" }}
       >
         {count === 1 ? (
@@ -55,16 +56,30 @@ function Mapa2() {
      ></TileLayer>
         )}
         <LayersControl position="topright">
-          <LayersControl.Overlay name="Marker with popup">
-            <Marker 
+
+          {
+            adressPoints.map((el)=>{
+              return (
+                <LayersControl.Overlay name={el[2]}>
+
+                <Marker position= {{
+                  lat: el[0], lng:el[1]}}
+                >
+                  <Popup>{el[2]}</Popup>
+                </Marker>
+                </LayersControl.Overlay>
+              )
+            })
+          }
+
+
+{/*             <Marker 
             position={center}
-            
             >
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>
-            </Marker>
-          </LayersControl.Overlay>
+            </Marker> */}
           <LayersControl.Overlay checked name="Layer group with circles">
             <LayerGroup>
               <Circle
