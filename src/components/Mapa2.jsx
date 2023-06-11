@@ -14,11 +14,9 @@ import {
   CircleMarker,
   Tooltip,
 } from "react-leaflet";
-import leafIcon from "../components/leaf.png";
-import L from "leaflet";
-import { statesData } from "../data";
+import L, { MarkerCluster } from 'leaflet'
 import adressPoints from "../data2";
-import MarkerClusterGroup from "react-leaflet-cluster";
+import MarkerClusterGroup from 'react-leaflet-cluster'
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -33,6 +31,15 @@ function Mapa2() {
     count === 1 ? setCount(count + 1) : setCount(count - 1);
     console.log(count);
   }
+
+  const createClusterCustomIcon = function (cluster) {
+    return new L.DivIcon({
+      html: `<span>${cluster.getChildCount()}</span>`,
+      className: 'custom-marker-cluster',
+      iconSize: L.point(33, 33, true),
+    })
+  }
+
 
   return (
     <div>
@@ -55,10 +62,25 @@ function Mapa2() {
           ></TileLayer>
         )}
         <LayersControl position="topright">
-          <MarkerClusterGroup chunkedLoading2>
+
+
+          <MarkerClusterGroup
+          onClick={(e) => console.log('onClick', e)}
+          iconCreateFunction={createClusterCustomIcon}
+          maxClusterRadius={150}
+          spiderfyOnMaxZoom={true}
+          polygonOptions={{
+            fillColor: '#ffffff',
+            color: '#f00800',
+            weight: 5,
+            opacity: 1,
+            fillOpacity: 0.8,
+          }}
+          showCoverageOnHover={true}
+        >
             {adressPoints.map((el) => {
               return (
-                <LayersControl.Overlay name={el[2]}>
+                <LayersControl.Overlay name={el[2]} active>
                   <Marker
                     position={{
                       lat: el[0],
