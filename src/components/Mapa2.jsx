@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MarkerClusterGroup from 'react-leaflet-cluster'
 import "leaflet/dist/leaflet.css";
 import {
   MapContainer,
@@ -14,9 +15,9 @@ import {
   CircleMarker,
   Tooltip,
 } from "react-leaflet";
-import L, { MarkerCluster } from 'leaflet'
+import L from 'leaflet'
 import adressPoints from "../data2";
-import MarkerClusterGroup from 'react-leaflet-cluster'
+
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -32,13 +33,6 @@ function Mapa2() {
     console.log(count);
   }
 
-  const createClusterCustomIcon = function (cluster) {
-    return new L.DivIcon({
-      html: `<span>${cluster.getChildCount()}</span>`,
-      className: 'custom-marker-cluster',
-      iconSize: L.point(33, 33, true),
-    })
-  }
 
 
   return (
@@ -65,22 +59,9 @@ function Mapa2() {
 
 
           <MarkerClusterGroup
-          onClick={(e) => console.log('onClick', e)}
-          iconCreateFunction={createClusterCustomIcon}
-          maxClusterRadius={150}
-          spiderfyOnMaxZoom={true}
-          polygonOptions={{
-            fillColor: '#ffffff',
-            color: '#f00800',
-            weight: 5,
-            opacity: 1,
-            fillOpacity: 0.8,
-          }}
-          showCoverageOnHover={true}
         >
             {adressPoints.map((el) => {
               return (
-                <LayersControl.Overlay name={el[2]} active>
                   <Marker
                     position={{
                       lat: el[0],
@@ -89,19 +70,10 @@ function Mapa2() {
                     key={el[2]}
                   >
                     <Popup key={el[2]}>{el[2]} </Popup>
-                  </Marker>
-                </LayersControl.Overlay>
-              );
+                  </Marker>              );
             })}
           </MarkerClusterGroup>
 
-          {/*             <Marker 
-            position={center}
-            >
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker> */}
           <LayersControl.Overlay checked name="Layer group with circles">
             <LayerGroup>
               <Circle
