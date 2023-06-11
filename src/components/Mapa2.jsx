@@ -69,7 +69,12 @@ function Mapa2() {
                     }}
                     key={el[2]}
                   >
-                    <Popup key={el[2]}>{el[2]} </Popup>
+                    <Popup key={el[2]}>
+                    {el[2]}
+
+                      {el[3] && <a href={el[3]}>{el[2]}</a>}
+                      
+                    </Popup>
                   </Marker>              );
             })}
           </MarkerClusterGroup>
