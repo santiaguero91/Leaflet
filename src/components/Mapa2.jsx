@@ -18,7 +18,7 @@ import leafIcon from "../components/leaf.png";
 import L from "leaflet";
 import { statesData } from "../data";
 import adressPoints from "../data2";
-import MarkerClusterGroup from 'react-leaflet-cluster'
+import MarkerClusterGroup from "react-leaflet-cluster";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -44,40 +44,36 @@ function Mapa2() {
         style={{ width: "70vw", height: "70vh" }}
       >
         {count === 1 ? (
-      <TileLayer
-      url="https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=CdQyAANewyZZe8a2YwTo"
-       attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-     
-></TileLayer>
+          <TileLayer
+            url="https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=CdQyAANewyZZe8a2YwTo"
+            attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+          ></TileLayer>
         ) : (
-            <TileLayer
+          <TileLayer
             url="https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=CdQyAANewyZZe8a2YwTo"
-             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-           
-     ></TileLayer>
+            attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+          ></TileLayer>
         )}
         <LayersControl position="topright">
-
-        <MarkerClusterGroup
-        chunkedLoading
-      >
-          {
-            adressPoints.map((el)=>{
+          <MarkerClusterGroup chunkedLoading2>
+            {adressPoints.map((el) => {
               return (
                 <LayersControl.Overlay name={el[2]}>
-
-                <Marker position= {{
-                  lat: el[0], lng:el[1]}}
-                  key={el[2]}
-                >
-                  <Popup>{el[2]}</Popup>
-                </Marker>
+                  <Marker
+                    position={{
+                      lat: el[0],
+                      lng: el[1],
+                    }}
+                    key={el[2]}
+                  >
+                    <Popup>{el[2]}</Popup>
+                  </Marker>
                 </LayersControl.Overlay>
-              )})}
-      </MarkerClusterGroup>
+              );
+            })}
+          </MarkerClusterGroup>
 
-
-{/*             <Marker 
+          {/*             <Marker 
             position={center}
             >
               <Popup>
