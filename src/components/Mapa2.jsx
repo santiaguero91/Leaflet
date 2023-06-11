@@ -66,7 +66,7 @@ function Mapa2() {
                     }}
                     key={el[2]}
                   >
-                    <Popup>{el[2]}</Popup>
+                    <Popup key={el[2]}>{el[2]} </Popup>
                   </Marker>
                 </LayersControl.Overlay>
               );
