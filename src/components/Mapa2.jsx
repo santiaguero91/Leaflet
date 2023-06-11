@@ -18,6 +18,7 @@ import leafIcon from "../components/leaf.png";
 import L from "leaflet";
 import { statesData } from "../data";
 import adressPoints from "../data2";
+import MarkerClusterGroup from 'react-leaflet-cluster'
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -57,6 +58,9 @@ function Mapa2() {
         )}
         <LayersControl position="topright">
 
+        <MarkerClusterGroup
+        chunkedLoading
+      >
           {
             adressPoints.map((el)=>{
               return (
@@ -64,13 +68,13 @@ function Mapa2() {
 
                 <Marker position= {{
                   lat: el[0], lng:el[1]}}
+                  key={el[2]}
                 >
                   <Popup>{el[2]}</Popup>
                 </Marker>
                 </LayersControl.Overlay>
-              )
-            })
-          }
+              )})}
+      </MarkerClusterGroup>
 
 
 {/*             <Marker 
