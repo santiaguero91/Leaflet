@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MarkerClusterGroup from 'react-leaflet-cluster'
+import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import {
   MapContainer,
@@ -11,11 +11,11 @@ import {
   Circle,
   Rectangle,
   FeatureGroup,
+  Polygon,
 } from "react-leaflet";
-import adressPoints from "../data2";
 import { useDispatch, useSelector } from "react-redux";
 import { getMarkers } from "../redux/actions";
-
+import { statesData } from "../data";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -63,31 +63,80 @@ function Mapa2() {
           ></TileLayer>
         )}
         <LayersControl position="topright">
+          <MarkerClusterGroup>
+            {allMarkers.map((el) => { 
+              if(el.id <20)
+              {return (
+                <Marker
+                  position={{
+                    lat: el.latitude,
+                    lng: el.longitude,
+                  }}
+                  key={el.id}
+                >
+                  <Popup key={el.id}>
+                    {el.name}
 
-
-          <MarkerClusterGroup
-        >
-            {adressPoints.map((el) => {
-              return (
-                  <Marker
-                    position={{
-                      lat: el[0],
-                      lng: el[1],
-                    }}
-                    key={el[2]}
-                  >
-                    <Popup key={el[2]}>
-                    {el[2]}
-
-                      {el[3] && <a href={el[3]}>{el[2]}</a>}
-                      
-                    </Popup>
-                  </Marker>              );
+                    {el.link && <a href={el.link}>{el.name}</a>}
+                  </Popup>
+                </Marker>
+              )};
             })}
+
+            <Circle
+              center={[51.51, -0.08]}
+              pathOptions={{ color: "green", fillColor: "green" }}
+              radius={100}
+            />
           </MarkerClusterGroup>
 
-          <LayersControl.Overlay checked name="Layer group with circles">
+          <LayersControl.Overlay checked name="Estados">
             <LayerGroup>
+              {statesData.features.map((state) => {
+                const coordinates = state.geometry.coordinates[0].map(
+                  (item) => [item[1], item[0]]
+                );
+
+                return (
+                  <Polygon
+                  key={coordinates}
+                    pathOptions={{
+                      fillColor: "#b1b0b0",
+                      fillOpacity: 0.7,
+                      weight: 2,
+                      opacity: 1,
+                      dashArray: 3,
+                      color: "white",
+                    }}
+                    positions={coordinates}
+                    eventHandlers={{
+                      mouseover: (e) => {
+                        const layer = e.target;
+                        layer.setStyle({
+                          dashArray: "",
+                          fillColor: "#464646",
+                          fillOpacity: 0.7,
+                          weight: 2,
+                          opacity: 1,
+                          color: "white",
+                        });
+                      },
+                      mouseout: (e) => {
+                        const layer = e.target;
+                        layer.setStyle({
+                          fillOpacity: 0.7,
+                          weight: 2,
+                          dashArray: "3",
+                          color: "white",
+                          fillColor: "#797979",
+                        });
+                      },
+                      click: (e) => {},
+                    }}
+                  />
+                );
+              })}
+
               <Circle
                 center={center}
                 pathOptions={{ fillColor: "blue" }}
@@ -99,13 +148,7 @@ function Mapa2() {
                 radius={100}
                 stroke={false}
               />
-              <LayerGroup>
-                <Circle
-                  center={[51.51, -0.08]}
-                  pathOptions={{ color: "green", fillColor: "green" }}
-                  radius={100}
-                />
-              </LayerGroup>
+              <LayerGroup></LayerGroup>
             </LayerGroup>
           </LayersControl.Overlay>
           <LayersControl.Overlay name="Feature group">
