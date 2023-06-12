@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MarkerClusterGroup from 'react-leaflet-cluster'
 import "leaflet/dist/leaflet.css";
 import {
@@ -13,10 +13,15 @@ import {
   FeatureGroup,
 } from "react-leaflet";
 import adressPoints from "../data2";
+import { useDispatch, useSelector } from "react-redux";
+import { getMarkers } from "../redux/actions";
 
 
 function Mapa2() {
   const [count, setCount] = useState(1);
+
+  const dispatch = useDispatch();
+  const allMarkers = useSelector((state) => state.markers);
 
   const center = [51.505, -0.09];
   const rectangle = [
@@ -29,11 +34,17 @@ function Mapa2() {
     console.log(count);
   }
 
-
+  function ver() {
+    console.log(allMarkers);
+  }
+  useEffect(() => {
+    dispatch(getMarkers());
+  }, [dispatch]);
 
   return (
     <div>
       <button onClick={() => cambiar()}>CAMBIAR</button>
+      <button onClick={() => ver()}>VER</button>
       <MapContainer
         center={center}
         zoom={7}
