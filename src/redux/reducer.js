@@ -10,8 +10,8 @@ const rootReducer =(state=initialState, action) => {
         case GET_MARKERS:
           return {
               ...state, 
-              countries: action.payload,
-              allCountries: action.payload
+              markers: action.payload,
+              allMarkers: action.payload
         }
         default:
             return{...state}; 
