@@ -76,8 +76,9 @@ function Mapa2() {
                 >
                   <Popup key={el.id}>
                     {el.name}
-
                     {el.link && <a href={el.link}>{el.name}</a>}
+                    {el.img && <img width="300px" src={el.img}/>}
+                    <p>Latitude:{el.latitude} Longitude:{el.longitude}</p>
                   </Popup>
                 </Marker>
               )};
