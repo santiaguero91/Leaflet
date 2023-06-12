@@ -4,7 +4,6 @@ import "leaflet/dist/leaflet.css";
 import {
   MapContainer,
   TileLayer,
-  Polygon,
   Marker,
   Popup,
   LayerGroup,
@@ -12,10 +11,7 @@ import {
   Circle,
   Rectangle,
   FeatureGroup,
-  CircleMarker,
-  Tooltip,
 } from "react-leaflet";
-import L from 'leaflet'
 import adressPoints from "../data2";
 
 
