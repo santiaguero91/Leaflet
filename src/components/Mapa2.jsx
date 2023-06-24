@@ -16,7 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMarker, getMarkers } from "../redux/actions";
 import { statesData } from "../data";
-import { Plate } from "./MapStyle";
+import { MapDiv, Plate } from "./MapStyle";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -48,7 +48,7 @@ function Mapa2() {
   }, [dispatch]);
 
   return (
-    <div>
+    <MapDiv>
       <button onClick={() => cambiar()}>CAMBIAR</button>
       <button onClick={() => ver()}>VER</button>
       <MapContainer
@@ -170,7 +170,7 @@ function Mapa2() {
           </LayersControl.Overlay>
         </LayersControl>
       </MapContainer>
-    </div>
+    </MapDiv>
   );
 }
 
