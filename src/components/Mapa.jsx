@@ -47,51 +47,6 @@ const interactionOptions = {
        
  ></TileLayer>
 
-{/*       {statesData.features.map((state) => {
-        const coordinates = state.geometry.coordinates[0].map((item) => [
-          item[1],
-          item[0],
-        ]);
-
-        return (<Polygon
-          pathOptions={{
-            fillColor: '#b1b0b0',
-            fillOpacity: 0.7,
-            weight: 2,
-            opacity: 1,
-            dashArray: 3,
-            color: 'white'
-          }}
-          positions={coordinates}
-          eventHandlers={{
-            mouseover: (e) => {
-              const layer = e.target;
-              layer.setStyle({
-                dashArray: "",
-                fillColor: "#464646",
-                fillOpacity: 0.7,
-                weight: 2,
-                opacity: 1,
-                color: "white",
-              })
-            },
-            mouseout: (e) => {
-              const layer = e.target;
-              layer.setStyle({
-                fillOpacity: 0.7,
-                weight: 2,
-                dashArray: "3",
-                color: 'white',
-                fillColor: '#797979'
-              });
-            },
-            click: (e) => {
-
-            }
-          }}
-        />);
-      })} */}
-
       <Marker
         position={{
           lat: -28.15, lng:-63.52}}

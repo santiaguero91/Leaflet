@@ -115,7 +115,7 @@ function Form() {
             {errors.latitude && <p>{errors.latitude}</p>}
           </div>
           <div>
-            <label for="totalLONG">Longitude:</label>
+            <label>Longitude:</label>
             <input
               id="totalLONG"
               type="number"

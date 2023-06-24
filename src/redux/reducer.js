@@ -1,4 +1,4 @@
-import { GET_MARKERS } from "./action-types";
+import { DELETE_MARKERS, GET_MARKERS } from "./action-types";
 
 const initialState = {
     markers: [],
@@ -12,6 +12,11 @@ const rootReducer =(state=initialState, action) => {
               ...state, 
               markers: action.payload,
               allMarkers: action.payload
+        }
+        case DELETE_MARKERS:
+            return{
+            ...state,
+            markers: action.payload
         }
         default:
             return{...state}; 

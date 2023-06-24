@@ -26,3 +26,14 @@ export function postMarker(payload){
     }
     }
 } 
+
+export function deleteMarker(id){
+    return async function() {
+        try{       
+        const response = await axios.delete(`${Url}/`+id)
+        return response
+    } catch (error){
+        console.log(error);
+    }
+    }
+} 

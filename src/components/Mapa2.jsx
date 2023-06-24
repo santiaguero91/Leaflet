@@ -14,7 +14,7 @@ import {
   Polygon,
 } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
-import { getMarkers } from "../redux/actions";
+import { deleteMarker, getMarkers } from "../redux/actions";
 import { statesData } from "../data";
 import { Plate } from "./MapStyle";
 
@@ -33,6 +33,11 @@ function Mapa2() {
   function cambiar() {
     count === 1 ? setCount(count + 1) : setCount(count - 1);
     console.log(count);
+  }
+  
+  function close(id) {
+    dispatch(deleteMarker(id));
+    location.reload();
   }
 
   function ver() {
@@ -66,7 +71,7 @@ function Mapa2() {
         <LayersControl position="topright">
           <MarkerClusterGroup>
             {allMarkers.map((el) => { 
-              if(el.id <20)
+              if(el.id <30)
               {return (
                 <Marker
                   position={{
@@ -81,6 +86,7 @@ function Mapa2() {
                     {el.link && <a href={el.link}>{el.name}</a>}
                     {el.img && <img width="300px" src={el.img}/>}
                     <p>Latitude:{el.latitude} Longitude:{el.longitude}</p>
+                    <button onClick={()=> close(el.id)}> X </button>
                     </Plate>
                   </Popup>
                 </Marker>
