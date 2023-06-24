@@ -16,6 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getMarkers } from "../redux/actions";
 import { statesData } from "../data";
+import { Plate } from "./MapStyle";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -49,7 +50,7 @@ function Mapa2() {
         center={center}
         zoom={7}
         scrollWheelZoom={true}
-        style={{ width: "70vw", height: "70vh" }}
+        style={{ width: "90vw", height: "90vh" }}
       >
         {count === 1 ? (
           <TileLayer
@@ -75,10 +76,12 @@ function Mapa2() {
                   key={el.id}
                 >
                   <Popup key={el.id}>
+                    <Plate>
                     {el.name}
                     {el.link && <a href={el.link}>{el.name}</a>}
                     {el.img && <img width="300px" src={el.img}/>}
                     <p>Latitude:{el.latitude} Longitude:{el.longitude}</p>
+                    </Plate>
                   </Popup>
                 </Marker>
               )};

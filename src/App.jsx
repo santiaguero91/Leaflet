@@ -1,19 +1,17 @@
-
-
-import Mapa from "./components/Mapa"
 import './App.css'
-import Mapa2 from "./components/Mapa2"
-import Form from "./components/form/Form"
+import Home from "./Views/Home"
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from "framer-motion"
 
 function App() {
+  const location = useLocation();
 
   return (
-    <>
-    <h2>Santiago</h2>
-   {/*  <Mapa/> */}
-    <Mapa2/>
-    <Form/>
-    </>
+    <AnimatePresence>
+    <Routes location={location} key={location.pathname}> 
+    <Route exact path="/" element={<Home />} /> 
+    </Routes>
+    </AnimatePresence>
   )
 }
 

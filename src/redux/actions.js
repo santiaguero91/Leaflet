@@ -16,3 +16,13 @@ export function getMarkers(){
     }
     }
 }
+export function postMarker(payload){
+    return async function() {
+        try{       
+        const response = await axios.post(`${Url}`, payload)
+        return response
+    } catch (error){
+        console.log(error);
+    }
+    }
+} 
