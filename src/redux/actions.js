@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_MARKERS} from "./action-types";
+import {FILTER_BY_TYPE, GET_MARKERS} from "./action-types";
 
 const Url = `http://localhost:3001/markers`
 

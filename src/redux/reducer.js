@@ -22,7 +22,7 @@ const rootReducer =(state=initialState, action) => {
             const allMarkers = state.allMarkers
             const markerFiltered = action.payload === "All"
             ? allMarkers
-            : allMarkers.filter(el => el.tipo.includes(action.payload))
+            : allMarkers.filter(el => action.payload.includes(el.tipo))
             return {
                 ...state,
                 markers: markerFiltered

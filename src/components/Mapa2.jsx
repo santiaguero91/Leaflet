@@ -40,9 +40,11 @@ function Mapa2() {
     location.reload();
   }
 
-  function ver() {
+/*   function ver() {
     console.log(allMarkers);
-  }
+  } */
+
+
   useEffect(() => {
     dispatch(getMarkers());
   }, [dispatch]);
@@ -50,8 +52,8 @@ function Mapa2() {
   return (
     <MapDiv>
       <button onClick={() => cambiar()}>CAMBIAR</button>
-      <button onClick={() => ver()}>VER</button>
-      <MapContainer
+{/*       <button onClick={() => ver()}>VER</button>
+ */}      <MapContainer
         center={center}
         zoom={7}
         scrollWheelZoom={true}
