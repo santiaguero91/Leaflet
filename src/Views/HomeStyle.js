@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SidebarDiv } from "../components/sideBar/sideBarStyle";
 
 
 export const Plate = styled.div`
@@ -19,3 +20,6 @@ flex-direction: column;
     z-index: -2;
     
     `;
+
+
+

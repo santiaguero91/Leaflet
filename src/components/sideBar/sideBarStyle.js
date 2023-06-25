@@ -23,8 +23,9 @@ export const SideBarContainer = styled.div`
     `;
 
 export const SidebarDiv = styled.div`
-    background-color: #000;
-    color: #000;
+background-color: #1a1a1a;
+    color: #fff;
+    font-size: 22px
 `;
 
 export const FormContainer = styled.div`
@@ -36,3 +37,5 @@ export const FormContainer = styled.div`
     z-index: 2000 !important;
     margin: 0 auto 0 auto;
     `;
+
+    

@@ -37,3 +37,10 @@ export function deleteMarker(id){
     }
     }
 } 
+
+export function filterMarkersByType(payload){
+    return{
+        type: FILTER_BY_TYPE,
+        payload
+    }
+} 

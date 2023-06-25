@@ -20,10 +20,6 @@ function Form() {
     tipo: "",
   });
 
-  function ver() {
-    console.log(input);
-  }
-
   const [errors, setErrors] = useState({
     name: "",
     latitude: "",
@@ -85,8 +81,6 @@ function Form() {
       exit={{ scaleY: 0, transition: { duration: 0.1 } }}
     >
       <Background>
-        <button onClick={() => ver()}>VER</button>
-
         <form className="form">
           <h4>Create New Marker</h4>
           <div>

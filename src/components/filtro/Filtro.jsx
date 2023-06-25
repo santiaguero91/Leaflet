@@ -3,7 +3,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../../App.css"
 import { useState } from "react";
-import { MainContainer } from "./FiltroStyle";
+import { MainContainer, ButtonFilter } from "./FiltroStyle";
+
 function Filtro() {
     const allMarkers = useSelector((state) => state.markers);
     const dispatch = useDispatch();
@@ -33,41 +34,41 @@ function Filtro() {
 
   return (
     <MainContainer>
-          <button
+          <ButtonFilter
             className={`${filtro === "All" ? "special" : ""}`}
             onClick={(e) => handleNoFilter(e)}
             id="All"
           >
             ALL
-          </button>
-          <button
+          </ButtonFilter>
+          <ButtonFilter
             className={`${filtro.includes("educacion") ? "special" : ""}`}
             onClick={(e) => handleFilterContinent(e)}
             id="educacion"
           >
             EDUCACION
-          </button>
-          <button
+          </ButtonFilter>
+          <ButtonFilter
             className={`${filtro.includes("pto turstico") ? "special" : ""}`}
             onClick={(e) => handleFilterContinent(e)}
             id="pto turstico"
           >
             PUNTOS TURISTICOS
-          </button>
-          <button
+          </ButtonFilter>
+          <ButtonFilter
             className={`${filtro.includes("castillo") ? "special" : ""}`}
             onClick={(e) => handleFilterContinent(e)}
             id="castillo"
           >
             CASTILLOS
-          </button>
-          <button
+          </ButtonFilter>
+          <ButtonFilter
             className={`${filtro.includes("iglesia") ? "special" : ""}`}
             onClick={(e) => handleFilterContinent(e)}
             id="iglesia"
           >
             IGLESIAS
-          </button>
+          </ButtonFilter>
     </MainContainer>
   )
 }

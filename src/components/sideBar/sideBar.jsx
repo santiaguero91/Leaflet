@@ -23,7 +23,7 @@ function SideBar() {
           className="sidebar"
         >
           <button onClick={toggleSidebar}> SIDEBAR</button>
-          {sidebarIsOpen && <SidebarDiv><button><Filtro/></button></SidebarDiv>}
+          {sidebarIsOpen && <SidebarDiv><Filtro/></SidebarDiv>}
         </div>
       </SideBarContainer>
       <FormContainer>
