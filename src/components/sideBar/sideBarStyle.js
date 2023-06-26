@@ -18,7 +18,11 @@ export const SideBarContainer = styled.div`
     background-color: #000;
     height: 100%;
     margin-left: 0;
-    z-index: 2000 !important
+    z-index: 2000 !important;
+    background-color:  transparent;
+    .sidebar{
+        background-color:  transparent;
+    }
     `;
 
 export const SidebarDiv = styled.div`

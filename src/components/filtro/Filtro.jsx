@@ -24,10 +24,6 @@ function Filtro() {
       }
       setContador(contador + 1);
     }
-
-    /* function ver() {
-      console.log(filtro);
-    } */
   
     function handleNoFilter(event) {
       setFiltro("All");

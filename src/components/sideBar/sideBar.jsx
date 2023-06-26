@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../../App.css";
 import {
   FormContainer,
@@ -7,7 +6,6 @@ import {
   SideBarContainer,
   SidebarDiv,
 } from "./sideBarStyle";
-import Form from "../form/Form";
 import Filtro from "../filtro/Filtro";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenLateralList, setOpenOnMain } from "../../redux/actions";
@@ -36,9 +34,8 @@ function SideBar() {
   return (
     <MainContainer>
       <SideBarContainer>
-        <div
+        <div className="sidebar"
           style={{ width: (openState ===2) ? "40vw" : "0", transition: "1s" }}
-          className="sidebar"
         >
           <button onClick={() => OpenOnMain(2)}> SIDEBAR</button>
           {(openState ===2) && <SidebarDiv><Filtro/></SidebarDiv>}
@@ -54,8 +51,7 @@ function SideBar() {
       </FormContainer>
 
       <LateralListContainer>
-        <div style={{ marginRight: (openLateralList ===1) ? "40vw" : "0", transition: "1s" }}
->
+        <div style={{ marginRight: (openLateralList ===1) ? "30vw" : "0", transition: "1s" }}>
       <button onClick={() => OpenLateralList(1)}> LATERAL</button>
       </div>
       </LateralListContainer>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SidebarDiv } from "../components/sideBar/sideBarStyle";
+import { motion } from "framer-motion";
 
 export const Plate = styled.div`
   border: none;
@@ -19,7 +19,7 @@ export const MapDiv = styled.div`
   z-index: -2;
 `;
 
-export const PopUpDiv = styled.div`
+export const PopUpDiv = styled(motion.div)`
   display: flex;
   position: absolute;
   transition: 1s;
@@ -31,4 +31,13 @@ export const PopUpDiv = styled.div`
   border-radius: 25px;
   transform: translate(-50%, -50%);
   z-index: 2000 !important;
+`;
+
+
+export const MainHomeDiv = styled(motion.div)`
+  
+`;
+
+export const LateralListDiv = styled(motion.div)`
+  
 `;
