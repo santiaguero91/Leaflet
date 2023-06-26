@@ -13,11 +13,6 @@ function Filtro() {
     const [contador, setContador] = useState(0);
 
 
-
-
-
-
-
     function handleFilterMarkers(event) {
       let check = filtro.includes(event.target.id);
       if (check) {

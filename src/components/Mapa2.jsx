@@ -16,7 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMarker, getMarkers } from "../redux/actions";
 import { statesData } from "../data";
-import { LatYLongDiv, MapDiv, Plate, TituloMarker } from "./MapStyle";
+import {MapDiv, Plate, TituloMarker } from "./MapStyle";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -50,7 +50,7 @@ function Mapa2() {
 
   return (
     <MapDiv>
-      <button onClick={() => cambiar()}>CAMBIAR</button>
+      <button onClick={() => cambiar()}>CAMBIAR MAPA</button>
       {/*       <button onClick={() => ver()}>VER</button>
        */}{" "}
       <MapContainer

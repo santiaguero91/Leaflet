@@ -1,14 +1,8 @@
 import axios from "axios";
-import {FILTER_BY_TYPE, GET_MARKERS, SET_OPEN} from "./action-types";
+import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN} from "./action-types";
 
 const Url = `http://localhost:3001/markers`
 
-export function setOpenOnMain(payload){
-    return{
-        type: SET_OPEN,
-        payload
-    }
-}
 
 export function getMarkers(){
     return async function(dispatch) {
@@ -51,3 +45,18 @@ export function filterMarkersByType(payload){
         payload
     }
 } 
+
+
+export function setOpenOnMain(payload){
+    return{
+        type: SET_OPEN,
+        payload
+    }
+}
+
+export function setOpenLateralList(payload){
+    return{
+        type: OPEN_LATERL_LIST,
+        payload
+    }
+}

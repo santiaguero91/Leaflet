@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const MainContainer = styled.div`
     display: flex;
-    position: relative;
     flex-direction: row;
     transition: 1s;
     background-color: #000;
@@ -38,4 +37,14 @@ export const FormContainer = styled.div`
     margin: 0 auto 0 auto;
     `;
 
+
+    export const LateralListContainer = styled.div`
+    display: flex;
+    position: relative;
+    transition: 1s;
+    background-color: #000;
+    height: 100%;
+    margin-right: 0;
+    z-index: 2000 !important
+    `;
     

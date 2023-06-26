@@ -1,7 +1,8 @@
-import { DELETE_MARKERS, GET_MARKERS, FILTER_BY_TYPE, SET_OPEN } from "./action-types";
+import { DELETE_MARKERS, GET_MARKERS, FILTER_BY_TYPE, SET_OPEN, OPEN_LATERL_LIST } from "./action-types";
 
 const initialState = {
-    openMain: "hola",
+    openLateralList: "0",
+    openMain: "0",
     markers: [],
     allMarkers:[],
 }
@@ -32,6 +33,11 @@ const rootReducer =(state=initialState, action) => {
             return{
             ...state,
             openMain: action.payload
+        }
+        case OPEN_LATERL_LIST:
+            return{
+            ...state,
+            openLateralList: action.payload
         }
         default:
             return{...state}; 
