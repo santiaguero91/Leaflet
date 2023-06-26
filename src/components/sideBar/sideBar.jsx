@@ -20,7 +20,7 @@ function SideBar() {
       dispatch(setOpenOnMain(0));
     } else {
       dispatch(setOpenOnMain(id));
-    } 
+    }
   }
 
 
@@ -41,8 +41,6 @@ function SideBar() {
           {(openState ===2) && <SidebarDiv><Filtro/></SidebarDiv>}
         </div>
       </SideBarContainer>
-
-
 
       <FormContainer>
         <div>

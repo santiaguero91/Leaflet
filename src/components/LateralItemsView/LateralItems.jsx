@@ -5,10 +5,7 @@ import { LateralItemsDiv, MarkersNamesDiv } from "./LateralItemsStyle";
 
 function LateralItems() {
     const allMarkers = useSelector((state) => state.markers);
-    
-function ver() {
-    console.log(allMarkers);
-}
+
 
     return (
 <LateralItemsDiv
@@ -18,7 +15,6 @@ exit={{ width: 0, duration: 0.8 }}
 >
 <h2>MarkersNames</h2>
 <MarkersNamesDiv>
-    <button onClick={()=> ver()}>VER</button>
 {allMarkers.map((el) => {
     return(
     <div>
@@ -29,8 +25,7 @@ exit={{ width: 0, duration: 0.8 }}
 })}
 </MarkersNamesDiv>
 </LateralItemsDiv>
-
-    )
+)
 }
 
 export default LateralItems;
