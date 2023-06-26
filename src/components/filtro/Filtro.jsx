@@ -1,6 +1,6 @@
 
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import "../../App.css"
 import { useState } from "react";
 import { MainContainer, ButtonFilter } from "./FiltroStyle";
@@ -11,6 +11,12 @@ function Filtro() {
 
     const [filtro, setFiltro] = useState("All");
     const [contador, setContador] = useState(0);
+
+
+
+
+
+
 
     function handleFilterMarkers(event) {
       let check = filtro.includes(event.target.id);
@@ -24,9 +30,9 @@ function Filtro() {
       setContador(contador + 1);
     }
 
-    function ver() {
+    /* function ver() {
       console.log(filtro);
-    }
+    } */
   
     function handleNoFilter(event) {
       setFiltro("All");
@@ -36,7 +42,6 @@ function Filtro() {
 
   return (
     <MainContainer>
-      <button onClick={(e) => ver(e)} >VER</button>
           <ButtonFilter
             className={`${filtro === "All" ? "special" : ""}`}
             onClick={(e) => handleNoFilter(e)}

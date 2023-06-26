@@ -1,7 +1,14 @@
 import axios from "axios";
-import {FILTER_BY_TYPE, GET_MARKERS} from "./action-types";
+import {FILTER_BY_TYPE, GET_MARKERS, SET_OPEN} from "./action-types";
 
 const Url = `http://localhost:3001/markers`
+
+export function setOpenOnMain(payload){
+    return{
+        type: SET_OPEN,
+        payload
+    }
+}
 
 export function getMarkers(){
     return async function(dispatch) {

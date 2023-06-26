@@ -1,8 +1,9 @@
-import { DELETE_MARKERS, GET_MARKERS, FILTER_BY_TYPE } from "./action-types";
+import { DELETE_MARKERS, GET_MARKERS, FILTER_BY_TYPE, SET_OPEN } from "./action-types";
 
 const initialState = {
+    openMain: "hola",
     markers: [],
-    allMarkers:[]
+    allMarkers:[],
 }
 
 const rootReducer =(state=initialState, action) => {
@@ -26,6 +27,11 @@ const rootReducer =(state=initialState, action) => {
             return {
                 ...state,
                 markers: markerFiltered
+        }
+        case SET_OPEN:
+            return{
+            ...state,
+            openMain: action.payload
         }
         default:
             return{...state}; 

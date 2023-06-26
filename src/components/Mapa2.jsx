@@ -16,7 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMarker, getMarkers } from "../redux/actions";
 import { statesData } from "../data";
-import { MapDiv, Plate } from "./MapStyle";
+import { LatYLongDiv, MapDiv, Plate, TituloMarker } from "./MapStyle";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -34,16 +34,15 @@ function Mapa2() {
     count === 1 ? setCount(count + 1) : setCount(count - 1);
     console.log(count);
   }
-  
+
   function close(id) {
     dispatch(deleteMarker(id));
     location.reload();
   }
 
-/*   function ver() {
+  /*   function ver() {
     console.log(allMarkers);
   } */
-
 
   useEffect(() => {
     dispatch(getMarkers());
@@ -52,8 +51,9 @@ function Mapa2() {
   return (
     <MapDiv>
       <button onClick={() => cambiar()}>CAMBIAR</button>
-{/*       <button onClick={() => ver()}>VER</button>
- */}      <MapContainer
+      {/*       <button onClick={() => ver()}>VER</button>
+       */}{" "}
+      <MapContainer
         center={center}
         zoom={7}
         scrollWheelZoom={true}
@@ -72,27 +72,32 @@ function Mapa2() {
         )}
         <LayersControl position="topright">
           <MarkerClusterGroup>
-            {allMarkers.map((el) => { 
-              if(el.id <30)
-              {return (
-                <Marker
-                  position={{
-                    lat: el.latitude,
-                    lng: el.longitude,
-                  }}
-                  key={el.id}
-                >
-                  <Popup key={el.id}>
-                    <Plate>
-                    {el.name}
-                    {el.link && <a href={el.link}>{el.name}</a>}
-                    {el.img && <img width="300px" src={el.img}/>}
-                    <p>Latitude:{el.latitude} Longitude:{el.longitude}</p>
-                    <button onClick={()=> close(el.id)}> X </button>
-                    </Plate>
-                  </Popup>
-                </Marker>
-              )};
+            {allMarkers.map((el) => {
+              if (el.id < 30) {
+                return (
+                  <Marker
+                    position={{
+                      lat: el.latitude,
+                      lng: el.longitude,
+                    }}
+                    key={el.id}
+                  >
+                    <Popup key={el.id}>
+                      <Plate>
+                        <TituloMarker>{el.name}</TituloMarker>
+
+                        {el.link && <a href={el.link}>{el.name}</a>}
+                        {el.img && <img width="300px" src={el.img} />}
+                        <div>
+                          <p>Latitude:{el.latitude} </p>
+                          <p>Longitude:{el.longitude}</p>
+                        </div>
+                        <button onClick={() => close(el.id)}> Delete </button>
+                      </Plate>
+                    </Popup>
+                  </Marker>
+                );
+              }
             })}
 
             <Circle
@@ -111,7 +116,7 @@ function Mapa2() {
 
                 return (
                   <Polygon
-                  key={coordinates}
+                    key={coordinates}
                     pathOptions={{
                       fillColor: "#b1b0b0",
                       fillOpacity: 0.7,

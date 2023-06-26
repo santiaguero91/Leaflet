@@ -4,6 +4,9 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: transparent;
+    width: 50%;
+    margin: 0 auto;
+
 
     .special{
     display: flex;
