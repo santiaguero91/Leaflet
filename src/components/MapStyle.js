@@ -1,7 +1,34 @@
 import styled from "styled-components";
 
 
-export const Plate = styled.div`
+
+export const MapDiv = styled.div`
+  position: relative;
+  width: 100vw;
+  flex-direction: column;
+  z-index: -2;
+    button {
+    width: fit-content;
+  }
+`;
+
+export const MapcontainerDiv = styled.div`
+position: relative;
+width: fit-content;
+height: fit-content;
+border: 1px solid yellow;
+margin: 0 auto;
+`;
+
+export const TituloMarker = styled.h3`
+`;
+
+export const LatYLongDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PopupPlate = styled.div`
 display: flex;
 flex-direction: column;
     border: none;
@@ -15,24 +42,5 @@ flex-direction: column;
     button{
         width: fit-content;
     }
-
     `;
-
-export const MapDiv = styled.div`
-display: flex;
-margin: auto;
-flex-direction: column;
-    z-index: -2;
-    `;
-
-
-export const TituloMarker = styled.h3`
-margin: 0 auto;
-    `;
-
-export const LatYLongDiv = styled.div`
-display: flex;
-flex-direction: column;
-`;
-
 

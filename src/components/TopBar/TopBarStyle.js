@@ -3,15 +3,19 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     transition: 1s;
     background-color: #000;
     height: fit-content;
-    width:100%;
+    width: 100vw;
     height: 40px;
     z-index: 2000 !important;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: 1px solid red;
 `;
 
-export const SideBarContainer = styled.div`
+export const TopBarContainer = styled.div`
     display: flex;
     position: absolute;
     transition: 1s;
@@ -28,7 +32,8 @@ export const SideBarContainer = styled.div`
 export const SidebarDiv = styled.div`
 background-color: #1a1a1a;
     color: #fff;
-    font-size: 22px
+    font-size: 22px;
+    top: 0;
 `;
 
 export const FormContainer = styled.div`

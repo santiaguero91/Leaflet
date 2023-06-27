@@ -7,7 +7,7 @@ display: flex;
 flex-direction: column;
 position: absolute;
 background-color: #fff;
-height: fit-content;
+height: 100%;
 width: 30%;
 z-index: 2000 !important;
 top: 0;
@@ -20,6 +20,3 @@ width: 100%;
 height: fit-content;
 color: black;
 `;
-
-
-

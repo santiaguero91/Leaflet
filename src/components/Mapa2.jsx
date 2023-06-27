@@ -16,13 +16,20 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMarker, getMarkers } from "../redux/actions";
 import { statesData } from "../data";
-import {MapDiv, Plate, TituloMarker } from "./MapStyle";
+import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
+import leafIcon from "../components/leaf.png"
 
 function Mapa2() {
   const [count, setCount] = useState(1);
 
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
+
+  const markerIcon = new L.icon({
+    iconUrl: leafIcon,
+    iconSize: [20, 20],
+    popupAnchor: [3, -46], 
+  });
 
   const center = [51.505, -0.09];
   const rectangle = [
@@ -40,9 +47,7 @@ function Mapa2() {
     location.reload();
   }
 
-  /*   function ver() {
-    console.log(allMarkers);
-  } */
+
 
   useEffect(() => {
     dispatch(getMarkers());
@@ -51,8 +56,8 @@ function Mapa2() {
   return (
     <MapDiv>
       <button onClick={() => cambiar()}>CAMBIAR MAPA</button>
-      {/*       <button onClick={() => ver()}>VER</button>
-       */}{" "}
+
+<MapcontainerDiv>
       <MapContainer
         center={center}
         zoom={7}
@@ -81,9 +86,9 @@ function Mapa2() {
                       lng: el.longitude,
                     }}
                     key={el.id}
-                  >
+                    icon={markerIcon}                  >
                     <Popup key={el.id}>
-                      <Plate>
+                      <PopupPlate>
                         <TituloMarker>{el.name}</TituloMarker>
 
                         {el.link && <a href={el.link}>{el.name}</a>}
@@ -93,7 +98,7 @@ function Mapa2() {
                           <p>Longitude:{el.longitude}</p>
                         </div>
                         <button onClick={() => close(el.id)}> Delete </button>
-                      </Plate>
+                      </PopupPlate>
                     </Popup>
                   </Marker>
                 );
@@ -105,6 +110,11 @@ function Mapa2() {
               pathOptions={{ color: "green", fillColor: "green" }}
               radius={100}
             />
+
+              <Marker
+              position={{
+                lat: -51.51, lng:-63.52}}
+              />
           </MarkerClusterGroup>
 
           <LayersControl.Overlay checked name="Estados">
@@ -177,6 +187,7 @@ function Mapa2() {
           </LayersControl.Overlay>
         </LayersControl>
       </MapContainer>
+      </MapcontainerDiv>
     </MapDiv>
   );
 }

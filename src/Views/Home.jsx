@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import Mapa2 from "../components/Mapa2"
-import SideBar from "../components/sideBar/sideBar"
+import TopBar from "../components/TopBar/TopBar"
 import Form from "../components/form/Form";
-import { LateralListDiv, MainHomeDiv, PopUpDiv } from "./HomeStyle";
+import { LateralListDiv, MainHomeDiv, NavBar, PopUpDiv } from "./HomeStyle";
 import LateralItems from "../components/LateralItemsView/LateralItems";
 
 function Home() {
@@ -10,17 +10,15 @@ function Home() {
   const openMain = useSelector((state) => state.openMain);
   const openLateralList = useSelector((state) => state.openLateralList);
 
-  function ver() {
-    console.log(openMain);
-  }
 
   return (
     <MainHomeDiv
     >
-       {/* <button onClick={() => ver()}>VER</button> */}    
-     <PopUpDiv>{openMain === 1 && <Form/>}</PopUpDiv>
-    <SideBar />
-    
+      <NavBar> 
+      <TopBar />
+      </NavBar>
+    <PopUpDiv>{openMain === 1 && <Form/>}</PopUpDiv>
+
     {openLateralList === 1 && <LateralListDiv
     ><LateralItems/></LateralListDiv>  }
     <Mapa2/>
