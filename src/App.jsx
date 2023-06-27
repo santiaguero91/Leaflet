@@ -1,4 +1,3 @@
-import './App.css'
 import Home from "./Views/Home"
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from "framer-motion"

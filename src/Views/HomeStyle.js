@@ -25,7 +25,7 @@ export const Plate = styled.div`
   border: none;
   width: fit-content;
   height: fit-content;
-  margin: 20px 20px 20px 20px;
+  margin: 20px 0 20px 0;
   cursor: pointer;
   background-color: rgba(111, 111, 111);
   font-weight: 800;
@@ -34,7 +34,6 @@ export const Plate = styled.div`
 
 export const MapDiv = styled.div`
   display: flex;
-  margin: auto;
   flex-direction: column;
   z-index: -2;
 `;
@@ -43,11 +42,7 @@ export const MapDiv = styled.div`
 
 export const NavBar = styled.div`
   display: flex;
-  position: relative;
-  width: 100%;
-  height: fit-content;
   margin-bottom: 10px;
-  top: 0;
-  left: 0;
+
 `;
 

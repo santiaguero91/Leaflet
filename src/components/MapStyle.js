@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 export const MapDiv = styled.div`
   position: relative;
-  width: 100vw;
+  width: 95vw;
   flex-direction: column;
-  z-index: 2000 !important;
+  z-index: 1500 !important;
     button {
     width: fit-content;
   }

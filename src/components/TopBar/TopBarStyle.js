@@ -6,13 +6,11 @@ export const MainContainer = styled.div`
     justify-content: space-between;
     transition: 1s;
     background-color: #000;
-    height: fit-content;
-    width: 100vw;
+    width: 98vw;
     height: 40px;
     z-index: 2000 !important;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    border: 1px solid red;
 `;
 
 export const TopBarContainer = styled.div`
