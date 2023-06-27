@@ -6,7 +6,7 @@ export const MapDiv = styled.div`
   position: relative;
   width: 100vw;
   flex-direction: column;
-  z-index: -2;
+  z-index: 2000 !important;
     button {
     width: fit-content;
   }
@@ -16,7 +16,6 @@ export const MapcontainerDiv = styled.div`
 position: relative;
 width: fit-content;
 height: fit-content;
-border: 1px solid yellow;
 margin: 0 auto;
 `;
 

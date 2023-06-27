@@ -18,6 +18,7 @@ import { deleteMarker, getMarkers } from "../redux/actions";
 import { statesData } from "../data";
 import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
+import LeafletFileLayer from "../components/FileLayer/FileLayer"
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -110,7 +111,6 @@ function Mapa2() {
               pathOptions={{ color: "green", fillColor: "green" }}
               radius={100}
             />
-
               <Marker
               position={{
                 lat: -51.51, lng:-63.52}}
@@ -119,6 +119,7 @@ function Mapa2() {
 
           <LayersControl.Overlay checked name="Estados">
             <LayerGroup>
+              <LeafletFileLayer/>
               {statesData.features.map((state) => {
                 const coordinates = state.geometry.coordinates[0].map(
                   (item) => [item[1], item[0]]

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import Mapa2 from "../components/Mapa2"
+import Mapa from "../components/Mapa"
 import TopBar from "../components/TopBar/TopBar"
 import Form from "../components/form/Form";
 import { LateralListDiv, MainHomeDiv, NavBar, PopUpDiv } from "./HomeStyle";

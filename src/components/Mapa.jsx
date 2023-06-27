@@ -12,6 +12,13 @@ import { statesData } from "../data";
 function Mapa() {
   const center = [-28.15, -63.52];
 
+  var map = L.map('map', {
+    center: [51.505, -0.09],
+    zoom: 13
+});
+
+
+
 const interactionOptions = {
   zoomControl: true,
   doubleClickZoom: false,
