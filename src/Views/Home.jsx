@@ -5,7 +5,6 @@ import Form from "../components/form/Form";
 import { LateralListDiv, MainHomeDiv, NavBar, PopUpDiv } from "./HomeStyle";
 import LateralItems from "../components/LateralItemsView/LateralItems";
 import GoogleMap from "../components/GoogleMap/GoogleMap";
-import { Mapa } from "../components/Mapa";
 
 function Home() {
 
@@ -24,7 +23,6 @@ function Home() {
     {openLateralList === 1 && <LateralListDiv
     ><LateralItems/></LateralListDiv>  }
     <Mapa2/>
-    <Mapa/>
     </MainHomeDiv>
   )
 }

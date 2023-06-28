@@ -9,3 +9,8 @@ export default function SetViewOnClick({ animateRef }) {
 
   return null
 }
+
+
+
+
+

@@ -12,6 +12,7 @@ import {
   Rectangle,
   FeatureGroup,
   Polygon,
+  useMapEvents
 } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMarker, getMarkers } from "../redux/actions";
@@ -20,6 +21,7 @@ import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
 import SetViewOnClick from "./SetViewOnClick/SetViewOnClick";
+import AddMarkerOnRightClick from "./SetViewOnClick/setMarkerDblClick";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -166,6 +168,7 @@ function Mapa2() {
                   />
                 );
               })}
+      <AddMarkerOnRightClick />
 
               <Circle
                 center={center}
