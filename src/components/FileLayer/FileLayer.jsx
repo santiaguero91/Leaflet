@@ -7,10 +7,10 @@ import fileLayer from "leaflet-filelayer";
 fileLayer(null, L, togeojson);
 
 const style = {
-  color: "red",
-  opacity: 1.0,
-  fillOpacity: 1.0,
-  weight: 2,
+  color: "yellow",
+  opacity: 1,
+  fillOpacity: 0.2,
+  weight: 1,
   clickable: false
 };
 
@@ -33,6 +33,7 @@ export default function LeafletFileLayer() {
         }
       }
     });
+    console.log(control);
     control.addTo(map);
     control.loader.on("data:loaded", function (e) {
       var layer = e.layer;

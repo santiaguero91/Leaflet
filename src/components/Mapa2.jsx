@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import {
@@ -19,9 +19,11 @@ import { statesData } from "../data";
 import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
+import SetViewOnClick from "./SetViewOnClick/SetViewOnClick";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
+  const animateRef = useRef(true)
 
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
@@ -31,8 +33,8 @@ function Mapa2() {
     iconSize: [20, 20],
     popupAnchor: [3, -46], 
   });
-
-  const center = [51.505, -0.09];
+  
+  const center=[-34.61315, -58.37723];
   const rectangle = [
     [51.49, -0.08],
     [51.5, -0.06],
@@ -48,6 +50,7 @@ function Mapa2() {
     location.reload();
   }
 
+  
 
 
   useEffect(() => {
@@ -61,21 +64,20 @@ function Mapa2() {
 <MapcontainerDiv>
       <MapContainer
         center={center}
-        zoom={7}
+        zoom={12}
         scrollWheelZoom={true}
         style={{ width: "90vw", height: "90vh" }}
       >
-        {count === 1 ? (
+        {count === 1 ? ( 
           <TileLayer
-            url="https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=CdQyAANewyZZe8a2YwTo"
+            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
           ></TileLayer>
         ) : (
           <TileLayer
-            url="https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=CdQyAANewyZZe8a2YwTo"
-            attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+            url='https://api.maptiler.com/tiles/satellite-v2/{z}/{x}/{y}.jpg?key=CdQyAANewyZZe8a2YwTo'
           ></TileLayer>
-        )}
+        )}  
         <LayersControl position="topright">
           <MarkerClusterGroup>
             {allMarkers.map((el) => {
@@ -105,7 +107,7 @@ function Mapa2() {
                 );
               }
             })}
-
+<SetViewOnClick animateRef={animateRef} />
             <Circle
               center={[51.51, -0.08]}
               pathOptions={{ color: "green", fillColor: "green" }}
