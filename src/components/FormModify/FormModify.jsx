@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import validate from "./FormValidation";
 import { motion } from "framer-motion";
-import { Background, ButtonsDiv, Clean } from "./FormStyle";
+import { Background,} from "./FormStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { postMarker } from "../../redux/actions";
 
-function Form() {
+function FormModify() {
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
 
@@ -56,7 +56,9 @@ function Form() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+
+    
+    /* e.preventDefault();
 
     dispatch(postMarker(input));
 
@@ -69,7 +71,7 @@ function Form() {
       tipo: "",
     });
     alert("Marker was created successfully!!");
-    location.reload();
+    location.reload(); */
   };
 
   return (
@@ -80,9 +82,9 @@ function Form() {
     >
       <Background>
         <form className="form">
-          <h4>Create New Marker</h4>
+          <h4>Modify New Marker</h4>
           <div>
-            <label>Marker Name:</label>
+            <label>New Marker Name:</label>
             <input
               id="inputname"
               type="text"
@@ -94,7 +96,7 @@ function Form() {
             {errors.name && <p>{errors.name}</p>}
           </div>
           <div>
-            <label>latitude:</label>
+            <label>Latitude:</label>
             <input
               id="totaLAT"
               type="number"
@@ -180,7 +182,7 @@ function Form() {
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
-                CREATE MARKER
+                MODIFY MARKER
               </button>
             ) : (
               <button
@@ -189,7 +191,7 @@ function Form() {
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
-                CREATE MARKER
+                MODIFY MARKER
               </button>
             )}
           </div>
@@ -199,4 +201,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default FormModify;

@@ -12,21 +12,19 @@ import {
   Rectangle,
   FeatureGroup,
   Polygon,
-  useMapEvents
 } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMarker, getMarkers } from "../redux/actions";
+import { deleteMarker, getMarkers, setOpenModifyPanel } from "../redux/actions";
 import { statesData } from "../data";
 import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
-import SetViewOnClick from "./SetViewOnClick/SetViewOnClick";
-import AddMarkerOnRightClick from "./SetViewOnClick/setMarkerDblClick";
-
+import CoordOnClick from "./SetViewOnClick/CoordOnClick";
 function Mapa2() {
   const [count, setCount] = useState(1);
-  const animateRef = useRef(true)
+  const [modifyPanel, setModifyPanel] = useState(0);
 
+  const animateRef = useRef(true)
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
 
@@ -37,10 +35,6 @@ function Mapa2() {
   });
   
   const center=[-34.61315, -58.37723];
-  const rectangle = [
-    [51.49, -0.08],
-    [51.5, -0.06],
-  ];
 
   function cambiar() {
     count === 1 ? setCount(count + 1) : setCount(count - 1);
@@ -52,6 +46,9 @@ function Mapa2() {
     location.reload();
   }
 
+  function openModifyPanel(id) {
+    dispatch(setOpenModifyPanel(id));
+  }
   
 
 
@@ -95,7 +92,6 @@ function Mapa2() {
                     <Popup key={el.id}>
                       <PopupPlate>
                         <TituloMarker>{el.name}</TituloMarker>
-
                         {el.link && <a href={el.link}>{el.name}</a>}
                         {el.img && <img width="300px" src={el.img} />}
                         <div>
@@ -103,22 +99,13 @@ function Mapa2() {
                           <p>Longitude:{el.longitude}</p>
                         </div>
                         <button onClick={() => close(el.id)}> Delete </button>
+                        <button onClick={() => openModifyPanel(el.id)}> Modify </button>
                       </PopupPlate>
                     </Popup>
                   </Marker>
                 );
               }
             })}
-<SetViewOnClick animateRef={animateRef} />
-            <Circle
-              center={[51.51, -0.08]}
-              pathOptions={{ color: "green", fillColor: "green" }}
-              radius={100}
-            />
-              <Marker
-              position={{
-                lat: -51.51, lng:-63.52}}
-              />
           </MarkerClusterGroup>
 
           <LayersControl.Overlay checked name="Estados">
@@ -168,29 +155,11 @@ function Mapa2() {
                   />
                 );
               })}
-      <AddMarkerOnRightClick />
+      <CoordOnClick/>
 
-              <Circle
-                center={center}
-                pathOptions={{ fillColor: "blue" }}
-                radius={200}
-              />
-              <Circle
-                center={center}
-                pathOptions={{ fillColor: "red" }}
-                radius={100}
-                stroke={false}
-              />
-              <LayerGroup></LayerGroup>
             </LayerGroup>
           </LayersControl.Overlay>
-          <LayersControl.Overlay name="Feature group">
-            <FeatureGroup pathOptions={{ color: "purple" }}>
-              <Popup>Popup in FeatureGroup</Popup>
-              <Circle center={[51.51, -0.06]} radius={200} />
-              <Rectangle bounds={rectangle} />
-            </FeatureGroup>
-          </LayersControl.Overlay>
+
         </LayersControl>
       </MapContainer>
       </MapcontainerDiv>
