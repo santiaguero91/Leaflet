@@ -8,9 +8,6 @@ import {
   Popup,
   LayerGroup,
   LayersControl,
-  Circle,
-  Rectangle,
-  FeatureGroup,
   Polygon,
 } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,7 +47,6 @@ function Mapa2() {
     dispatch(setOpenModifyPanel(id));
   }
   
-
 
   useEffect(() => {
     dispatch(getMarkers());
@@ -99,7 +95,7 @@ function Mapa2() {
                           <p>Longitude:{el.longitude}</p>
                         </div>
                         <button onClick={() => close(el.id)}> Delete </button>
-                        <button onClick={() => openModifyPanel(el.id)}> Modify </button>
+                        <button onClick={() => openModifyPanel(el)}> Modify </button>
                       </PopupPlate>
                     </Popup>
                   </Marker>

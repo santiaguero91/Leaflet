@@ -3,19 +3,21 @@ import validate from "./FormValidation";
 import { motion } from "framer-motion";
 import { Background,} from "./FormStyle";
 import { useDispatch, useSelector } from "react-redux";
-import { postMarker } from "../../redux/actions";
+import { setOpenModifyPanel } from "../../redux/actions";
 
 function FormModify() {
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
+  const openModifyPanel = useSelector((state) => state.openModifyPanel);
 
   const [input, setInput] = useState({
-    name: "",
-    latitude: "",
-    longitude: "",
-    img: "",
-    link: "",
-    tipo: "",
+    id: openModifyPanel.id,
+    name: openModifyPanel.name,
+    latitude: openModifyPanel.latitude,
+    longitude: openModifyPanel.longitude,
+    img: openModifyPanel.img,
+    link: openModifyPanel.link,
+    tipo: openModifyPanel.tipo,
   });
 
   const [errors, setErrors] = useState({
@@ -55,12 +57,14 @@ function FormModify() {
     }
   };
 
+
+
+
   const handleSubmit = (e) => {
+     e.preventDefault();
+     console.log(input);
 
-    
-    /* e.preventDefault();
-
-    dispatch(postMarker(input));
+/*     dispatch(postMarker(input));
 
     setInput({
       name: "",
@@ -71,8 +75,16 @@ function FormModify() {
       tipo: "",
     });
     alert("Marker was created successfully!!");
-    location.reload(); */
+    location.reload();  */
   };
+
+  function ver() {
+    console.log(openModifyPanel);
+  }
+
+  function closeModifyForm() {
+    dispatch(setOpenModifyPanel(0));
+  }
 
   return (
     <motion.div
@@ -81,6 +93,8 @@ function FormModify() {
       exit={{ scaleY: 0, transition: { duration: 0.1 } }}
     >
       <Background>
+      <button onClick={()=>ver()}>VER</button>
+
         <form className="form">
           <h4>Modify New Marker</h4>
           <div>
@@ -196,6 +210,7 @@ function FormModify() {
             )}
           </div>
         </form>
+        <button onClick={()=>closeModifyForm()}>CERRAR</button>
       </Background>
     </motion.div>
   );

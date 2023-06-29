@@ -6,6 +6,7 @@ import { LateralListDiv, MainHomeDiv, NavBar, PopUpDiv } from "./HomeStyle";
 import LateralItems from "../components/LateralItemsView/LateralItems";
 import GoogleMap from "../components/GoogleMap/GoogleMap";
 import FormModify from "../components/FormModify/FormModify";
+import { useEffect } from "react";
 
 function Home() {
 
@@ -14,6 +15,12 @@ function Home() {
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
 
 
+  useEffect(() => {
+    console.log(openModifyPanel, "openModifyPanel");
+  }, [openModifyPanel]);
+
+
+console.log(openModifyPanel, "hola");
   return (
     <MainHomeDiv
     >
