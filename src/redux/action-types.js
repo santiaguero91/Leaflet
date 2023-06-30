@@ -4,3 +4,5 @@ export const FILTER_BY_TYPE= "FILTER_BY_TYPE"
 export const SET_OPEN= "SET_OPEN"
 export const OPEN_LATERL_LIST= "OPEN_LATERL_LIST"
 export const OPEN_MODIFY_PANEL= "OPEN_MODIFY_PANEL"
+export const PUT_MARKER= "PUT_MARKER"
+

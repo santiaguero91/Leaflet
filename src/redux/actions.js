@@ -66,3 +66,16 @@ export function setOpenModifyPanel(payload){
         payload
     }
 }
+
+export function putMarker(payload){
+    const id = payload.id
+    return async function() {
+        try{       
+        console.log(payload);
+        const response = await axios.put(`${Url}/`+ id, payload)
+        return response
+    } catch (error){
+        console.log(error);
+    }
+    }
+} 

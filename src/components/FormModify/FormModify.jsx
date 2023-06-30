@@ -3,7 +3,7 @@ import validate from "./FormValidation";
 import { motion } from "framer-motion";
 import { Background,} from "./FormStyle";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenModifyPanel } from "../../redux/actions";
+import { putMarker, setOpenModifyPanel } from "../../redux/actions";
 
 function FormModify() {
   const dispatch = useDispatch();
@@ -63,19 +63,9 @@ function FormModify() {
   const handleSubmit = (e) => {
      e.preventDefault();
      console.log(input);
-
-/*     dispatch(postMarker(input));
-
-    setInput({
-      name: "",
-      latitude: "",
-      longitude: "",
-      img: "",
-      link: "",
-      tipo: "",
-    });
-    alert("Marker was created successfully!!");
-    location.reload();  */
+     dispatch(putMarker(input));
+/*      alert("Marker was created successfully!!");*/     
+dispatch(setOpenModifyPanel(0));
   };
 
   function ver() {
@@ -96,9 +86,9 @@ function FormModify() {
       <button onClick={()=>ver()}>VER</button>
 
         <form className="form">
-          <h4>Modify New Marker</h4>
+          <h4>Modificar Marcador</h4>
           <div>
-            <label>New Marker Name:</label>
+            <label>Nuevo Nombre:</label>
             <input
               id="inputname"
               type="text"
@@ -110,7 +100,7 @@ function FormModify() {
             {errors.name && <p>{errors.name}</p>}
           </div>
           <div>
-            <label>Latitude:</label>
+            <label>Latitud:</label>
             <input
               id="totaLAT"
               type="number"
@@ -123,7 +113,7 @@ function FormModify() {
             {errors.latitude && <p>{errors.latitude}</p>}
           </div>
           <div>
-            <label>Longitude:</label>
+            <label>Longitud:</label>
             <input
               id="totalLONG"
               type="number"
@@ -175,7 +165,7 @@ function FormModify() {
             </label>
           </div>
           <div>
-            <label>Add Image:</label>
+            <label>Link Imagen:</label>
             <input
               placeholder="This is optional"
               id="inputimg"
@@ -196,7 +186,7 @@ function FormModify() {
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
-                MODIFY MARKER
+                ACTUALIZAR
               </button>
             ) : (
               <button
@@ -205,7 +195,7 @@ function FormModify() {
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
-                MODIFY MARKER
+                ACTUALIZAR
               </button>
             )}
           </div>

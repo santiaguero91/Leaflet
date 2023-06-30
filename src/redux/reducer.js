@@ -1,4 +1,4 @@
-import { DELETE_MARKERS, GET_MARKERS, FILTER_BY_TYPE, SET_OPEN, OPEN_LATERL_LIST, OPEN_MODIFY_PANEL } from "./action-types";
+import { DELETE_MARKERS, GET_MARKERS, FILTER_BY_TYPE, SET_OPEN, OPEN_LATERL_LIST, OPEN_MODIFY_PANEL, PUT_MARKER } from "./action-types";
 
 const initialState = {
     openLateralList: "0",
@@ -45,7 +45,10 @@ const rootReducer =(state=initialState, action) => {
             ...state,
             openModifyPanel: action.payload
         }
-
+        case PUT_MARKER:
+            return{
+                ...state,
+        }
         default:
             return{...state}; 
 }

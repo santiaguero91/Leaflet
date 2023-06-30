@@ -16,7 +16,7 @@ import { statesData } from "../data";
 import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
-import CoordOnClick from "./SetViewOnClick/CoordOnClick";
+import CoordOnClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
 function Mapa2() {
   const [count, setCount] = useState(1);
   const [modifyPanel, setModifyPanel] = useState(0);

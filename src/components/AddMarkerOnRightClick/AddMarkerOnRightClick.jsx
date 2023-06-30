@@ -46,7 +46,7 @@ export default function AddMarkerOnRightClick() {
   return markerPosition === null ? null : (
     <Marker position={markerPosition}>
       <Popup>
-        <button onClick={(e) => handleSubmit(e)}>ADD</button>
+        <button onClick={(e) => handleSubmit(e)}>Guardar</button>
         {markerPosition.toString()}</Popup>
 
     </Marker>
