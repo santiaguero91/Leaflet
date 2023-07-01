@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import {
@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMarker, getMarkers, setOpenModifyPanel } from "../redux/actions";
 import { statesData } from "../data";
-import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
+import {MapDiv, MapcontainerDiv, PopupPlateDiv, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
 import CoordOnClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
@@ -85,13 +85,15 @@ function Mapa2() {
                     key={el.id}
                     icon={markerIcon}                  >
                     <Popup key={el.id}>
-                      <PopupPlate>
+                      <PopupPlateDiv>
                         <TituloMarker>{el.name}</TituloMarker>
                         {el.link && <a href={el.link}>{el.name}</a>}
-                        {el.img && <img width="300px" src={el.img} />}
+                        {el.img && <img width="250px" src={el.img} />}
+                        <div className="botones">
                         <button onClick={() => close(el.id)}> Delete </button>
                         <button onClick={() => openModifyPanel(el)}> Modify </button>
-                      </PopupPlate>
+                        </div>
+                      </PopupPlateDiv>
                     </Popup>
                   </Marker>
                 );

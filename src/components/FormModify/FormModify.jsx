@@ -174,14 +174,14 @@ function FormModify() {
             </label>
           </div>
           <div>
-            <label>Link Imagen:</label>
+            <label>Elegir Imagen:</label>
             <input 
       type="file"
       name="file"
       id="file"
       onChange={e=> setFile(e.target.files[0])}
       ></input>
-      <button onClick={handleSubmitImage}>UPLOAD</button>
+      <button onClick={handleSubmitImage}>Confirmar</button>
       {imagen && <div><img src={imagen} alt="Descripción de la imagen" width="100"/></div>}
           </div>
           <div className="divSubmitButton">
@@ -194,7 +194,7 @@ function FormModify() {
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
-                ACTUALIZAR
+                Actuaizar Marcador
               </button>
             ) : (
               <button
