@@ -7,12 +7,13 @@ import {
 } from "./TopBarStyle";
 import Filtro from "../filtro/Filtro";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenLateralList, setOpenOnMain } from "../../redux/actions";
+import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
 
 function TopBar() {
   const dispatch = useDispatch();
   const openState = useSelector((state) => state.openMain);
   const openLateralList = useSelector((state) => state.openLateralList);
+  const mapstate = useSelector((state) => state.map);
 
   function OpenOnMain(id) {
     if (openState === id) {
@@ -22,13 +23,19 @@ function TopBar() {
     }
   }
 
-
   function OpenLateralList(id) {
     if (openLateralList === id) {
       dispatch(setOpenLateralList(0));
     } else {
       dispatch(setOpenLateralList(id));
     } 
+  }
+
+  function cambiarmapa() {
+    dispatch(changeMap(mapstate === 1 ? 2 : 1));
+  }
+  function ver() {
+    console.log(mapstate, "mapstate");
   }
   return (
     <MainContainer>
@@ -40,7 +47,8 @@ function TopBar() {
           {(openState ===2) && <SidebarDiv><Filtro/></SidebarDiv>}
         </div>
       </TopBarContainer>
-
+      <button onClick={() => cambiarmapa()}>CAMBIAR MAPA</button>
+      <button onClick={() => ver()}>ver</button>
       <LateralListContainer>
         <div style={{ marginRight: (openLateralList ===1) ? "30vw" : "0", transition: "1s" }}>
       <button onClick={() => OpenLateralList(1)}> Marcadores</button>

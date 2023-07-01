@@ -19,7 +19,6 @@ export default function AddMarkerOnRightClick() {
 
   
   const handleSubmit = (e) => {
-    console.log(input);
      dispatch(postMarker(input)); 
      alert("Marker was created successfully!!");
     location.reload();    
@@ -28,7 +27,6 @@ export default function AddMarkerOnRightClick() {
   useMapEvents({
     contextmenu(e) {
       setMarkerPosition(e.latlng);
-      console.log(e.latlng.lat);
       setInput({
         name: "newmarker",
         latitude: e.latlng.lat,
@@ -37,7 +35,6 @@ export default function AddMarkerOnRightClick() {
         link: "",
         tipo: "",
       });
-      console.log(e.latlng);
     },
 
 

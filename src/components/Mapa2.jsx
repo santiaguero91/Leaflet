@@ -16,9 +16,9 @@ import { statesData } from "../data";
 import {MapDiv, MapcontainerDiv, PopupPlateDiv, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
-import CoordOnClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
 import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
 import { useNavigate } from "react-router-dom";
+import AddMarkerOnRightClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
 
 
 function Mapa2() {
@@ -26,6 +26,7 @@ function Mapa2() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
+  const mapstate = useSelector((state) => state.map);
 
   const markerIcon = new L.icon({
     iconUrl: leafIcon,
@@ -34,11 +35,6 @@ function Mapa2() {
   });
   
   const center=[-34.61315, -58.37723];
-
-  function cambiar() {
-    count === 1 ? setCount(count + 1) : setCount(count - 1);
-    console.log(count);
-  }
 
   function close(id) {
     dispatch(deleteMarker(id));
@@ -60,7 +56,6 @@ function Mapa2() {
 
   return (
     <MapDiv>
-      <button onClick={() => cambiar()}>CAMBIAR MAPA</button>
 
 <MapcontainerDiv>
       <MapContainer
@@ -69,7 +64,7 @@ function Mapa2() {
         scrollWheelZoom={true}
         style={{ width: "90vw", height: "90vh" }}
       >
-        {count === 1 ? ( 
+        {mapstate === 1 ? ( 
           <TileLayer
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
@@ -91,7 +86,7 @@ function Mapa2() {
                     icon={markerIcon}                  >
                     <Popup key={el.id}>
                       <PopupPlateDiv>
-                        <TituloMarker>{el.name}</TituloMarker>
+                        <TituloMarker><div className="popupTitle">{el.name}</div></TituloMarker>
                         {el.link && <a href={el.link}>{el.name}</a>}
                         {el.img && <img width="250px" src={el.img} />}
                         <div className="botones">
@@ -154,7 +149,7 @@ function Mapa2() {
                   />
                 );
               })}
-      <CoordOnClick/>
+      <AddMarkerOnRightClick/>
 
             </LayerGroup>
           </LayersControl.Overlay>

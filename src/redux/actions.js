@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN,OPEN_MODIFY_PANEL, GET_DETAILS} from "./action-types";
+import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN,OPEN_MODIFY_PANEL, GET_DETAILS, CHANGE_MAP} from "./action-types";
 
 const Url = `http://localhost:3001/markers`
 
@@ -68,7 +68,12 @@ export function setOpenOnMain(payload){
         payload
     }
 }
-
+export function changeMap(payload){
+    return{
+        type: CHANGE_MAP,
+        payload
+    }
+}
 export function setOpenLateralList(payload){
     return{
         type: OPEN_LATERL_LIST,

@@ -35,6 +35,9 @@ place-self: center;
   cursor: pointer;
   font-weight: 800;
   z-index: -2;
+  .popupTitle{
+    font-size: 20px;
+  }
   .botones {
     display: flex;
     justify-content: space-around;
