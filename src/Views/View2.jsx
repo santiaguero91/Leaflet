@@ -5,19 +5,21 @@ import { uploadFile } from "../firebase/config";
 function View2() {
 
 const [file, setFile] = useState(null)
+const [imagen, setImage] = useState(null)
 
-const handleSubmit = async (e) => {
+const handleSubmitImage = async (e) => {
   e.preventDefault();
   try{
     const result = await uploadFile(file);
-    console.log(result);
+    setImage(result)
+    console.log(result,);
   } catch (error) {
     console.log(error);
   }
 }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmitImage}>
       <input 
       type="file"
       name="file"
@@ -25,6 +27,9 @@ const handleSubmit = async (e) => {
       onChange={e=> setFile(e.target.files[0])}
       ></input>
       <button>UPLOAD</button>
+
+    {imagen && <div><img src={imagen} alt="Descripción de la imagen" width="100"/></div>}
+
     </form>
   )
 }

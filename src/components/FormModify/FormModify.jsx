@@ -4,11 +4,17 @@ import { motion } from "framer-motion";
 import { Background } from "./FormStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { putMarker, setOpenModifyPanel } from "../../redux/actions";
+import { uploadFile } from "../../firebase/config";
 
 function FormModify() {
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
+
+/////////
+  const [file, setFile] = useState(null)
+  const [imagen, setImage] = useState(null)
+//////
 
   const [input, setInput] = useState({
     id: openModifyPanel.id,
@@ -56,7 +62,20 @@ function FormModify() {
       );
     }
   };
-
+  const handleSubmitImage = async (e) => {
+    e.preventDefault();
+    try{
+      const result = await uploadFile(file);
+      setImage(result)
+      setInput({
+        ...input,
+        img: result,
+      });
+      console.log(result,);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
@@ -156,15 +175,14 @@ function FormModify() {
           </div>
           <div>
             <label>Link Imagen:</label>
-            <input
-              placeholder="This is optional"
-              id="inputimg"
-              type="text"
-              value={input.img}
-              name="img"
-              onChange={(e) => handleChange(e)}
-              title="img"
-            />
+            <input 
+      type="file"
+      name="file"
+      id="file"
+      onChange={e=> setFile(e.target.files[0])}
+      ></input>
+      <button onClick={handleSubmitImage}>UPLOAD</button>
+      {imagen && <div><img src={imagen} alt="Descripción de la imagen" width="100"/></div>}
           </div>
           <div className="divSubmitButton">
             {input.name !== "" &&

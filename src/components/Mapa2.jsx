@@ -17,6 +17,9 @@ import {MapDiv, MapcontainerDiv, PopupPlate, TituloMarker } from "./MapStyle";
 import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
 import CoordOnClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
+import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
+
+
 function Mapa2() {
   const [count, setCount] = useState(1);
 
@@ -67,9 +70,7 @@ function Mapa2() {
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
           ></TileLayer>
         ) : (
-          <TileLayer
-            url='https://api.maptiler.com/tiles/satellite-v2/{z}/{x}/{y}.jpg?key=CdQyAANewyZZe8a2YwTo'
-          ></TileLayer>
+          <ReactLeafletGoogleLayer type={'satellite'} />
         )}  
         <LayersControl position="topright">
           <MarkerClusterGroup>
