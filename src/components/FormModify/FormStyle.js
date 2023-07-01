@@ -11,12 +11,9 @@ display: grid;
     padding-bottom: 80px;
     margin-top: 2rem;
 
-
-
     color: aliceblue;
-    font-weight: 600;
+    font-weight: 500;
     font-size: large;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 h4{

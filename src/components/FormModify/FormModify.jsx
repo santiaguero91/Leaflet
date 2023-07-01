@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import validate from "./FormValidation";
 import { motion } from "framer-motion";
-import { Background,} from "./FormStyle";
+import { Background } from "./FormStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { putMarker, setOpenModifyPanel } from "../../redux/actions";
 
@@ -57,20 +57,12 @@ function FormModify() {
     }
   };
 
-
-
-
   const handleSubmit = (e) => {
-     e.preventDefault();
-     console.log(input);
-     dispatch(putMarker(input));
-/*      alert("Marker was created successfully!!");*/     
-dispatch(setOpenModifyPanel(0));
+    e.preventDefault();
+    console.log(input);
+    dispatch(putMarker(input));
+    dispatch(setOpenModifyPanel(0));
   };
-
-  function ver() {
-    console.log(openModifyPanel);
-  }
 
   function closeModifyForm() {
     dispatch(setOpenModifyPanel(0));
@@ -83,8 +75,6 @@ dispatch(setOpenModifyPanel(0));
       exit={{ scaleY: 0, transition: { duration: 0.1 } }}
     >
       <Background>
-      <button onClick={()=>ver()}>VER</button>
-
         <form className="form">
           <h4>Modificar Marcador</h4>
           <div>
@@ -200,7 +190,7 @@ dispatch(setOpenModifyPanel(0));
             )}
           </div>
         </form>
-        <button onClick={()=>closeModifyForm()}>CERRAR</button>
+        <button onClick={() => closeModifyForm()}>CERRAR</button>
       </Background>
     </motion.div>
   );

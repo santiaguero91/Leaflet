@@ -19,9 +19,7 @@ import LeafletFileLayer from "../components/FileLayer/FileLayer"
 import CoordOnClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
 function Mapa2() {
   const [count, setCount] = useState(1);
-  const [modifyPanel, setModifyPanel] = useState(0);
 
-  const animateRef = useRef(true)
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
 
@@ -90,10 +88,6 @@ function Mapa2() {
                         <TituloMarker>{el.name}</TituloMarker>
                         {el.link && <a href={el.link}>{el.name}</a>}
                         {el.img && <img width="300px" src={el.img} />}
-                        <div>
-                          <p>Latitude:{el.latitude} </p>
-                          <p>Longitude:{el.longitude}</p>
-                        </div>
                         <button onClick={() => close(el.id)}> Delete </button>
                         <button onClick={() => openModifyPanel(el)}> Modify </button>
                       </PopupPlate>

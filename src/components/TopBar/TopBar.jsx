@@ -1,6 +1,5 @@
 import "../../App.css";
 import {
-  FormContainer,
   LateralListContainer,
   MainContainer,
   TopBarContainer,
@@ -37,20 +36,14 @@ function TopBar() {
         <div className="sidebar"
           style={{ width: (openState ===2) ? "40vw" : "0", transition: "1s" }}
         >
-          <button onClick={() => OpenOnMain(2)}> SIDEBAR</button>
+          <button onClick={() => OpenOnMain(2)}> Filtros</button>
           {(openState ===2) && <SidebarDiv><Filtro/></SidebarDiv>}
         </div>
       </TopBarContainer>
 
-      <FormContainer>
-        <div>
-          <button onClick={() => OpenOnMain(1)}> FORM</button>
-        </div>
-      </FormContainer>
-
       <LateralListContainer>
         <div style={{ marginRight: (openLateralList ===1) ? "30vw" : "0", transition: "1s" }}>
-      <button onClick={() => OpenLateralList(1)}> LATERAL</button>
+      <button onClick={() => OpenLateralList(1)}> Marcadores</button>
       </div>
       </LateralListContainer>
     </MainContainer>
