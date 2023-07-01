@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN,OPEN_MODIFY_PANEL} from "./action-types";
+import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN,OPEN_MODIFY_PANEL, GET_DETAILS} from "./action-types";
 
 const Url = `http://localhost:3001/markers`
 
@@ -27,6 +27,21 @@ export function postMarker(payload){
     }
     }
 } 
+
+
+export function getInfoById(id) {
+    return async function (dispatch) {
+      try {
+        const json = await axios.get(`${Url}/${id}`);
+        return dispatch({
+          type: GET_DETAILS,
+          payload: json.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
 export function deleteMarker(id){
     return async function() {

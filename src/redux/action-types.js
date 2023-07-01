@@ -5,4 +5,5 @@ export const SET_OPEN= "SET_OPEN"
 export const OPEN_LATERL_LIST= "OPEN_LATERL_LIST"
 export const OPEN_MODIFY_PANEL= "OPEN_MODIFY_PANEL"
 export const PUT_MARKER= "PUT_MARKER"
+export const GET_DETAILS= "GET_DETAILS"
 

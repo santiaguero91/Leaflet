@@ -18,11 +18,12 @@ import leafIcon from "../components/leaf.png"
 import LeafletFileLayer from "../components/FileLayer/FileLayer"
 import CoordOnClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
 import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
+import { useNavigate } from "react-router-dom";
 
 
 function Mapa2() {
   const [count, setCount] = useState(1);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
 
@@ -47,7 +48,11 @@ function Mapa2() {
   function openModifyPanel(id) {
     dispatch(setOpenModifyPanel(id));
   }
-  
+
+  function verMasInfo(id) {
+    console.log();
+    navigate(`/details/${id}`);
+  }
 
   useEffect(() => {
     dispatch(getMarkers());
@@ -91,6 +96,7 @@ function Mapa2() {
                         {el.img && <img width="250px" src={el.img} />}
                         <div className="botones">
                         <button onClick={() => close(el.id)}> Delete </button>
+                        <button onClick={() => verMasInfo(el.id)}> Mas Info </button>
                         <button onClick={() => openModifyPanel(el)}> Modify </button>
                         </div>
                       </PopupPlateDiv>
