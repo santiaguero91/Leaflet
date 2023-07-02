@@ -19,6 +19,7 @@ import LeafletFileLayer from "../components/FileLayer/FileLayer"
 import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
 import { useNavigate } from "react-router-dom";
 import AddMarkerOnRightClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
+import Footer from "./Footer/Footer";
 
 
 function Mapa2() {
@@ -157,6 +158,7 @@ function Mapa2() {
         </LayersControl>
       </MapContainer>
       </MapcontainerDiv>
+      <Footer/>
     </MapDiv>
   );
 }

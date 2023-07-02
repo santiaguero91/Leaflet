@@ -34,9 +34,7 @@ function TopBar() {
   function cambiarmapa() {
     dispatch(changeMap(mapstate === 1 ? 2 : 1));
   }
-  function ver() {
-    console.log(mapstate, "mapstate");
-  }
+
   return (
     <MainContainer>
       <TopBarContainer>
@@ -48,7 +46,6 @@ function TopBar() {
         </div>
       </TopBarContainer>
       <button onClick={() => cambiarmapa()}>CAMBIAR MAPA</button>
-      <button onClick={() => ver()}>ver</button>
       <LateralListContainer>
         <div style={{ marginRight: (openLateralList ===1) ? "30vw" : "0", transition: "1s" }}>
       <button onClick={() => OpenLateralList(1)}> Marcadores</button>

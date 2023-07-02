@@ -6,6 +6,7 @@ import { LateralListDiv, MainHomeDiv, NavBar, PopUpDiv } from "./HomeStyle";
 import LateralItems from "../components/LateralItemsView/LateralItems";
 import FormModify from "../components/FormModify/FormModify";
 import { useEffect } from "react";
+import Footer from "../components/Footer/Footer";
 
 function Home() {
 
@@ -21,8 +22,7 @@ function Home() {
 
 console.log(openModifyPanel);
   return (
-    <MainHomeDiv
-    >
+    <MainHomeDiv>
       <NavBar> 
       <TopBar />
       </NavBar>
