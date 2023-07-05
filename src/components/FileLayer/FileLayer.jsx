@@ -23,12 +23,12 @@ export default function LeafletFileLayer() {
   useEffect(() => {
     if(count===0){
     setCount(2)
-    console.log("1");
     const control = L.Control.fileLayerLoad({
       fitBounds: true,
       layerOptions: {
         style: style,
         pointToLayer: function (data, latlng) {
+          console.log(data.properties.name);
           return L.circleMarker(latlng, { style: style });
         }
       }
