@@ -51,12 +51,19 @@ function Mapa2() {
     navigate(`/details/${id}`);
   }
 
+  //////////! FUNCION VER ///////////
+  function ver() {
+    console.log(allMarkers);
+  ////////////////! //////////////////
+  }
+
   useEffect(() => {
     dispatch(getMarkers());
   }, [dispatch]);
 
   return (
     <MapDiv>
+        <button onClick={() => ver()}>VER</button>
 
 <MapcontainerDiv>
       <MapContainer
@@ -76,14 +83,13 @@ function Mapa2() {
         <LayersControl position="topright">
           <MarkerClusterGroup>
             {allMarkers.map((el) => {
-              if (el.id < 30) {
                 return (
                   <Marker
                     position={{
                       lat: el.latitude,
                       lng: el.longitude,
                     }}
-                    key={el.id}
+                    key={el.updatedAt}
                     icon={markerIcon}                  >
                     <Popup key={el.id}>
                       <PopupPlateDiv>
@@ -99,7 +105,7 @@ function Mapa2() {
                     </Popup>
                   </Marker>
                 );
-              }
+              
             })}
           </MarkerClusterGroup>
 
