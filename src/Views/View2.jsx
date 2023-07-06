@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { uploadFile } from "../firebase/config";
 
 function View2() {
 
 const [file, setFile] = useState(null)
 const [imagen, setImage] = useState(null)
-
-
-
 
 const handleSubmitImage = async (e) => {
   e.preventDefault();

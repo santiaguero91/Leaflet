@@ -4,19 +4,23 @@ import { AnimatePresence } from "framer-motion"
 import View2 from "./Views/View2";
 import Details from "./Views/Details/Details";
 import io from 'socket.io-client'
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { getMarkers } from "./redux/actions";
+import { useDispatch } from "react-redux";
 
 
 
 function App() {
   const location = useLocation();
   const [isConected, setisConnected] = useState(false)
+  const dispatch = useDispatch();
 
   const socket = io('http://localhost:3001')
   socket.connect('connect', console.log("estamos online maestro"))
 
    socket.on('update', (data) => { 
     console.log("hubo un cambio");
+    dispatch(getMarkers());
   }); 
 
   return (
