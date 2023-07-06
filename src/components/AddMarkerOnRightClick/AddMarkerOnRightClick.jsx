@@ -17,11 +17,12 @@ export default function AddMarkerOnRightClick() {
     tipo: "",
   });
 
+
   
   const handleSubmit = (e) => {
      dispatch(postMarker(input)); 
-     alert("Marker was created successfully!!");
-    location.reload();    
+    /* alert("Marker was created successfully!!");
+     location.reload(); */    
   };
    
   useMapEvents({
