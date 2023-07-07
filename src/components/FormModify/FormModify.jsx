@@ -17,7 +17,7 @@ function FormModify() {
 //////
 
   const [input, setInput] = useState({
-    id: openModifyPanel.id,
+    id: openModifyPanel._id,
     name: openModifyPanel.name,
     latitude: openModifyPanel.latitude,
     longitude: openModifyPanel.longitude,
@@ -36,6 +36,7 @@ function FormModify() {
   });
 
   const handleChange = (e) => {
+    
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -78,7 +79,6 @@ function FormModify() {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     dispatch(putMarker(input));
     dispatch(setOpenModifyPanel(0));
   };
@@ -86,7 +86,6 @@ function FormModify() {
   function closeModifyForm() {
     dispatch(setOpenModifyPanel(0));
   }
-
   return (
     <motion.div
       initial={{ scaleY: 0 }}
@@ -96,6 +95,7 @@ function FormModify() {
       <Background>
         <form className="form">
           <h4>Modificar Marcador</h4>
+          <div onClick={()=>ver()}>VER</div>
           <div>
             <label>Nuevo Nombre:</label>
             <input

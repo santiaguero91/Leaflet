@@ -8,7 +8,6 @@ const initialState = {
     markers: [],
     allMarkers:[],
     detail: "",
-
 }
 
 const rootReducer =(state=initialState, action) => {

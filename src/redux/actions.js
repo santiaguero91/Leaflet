@@ -29,6 +29,7 @@ export function postMarker(payload){
 } 
 
 
+
 export function getInfoById(id) {
     return async function (dispatch) {
       try {

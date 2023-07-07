@@ -38,8 +38,7 @@ function Mapa2() {
   const center=[-34.61315, -58.37723];
 
   function close(id) {
-    dispatch(deleteMarker(id));
-    location.reload();
+     dispatch(deleteMarker(id)); 
   }
 
   function openModifyPanel(id) {
@@ -51,11 +50,6 @@ function Mapa2() {
     navigate(`/details/${id}`);
   }
 
-  //////////! FUNCION VER ///////////
-  function ver() {
-    console.log(allMarkers);
-  ////////////////! //////////////////
-  }
 
   useEffect(() => {
     dispatch(getMarkers());
@@ -63,7 +57,6 @@ function Mapa2() {
 
   return (
     <MapDiv>
-        <button onClick={() => ver()}>VER</button>
 
 <MapcontainerDiv>
       <MapContainer
@@ -97,7 +90,7 @@ function Mapa2() {
                         {el.link && <a href={el.link}>{el.name}</a>}
                         {el.img && <img width="250px" src={el.img} />}
                         <div className="botones">
-                        <button onClick={() => close(el.id)}> Delete </button>
+                        <button onClick={() => close(el._id)}> Delete </button>
                         <button onClick={() => verMasInfo(el.id)}> Mas Info </button>
                         <button onClick={() => openModifyPanel(el)}> Modify </button>
                         </div>
@@ -164,7 +157,7 @@ function Mapa2() {
         </LayersControl>
       </MapContainer>
       </MapcontainerDiv>
-      <Footer/>
+      {/* <Footer/> */}
     </MapDiv>
   );
 }

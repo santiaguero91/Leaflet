@@ -3,6 +3,7 @@ import L from "leaflet";
 import { useMap } from "react-leaflet";
 import togeojson from "togeojson";
 import fileLayer from "leaflet-filelayer";
+import axios from "axios";
 
 fileLayer(null, L, togeojson);
 
@@ -15,10 +16,10 @@ const style = {
 };
 
 export default function LeafletFileLayer() {
-  const [count, setCount] = useState(0);
-
-  
+  const [count, setCount] = useState(0); 
+ let input = []
   const map = useMap();
+  const Url = `http://localhost:3001/markers`
 
   useEffect(() => {
     if(count===0){
@@ -27,17 +28,22 @@ export default function LeafletFileLayer() {
       fitBounds: true,
       layerOptions: {
         style: style,
-        pointToLayer: function (data, latlng) {
-          console.log(data.properties.name);
-          return L.circleMarker(latlng, { style: style });
+        pointToLayer: function (data, latlng) { 
+         
+            axios.post(`${Url}`, ({"name": data.properties.name,
+           "latitude": latlng.lat,
+           "longitude":  latlng.lng}))  
+           console.log("cargado");
+
+          return L.circleMarker(latlng, { style: style }).bindPopup(data.properties.name);
         }
       }
-    });
-    console.log(control);
+    });    
     control.addTo(map);
+
     control.loader.on("data:loaded", function (e) {
       var layer = e.layer;
-      console.log(layer);
+
     });}
   }, []);
 
