@@ -20,7 +20,8 @@ import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
 import { useNavigate } from "react-router-dom";
 import AddMarkerOnRightClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
 import Footer from "./Footer/Footer";
-
+import { LateralListDiv } from "../Views/HomeStyle";
+import LateralItems from "./LateralItemsView/LateralItems";
 
 function Mapa2() {
   const [count, setCount] = useState(1);
@@ -28,6 +29,14 @@ function Mapa2() {
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
   const mapstate = useSelector((state) => state.map);
+  const openLateralList = useSelector((state) => state.openLateralList);
+
+
+  const defaultMarkerIcon = new L.icon({
+    iconUrl: 'https://firebasestorage.googleapis.com/v0/b/leafletgerminar.appspot.com/o/66334dee-c7ad-49e2-90c6-59f622fb481c?alt=media&token=8b567678-5fb3-4bcd-9a1b-c21994a352bb',
+    iconSize: [40, 40],
+    popupAnchor: [3, -46], 
+  });
 
   const markerIcon = new L.icon({
     iconUrl: leafIcon,
@@ -50,14 +59,16 @@ function Mapa2() {
     navigate(`/details/${id}`);
   }
 
-
+  function ver() {
+    console.log(allMarkers);
+  }
   useEffect(() => {
     dispatch(getMarkers());
   }, [dispatch]);
 
   return (
     <MapDiv>
-
+<button onClick={()=>ver()}>VER</button>
 <MapcontainerDiv>
       <MapContainer
         center={center}
@@ -71,7 +82,7 @@ function Mapa2() {
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
           ></TileLayer>
         ) : (
-          <ReactLeafletGoogleLayer type={'satellite'} />
+          <ReactLeafletGoogleLayer type={'hybrid'} />
         )}  
         <LayersControl position="topright">
           <MarkerClusterGroup>
@@ -81,18 +92,18 @@ function Mapa2() {
                     position={{
                       lat: el.latitude,
                       lng: el.longitude,
-                    }}
+                    }} 
                     key={el.updatedAt}
-                    icon={markerIcon}                  >
+                      icon={el.tipo === "hoja" ? markerIcon : defaultMarkerIcon}                        >
                     <Popup key={el.id}>
                       <PopupPlateDiv>
                         <TituloMarker><div className="popupTitle">{el.name}</div></TituloMarker>
                         {el.link && <a href={el.link}>{el.name}</a>}
                         {el.img && <img width="250px" src={el.img} />}
                         <div className="botones">
-                        <button onClick={() => close(el._id)}> Delete </button>
+                        <button onClick={() => close(el._id)}> Borrar </button>
                         <button onClick={() => verMasInfo(el.id)}> Mas Info </button>
-                        <button onClick={() => openModifyPanel(el)}> Modify </button>
+                        <button onClick={() => openModifyPanel(el)}> Modificar </button>
                         </div>
                       </PopupPlateDiv>
                     </Popup>
@@ -101,10 +112,10 @@ function Mapa2() {
               
             })}
           </MarkerClusterGroup>
+              <LeafletFileLayer/>
 
           <LayersControl.Overlay checked name="Estados">
             <LayerGroup>
-              <LeafletFileLayer/>
               {statesData.features.map((state) => {
                 const coordinates = state.geometry.coordinates[0].map(
                   (item) => [item[1], item[0]]
@@ -150,7 +161,8 @@ function Mapa2() {
                 );
               })}
       <AddMarkerOnRightClick/>
-
+      {openLateralList === 1 && <LateralListDiv
+    ><LateralItems/></LateralListDiv>  }
             </LayerGroup>
           </LayersControl.Overlay>
 

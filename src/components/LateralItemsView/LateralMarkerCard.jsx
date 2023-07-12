@@ -1,13 +1,13 @@
 import "../../App.css"
+import { CardDiv } from "./LateralMarkerCardStyle";
 
 
-function LateralMarkerCard() {
-
-
+function LateralMarkerCard(key,id, name, lat, lng ) {
+    
     return (
-<div>
-
-</div>
+<CardDiv>
+    <h5>{name}</h5>
+</CardDiv>
     )
 }
 

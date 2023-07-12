@@ -17,7 +17,7 @@ const style = {
 
 export default function LeafletFileLayer() {
   const [count, setCount] = useState(0); 
- let input = []
+  let input = []
   const map = useMap();
   const Url = `http://localhost:3001/markers`
 
@@ -32,18 +32,16 @@ export default function LeafletFileLayer() {
          
             axios.post(`${Url}`, ({"name": data.properties.name,
            "latitude": latlng.lat,
-           "longitude":  latlng.lng}))  
-           console.log("cargado");
-
-          return L.circleMarker(latlng, { style: style }).bindPopup(data.properties.name);
+           "longitude":  latlng.lng,
+            "tipo": "hoja",
+          }))  
+           return null;
         }
       }
     });    
     control.addTo(map);
-
     control.loader.on("data:loaded", function (e) {
       var layer = e.layer;
-
     });}
   }, []);
 

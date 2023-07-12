@@ -19,9 +19,8 @@ function App() {
   socket.connect('connect', console.log("estamos online maestro"))
 
    socket.on('update', (data) => { 
-    console.log("hubo un cambio");
     dispatch(getMarkers());
-  }); 
+  });  
 
   return (
     <AnimatePresence>
