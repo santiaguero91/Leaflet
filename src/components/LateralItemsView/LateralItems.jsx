@@ -42,7 +42,7 @@ function LateralItems() {
   return (
     <LateralItemsDiv
       initial={{ width: 0 }}
-      animate={{ width: "30vw", transition: { duration: 0.8 } }}
+      animate={{ width: "20vw", transition: { duration: 0.8 } }}
       exit={{ width: 0, duration: 0.8 }}
     >
       <h2>Puntos de interes</h2>

@@ -68,7 +68,7 @@ function Mapa2() {
 
   return (
     <MapDiv>
-<button onClick={()=>ver()}>VER</button>
+{/* <button onClick={()=>ver()}>VER</button> */}
 <MapcontainerDiv>
       <MapContainer
         center={center}

@@ -5,8 +5,8 @@ export const MainContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     transition: 1s;
-    background-color: #000;
-    width: 98vw;
+    background-color: rgba(15,15,15,1);
+    width: 100vw;
     height: 40px;
     z-index: 2000 !important;
     padding-top: 0.5rem;

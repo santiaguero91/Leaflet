@@ -7,6 +7,7 @@ import io from 'socket.io-client'
 import { useState } from "react";
 import { getMarkers } from "./redux/actions";
 import { useDispatch } from "react-redux";
+import Landing from "./Views/Landing/Landing";
 
 
 
@@ -25,6 +26,8 @@ function App() {
   return (
     <AnimatePresence>
     <Routes location={location} key={location.pathname}> 
+
+    <Route exact path="/Inicio" element={<Landing />} /> 
     <Route exact path="/" element={<Home />} /> 
     <Route exact path="/2" element={<View2 />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 

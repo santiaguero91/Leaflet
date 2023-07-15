@@ -47,9 +47,15 @@ function TopBar() {
       </TopBarContainer>
       <button onClick={() => cambiarmapa()}>CAMBIAR MAPA</button>
       <LateralListContainer>
-        <div style={{ marginRight: (openLateralList ===1) ? "30vw" : "0", transition: "1s" }}>
-      <button onClick={() => OpenLateralList(1)}> Marcadores</button>
-      </div>
+      <div >
+  <button 
+  style={{
+    transition: "1s",
+    backgroundColor: (openLateralList === 1) ? "white" : "initial",
+    color: (openLateralList === 1) ? "black" : "initial"
+  }}
+  onClick={() => OpenLateralList(1)}> Marcadores</button>
+</div>
       </LateralListContainer>
     </MainContainer>
   );

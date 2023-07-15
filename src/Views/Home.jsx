@@ -22,7 +22,11 @@ function Home() {
 
 console.log(openModifyPanel);
   return (
-    <MainHomeDiv>
+    <MainHomeDiv
+    initial={{ opacity: 0}} 
+    whileInView={{ opacity: 1, 
+    transition:{duration:1}}}
+    >
       <NavBar> 
       <TopBar />
       </NavBar>
