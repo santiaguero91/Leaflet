@@ -8,6 +8,7 @@ import { useState } from "react";
 import { getMarkers } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import Landing from "./Views/Landing/Landing";
+import HomeAdmin from "./Views/HomeAdmin/HomeAdmin";
 
 
 
@@ -29,6 +30,7 @@ function App() {
 
     <Route exact path="/Inicio" element={<Landing />} /> 
     <Route exact path="/" element={<Home />} /> 
+    <Route exact path="/admin" element={<HomeAdmin />} /> 
     <Route exact path="/2" element={<View2 />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
 

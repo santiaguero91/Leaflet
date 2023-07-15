@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux";
-import Mapa2 from "../components/Mapas/Mapa2"
-import TopBar from "../components/TopBar/TopBar"
-import Form from "../components/form/Form";
-import { LateralListDiv, MainHomeDiv, NavBar, PopUpDiv } from "./HomeAdmin/HomeStyle";
-import FormModify from "../components/FormModify/FormModify";
+import { MainHomeDiv, NavBar, PopUpDiv } from "./HomeStyle";
+import TopBar from "../../components/TopBar/TopBar";
 import { useEffect } from "react";
-import Footer from "../components/Footer/Footer";
+import MapaAdmin from "../../components/Mapas/MapaAdmin";
+import FormModify from "../../components/FormModify/FormModify"
 
-function Home() {
+function HomeAdmin() {
 
   const openMain = useSelector((state) => state.openMain);
   const openLateralList = useSelector((state) => state.openLateralList);
@@ -31,12 +29,12 @@ console.log(openModifyPanel);
       </NavBar>
     <PopUpDiv>{openMain === 1 && <Form/>}</PopUpDiv>
     <PopUpDiv>{openModifyPanel !== 0 && <FormModify/>}</PopUpDiv>
+        <h4>MODO ADMIN</h4>
+        //TODO Cambiar mapa a mapa admin
+    <MapaAdmin/>
 
-{/*     {openLateralList === 1 && <LateralListDiv
-    ><LateralItems/></LateralListDiv>  } */}
-    <Mapa2/>
     </MainHomeDiv>
   )
 }
 
-export default Home
+export default HomeAdmin

@@ -6,52 +6,46 @@ background-color: #333;
 width: 100vw;
 height: 100vh;
 overflow: hidden;
-
-  .photo7 {
-    position: relative;
-    top: 8%;
-    left: 10%;
-    width: 33%;
-  }
-
-  .photo6 {
-    position: relative;
-    top: 60%;
-    right: 20%;
-    width: 30%;
-  }
-  .photo5 {
-    position: relative;
-    top: 0%;
-    left: 80%;
-    width: 32%;
-  }
-
-  
-  .photo3 {
-    position: relative;
-    top: -20%;
-    left: 70%;
-    width: 40%;
-  }
-
-  .photo2{
-    position: relative;
-    bottom: -50%;
-    right: -120%;
-    width: 31%;
-  }
   .photo1 {
     position: relative;
     top: 10%;
-    right: 0%;
-    width: 33%;
+    right: -10%;
+    width: 53%;
   }
-  
-  .photo8 {
+    .photo2{
+    position: relative;
+    bottom: -40%;
+    left: 100%;
+    width: 31%;
+  }
+  .photo3 {
     position: relative;
     bottom: -50%;
-    right: 130%;
+    left: 0%;
+    width: 40%;
+  }
+  .photo5 {
+    position: relative;
+    top: -40%;
+    left: 200%;
+    width: 37%;
+  }
+  .photo6 {
+    position: relative;
+    top: 30%;
+    left: 40%;
+    width: 30%;
+  }
+  .photo7 {
+    position: relative;
+    top:30%;
+    left: -200%;
+    width: 33%;
+  }
+  .photo8 {
+    position: relative;
+    bottom: -60%;
+    right: 110%;
     width: 26%;
   }
 `;

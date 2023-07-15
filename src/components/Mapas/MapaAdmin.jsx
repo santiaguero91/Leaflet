@@ -11,19 +11,19 @@ import {
   Polygon,
 } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMarker, getMarkers, setOpenModifyPanel } from "../redux/actions";
-import { statesData } from "../data";
+import { deleteMarker, getMarkers, setOpenModifyPanel } from "../../redux/actions";
+import { statesData } from "../../data";
 import {MapDiv, MapcontainerDiv, PopupPlateDiv, TituloMarker } from "./MapStyle";
-import leafIcon from "../components/leaf.png"
-import LeafletFileLayer from "../components/FileLayer/FileLayer"
+import leafIcon from "./leaf.png";
+import LeafletFileLayer from "../../components/FileLayer/FileLayer"
 import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
 import { useNavigate } from "react-router-dom";
-import AddMarkerOnRightClick from "./AddMarkerOnRightClick/AddMarkerOnRightClick";
-import Footer from "./Footer/Footer";
-import { LateralListDiv } from "../Views/HomeStyle";
-import LateralItems from "./LateralItemsView/LateralItems";
+import AddMarkerOnRightClick from "../AddMarkerOnRightClick/AddMarkerOnRightClick";
+import Footer from "../Footer/Footer";
+import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
+import LateralItems from "../LateralItemsView/LateralItems";
 
-function Mapa2() {
+function MapaAdmin() {
   const [count, setCount] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -169,9 +169,8 @@ function Mapa2() {
         </LayersControl>
       </MapContainer>
       </MapcontainerDiv>
-      {/* <Footer/> */}
     </MapDiv>
   );
 }
 
-export default Mapa2;
+export default MapaAdmin;
