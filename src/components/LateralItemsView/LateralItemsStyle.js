@@ -17,10 +17,12 @@ color: black;
   padding-bottom: 2em;
   padding: 1%;
 
+
 `;
 
 export const DivMarcador = styled.button`
 width: 100%;
+margin: 2% 0;
 padding: 5%;
 height: fit-content;
 color: black;
@@ -32,9 +34,14 @@ font-weight: 550;
 
 
 export const MarkersNamesDiv = styled.div`
+display: flex;
+flex-direction: column;
 width: 100%;
-height: fit-content;
 color: black;
+
+height: 70vh;
+overflow-x: hidden;
+overflow-y: scroll;
 `;
 
 export const LoadingIMG = styled.h4`

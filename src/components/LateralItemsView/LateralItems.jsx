@@ -8,31 +8,33 @@ import {
 } from "./LateralItemsStyle";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
-import LateralMarkerCard from "./LateralMarkerCard";
 import { useMap } from "react-leaflet";
-import L from "leaflet";
 
 function LateralItems() {
   const allMarkers = useSelector((state) => state.markers);
   // eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line
-  const [productsPerPage, setProductsPerPage] = useState(6);
-  const indexOfLastCountry = currentPage * productsPerPage;
+  const [markersPerPage, setMarkersPerPage] = useState(6);
+  const indexOfLastMarker = currentPage * markersPerPage;
   // eslint-disable-next-line
-  const indexOfFirstCountry = indexOfLastCountry - productsPerPage;
+  const indexOfFirstMarker = indexOfLastMarker - markersPerPage;
   const locationMarkers = allMarkers.filter((el) => el.tipo !== "hoja");
-  const currentMarkers = allMarkers.slice(0, currentPage * productsPerPage);
+  const currentMarkers = locationMarkers.slice(0, currentPage * markersPerPage);
 
   function ver() {
-    console.log(locationMarkers);
+    console.log(currentMarkers , "currentMarkers");
+    console.log(locationMarkers , "locationMarkers");
+    console.log(currentPage , "currentPage");
+
   }
   const map = useMap();
 
   const addPage = () => {
-    setTimeout(() => {
+    console.log("cargando");
+    /* setTimeout(() => {
       setCurrentPage(currentPage + 1);
-    }, 500);
+    }, 500); */
   };
 
   const moverMapa = (lat, lng) => {
@@ -48,11 +50,11 @@ function LateralItems() {
       <h2>Puntos de interes</h2>
 
       <InfiniteScroll
-        dataLength={currentMarkers.length}
+        dataLength={  locationMarkers.length }
         next={() => addPage()}
         hasMore={true}
         loader={
-          allMarkers.length >= currentMarkers.length ? (
+          locationMarkers.length >= locationMarkers.length ? (
             ""
           ) : (
             <LoadingIMG>
@@ -66,17 +68,13 @@ function LateralItems() {
           )
         }
       >
+        
         <MarkersNamesDiv>
           {locationMarkers.map((el) => {
             return (
               <div>
-                <DivMarcador onClick={()=>moverMapa(el.latitude, el.longitude)}>{el.name}</DivMarcador>
+                <DivMarcador key={el._id} onClick={()=>moverMapa(el.latitude, el.longitude)}>{el.name}</DivMarcador>
               </div>
-              /* <LateralMarkerCard
-                key={el._id}
-                id={el._id}
-                name={el.name}                
-              /> */
             );
           })}
         </MarkersNamesDiv>
