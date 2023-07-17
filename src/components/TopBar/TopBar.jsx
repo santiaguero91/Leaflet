@@ -8,12 +8,16 @@ import {
 import Filtro from "../filtro/Filtro";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
+import { useAuth } from "../../components/Auth/authContext"
+import { useNavigate } from "react-router-dom";
 
 function TopBar() {
+  const {user, logout, loading} = useAuth()
   const dispatch = useDispatch();
   const openState = useSelector((state) => state.openMain);
   const openLateralList = useSelector((state) => state.openLateralList);
   const mapstate = useSelector((state) => state.map);
+  const navigate = useNavigate()
 
   function OpenOnMain(id) {
     if (openState === id) {
@@ -21,7 +25,15 @@ function TopBar() {
     } else {
       dispatch(setOpenOnMain(id));
     }
-  }
+  } 
+
+  if(loading) return <h1>loading</h1>
+  const handleLogout = async() => {
+    await logout();
+    navigate("/")
+  } 
+
+
 
   function OpenLateralList(id) {
     if (openLateralList === id) {
@@ -46,6 +58,7 @@ function TopBar() {
         </div>
       </TopBarContainer>
       <button onClick={() => cambiarmapa()}>CAMBIAR MAPA</button>
+      <button onClick={() => handleLogout()}>{user.email}</button>
       <LateralListContainer>
       <div >
   <button 

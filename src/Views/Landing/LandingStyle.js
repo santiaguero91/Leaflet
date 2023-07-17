@@ -1,6 +1,29 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+
+export const LogInDiv = styled(motion.div)`
+position: absolute;
+right: 50%;
+top: 40%;
+color: #354A21;
+background-color: white;
+border: 1px solid white;
+border-radius: 10px;
+padding: 10px;
+cursor: pointer;
+z-index: 500;
+transition: 1s;
+font-weight: 500;
+font-size: 20px;
+
+:hover{
+background-color: white;
+color: #354A21;
+}
+`;
+
+
 export const MainLandingDiv = styled(motion.div)`
 background-color: #333;
 width: 100vw;
@@ -50,24 +73,3 @@ overflow: hidden;
   }
 `;
 
-
-export const LogInDiv = styled(motion.div)`
-position: absolute;
-right: 50%;
-top: 40%;
-color: white;
-background-color:  #354A21;
-border: 1px solid white;
-border-radius: 10px;
-padding: 10px;
-cursor: pointer;
-z-index: 500;
-transition: 1s;
-font-weight: 500;
-font-size: 20px;
-
-:hover{
-background-color: white;
-color: #354A21;
-}
-`;

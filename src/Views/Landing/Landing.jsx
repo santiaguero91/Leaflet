@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { LogInDiv, MainLandingDiv } from "./LandingStyle";
@@ -7,8 +7,18 @@ import {
   MouseParallaxContainer,
   MouseParallaxChild,
 } from "react-parallax-mouse";
+import { Formulario } from "../../components/Auth/Formulario";
+import { useAuth } from "../../components/Auth/authContext"
+
 
 function Landing() {
+
+const {user} = useAuth()
+
+function ver() {
+  console.log(user);
+}
+
   const styles = {
     backgroundSize: "cover",
     height: "100vh",
@@ -21,9 +31,9 @@ function Landing() {
       whileInView={{ opacity: 1, transition: { duration: 1 } }}
       exit={{ opacity: 0, transition: { duration: 0.5 } }}
     >
-      <Link to="/">
-        <LogInDiv>LOG IN</LogInDiv>
-      </Link>
+      {/* <Link to="/"> */}
+        <LogInDiv><Formulario /></LogInDiv>
+     {/*  </Link> */}
 
       <MouseParallaxContainer
         globalFactorX={0.2}

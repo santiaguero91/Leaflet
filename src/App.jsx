@@ -9,7 +9,9 @@ import { getMarkers } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import Landing from "./Views/Landing/Landing";
 import HomeAdmin from "./Views/HomeAdmin/HomeAdmin";
-
+import { AuthProvider } from "./components/Auth/authContext";
+import TopBar from "./components/TopBar/TopBar";
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
 
 
 function App() {
@@ -25,17 +27,19 @@ function App() {
   });  
 
   return (
+    <AuthProvider>
     <AnimatePresence>
     <Routes location={location} key={location.pathname}> 
-
-    <Route exact path="/Inicio" element={<Landing />} /> 
-    <Route exact path="/" element={<Home />} /> 
-    <Route exact path="/admin" element={<HomeAdmin />} /> 
+    <Route exact path="/" element={<Landing />} /> 
+    <Route exact path="/home" element={<Home />} /> 
     <Route exact path="/2" element={<View2 />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
-
+    
+    <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin/></ProtectedRoute>} /> 
+    
     </Routes>
     </AnimatePresence>
+    </AuthProvider>
   )
 }
 

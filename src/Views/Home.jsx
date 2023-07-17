@@ -7,6 +7,7 @@ import FormModify from "../components/FormModify/FormModify";
 import { useEffect } from "react";
 import Footer from "../components/Footer/Footer";
 
+
 function Home() {
 
   const openMain = useSelector((state) => state.openMain);
