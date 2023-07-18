@@ -33,8 +33,7 @@ console.log(openModifyPanel);
     <PopUpDiv>{openMain === 1 && <Form/>}</PopUpDiv>
     <PopUpDiv>{openModifyPanel !== 0 && <FormModify/>}</PopUpDiv>
 
-{/*     {openLateralList === 1 && <LateralListDiv
-    ><LateralItems/></LateralListDiv>  } */}
+
     <Mapa2/>
     </MainHomeDiv>
   )

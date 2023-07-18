@@ -1,23 +1,28 @@
 import "../../App.css";
 import {
-  LateralListContainer,
   MainContainer,
   TopBarContainer,
   SidebarDiv,
+  UserButtonContainer,
 } from "./TopBarStyle";
 import Filtro from "../filtro/Filtro";
 import { useDispatch, useSelector } from "react-redux";
-import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
-import { useAuth } from "../../components/Auth/authContext"
+import {
+  changeMap,
+  setOpenLateralList,
+  setOpenOnMain,
+} from "../../redux/actions";
+import { useAuth } from "../../components/Auth/authContext";
 import { useNavigate } from "react-router-dom";
+import UserButton from "../Auth/UserButton";
 
 function TopBar() {
-  const {user, logout, loading} = useAuth()
+  const { user, logout, loading } = useAuth();
   const dispatch = useDispatch();
   const openState = useSelector((state) => state.openMain);
   const openLateralList = useSelector((state) => state.openLateralList);
   const mapstate = useSelector((state) => state.map);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function OpenOnMain(id) {
     if (openState === id) {
@@ -25,22 +30,20 @@ function TopBar() {
     } else {
       dispatch(setOpenOnMain(id));
     }
-  } 
+  }
 
-  if(loading) return <h1>loading</h1>
-  const handleLogout = async() => {
+  if (loading) return <h1>loading</h1>;
+  const handleLogout = async () => {
     await logout();
-    navigate("/")
-  } 
-
-
+    navigate("/");
+  };
 
   function OpenLateralList(id) {
     if (openLateralList === id) {
       dispatch(setOpenLateralList(0));
     } else {
       dispatch(setOpenLateralList(id));
-    } 
+    }
   }
 
   function cambiarmapa() {
@@ -50,26 +53,35 @@ function TopBar() {
   return (
     <MainContainer>
       <TopBarContainer>
-        <div className="sidebar"
-          style={{ width: (openState ===2) ? "40vw" : "0", transition: "1s" }}
+        <div
+          className="sidebar"
+          style={{ width: openState === 2 ? "40vw" : "0", transition: "1s" }}
         >
           <button onClick={() => OpenOnMain(2)}> Filtros</button>
-          {(openState ===2) && <SidebarDiv><Filtro/></SidebarDiv>}
+          {openState === 2 && (
+            <SidebarDiv>
+              <Filtro />
+            </SidebarDiv>
+          )}
         </div>
       </TopBarContainer>
       <button onClick={() => cambiarmapa()}>CAMBIAR MAPA</button>
-      <button onClick={() => handleLogout()}>{user.email}</button>
-      <LateralListContainer>
-      <div >
-  <button 
-  style={{
-    transition: "1s",
-    backgroundColor: (openLateralList === 1) ? "white" : "initial",
-    color: (openLateralList === 1) ? "black" : "initial"
-  }}
-  onClick={() => OpenLateralList(1)}> Marcadores</button>
-</div>
-      </LateralListContainer>
+      <button
+        style={{
+          transition: "1s",
+          backgroundColor: openLateralList === 1 ? "white" : "initial",
+          color: openLateralList === 1 ? "black" : "initial",
+        }}
+        onClick={() => OpenLateralList(1)}
+      >
+        {" "}
+        Marcadores
+      </button>
+      <UserButtonContainer>
+        <div>
+          <UserButton />
+        </div>
+      </UserButtonContainer>
     </MainContainer>
   );
 }

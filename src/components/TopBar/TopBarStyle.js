@@ -18,23 +18,21 @@ export const TopBarContainer = styled.div`
     transition: 1s;
     background-color: #000;
     height: 100%;
-    margin-left: 0;
+    margin-left: 1%;
     z-index: 2000 !important;
-    background-color:  transparent;
     .sidebar{
         background-color:  transparent;
     }
     `;
 
 
-    export const LateralListContainer = styled.div`
+    export const UserButtonContainer = styled.div`
     position: relative;
-    margin-right: 0;
     transition: 1s;
     background-color: #000;
     height: 100%;
     z-index: 2000 !important;
-    background-color:  transparent;
+    margin-right: 1%;
     `;
 
     

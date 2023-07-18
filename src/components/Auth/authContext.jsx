@@ -24,8 +24,6 @@ export function AuthProvider({children}){
        const googleProvider = new GoogleAuthProvider()
        signInWithPopup(auth, googleProvider)
     }
-    
-    
 
     useEffect(()=> {
         onAuthStateChanged(auth, currentUser =>{

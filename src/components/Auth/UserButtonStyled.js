@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const UserBtnDiv = styled.div`
+ cursor: pointer;
+
   > div {
     display: flex;
     justify-content: center;
