@@ -7,42 +7,51 @@ import { useAuth } from "./authContext";
 import Logout from "./LogOut";
 import Modal from "react-modal";
 import DashboardADmin from "./DashboardADmin";
+import { getUsers } from "../../redux/actions";
 
 const UserButton = () => {
   const { user } = useAuth();
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(true);
-  const [modalActive, setModalActive] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-  useEffect( () => {
-  },[dispatch,user])
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
 
-const ver =()=>{
-  console.log(user);
-}
+  const modaltyle = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: " 2000 !important",
+    },
+  };
 
-const modaltyle = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex:" 2000 !important" ,
-  },
-};
+  function openModal() {
+    setIsOpen(true);
+  }
 
-  useEffect( () => {
-    console.log();
-  },)
-
+  function closeModal() {
+    setIsOpen(!modalIsOpen);
+    console.log(modalIsOpen, "me activo");
+  }
+  function ver() {
+    console.log(modalIsOpen);
+  }
   return (
     <UserBtnDiv>
       <div onClick={() => setActive(!active)}>
         {user ? (
-          <img className="profileImg" src={user.photoURL} alt={user.displayName} />
+          <img
+            className="profileImg"
+            src={user.photoURL}
+            alt={user.displayName}
+          />
         ) : (
           <HiOutlineUserCircle size={45} />
         )}
@@ -53,8 +62,7 @@ const modaltyle = {
             <div className="profile">
               <h3 className="profileName">{user.name}</h3>
             </div>
-            {
-              admin === true ? 
+            {admin === true ? (
               <div>
                 <li>
                   <Link
@@ -64,29 +72,30 @@ const modaltyle = {
                   >
                     Dashboard
                   </Link>
-                </li> 
-                <div className="Li" onClick={()=>{
-                    setModalActive(!modalActive);
-                  }}>MODAL
+                </li>
+                <div
+                  className="Li"
+                  onClick={() => {
+                    openModal();
+                  }}
+                >
+                  MODAL
+                </div>
                 <Modal
-                  isOpen={modalActive}
-                  onRequestClose={() => setModalActive(false)}
-                  ariaHideApp={false}
+                  isOpen={modalIsOpen}
+                  onRequestClose={closeModal}
                   style={modaltyle}
                 >
-                  <DashboardADmin/>
+                  <button onClick={closeModal}>close</button>
+                  <button onClick={() => ver(false)}>ver</button>
+                  <DashboardADmin />
                 </Modal>
-                
-                </div>
-                <li>
-                </li>
+                <li></li>
               </div>
-            :
-              null
-            }
-            
+            ) : null}
+
             <li>
-               <Logout /> 
+              <Logout />
             </li>
           </ul>
         ) : (
