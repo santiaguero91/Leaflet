@@ -163,7 +163,6 @@ function Mapa2() {
                     />
                   );
                 })}
-                <AddMarkerOnRightClick />
                 {openLateralList === 1 && (
                   <LateralListDiv>
                     <LateralItems />

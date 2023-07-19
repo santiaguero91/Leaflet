@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const UserBtnDiv = styled.div`
  cursor: pointer;
+  background-color: rgb(87,87,87);
 
   > div {
     display: flex;

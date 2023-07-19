@@ -4,6 +4,7 @@ import {
   TopBarContainer,
   SidebarDiv,
   UserButtonContainer,
+  MarcadoresButton,
 } from "./TopBarStyle";
 import Filtro from "../filtro/Filtro";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,17 +67,17 @@ function TopBar() {
         </div>
       </TopBarContainer>
       <button onClick={() => cambiarmapa()}>CAMBIAR MAPA</button>
-      <button
+      <MarcadoresButton
         style={{
           transition: "1s",
-          backgroundColor: openLateralList === 1 ? "white" : "initial",
+          backgroundColor: openLateralList === 1 ? "white" : "rgb(2,112,67)",
           color: openLateralList === 1 ? "black" : "initial",
         }}
         onClick={() => OpenLateralList(1)}
       >
         {" "}
         Marcadores
-      </button>
+      </MarcadoresButton>
       <UserButtonContainer>
         <div>
           <UserButton />
