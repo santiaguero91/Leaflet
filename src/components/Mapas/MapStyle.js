@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MapDiv = styled.div`
   position: relative;
   flex-direction: column;
-  z-index: 1500 !important;
+  z-index: 0 !important;
   button {
     width: fit-content;
   }
