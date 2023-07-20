@@ -15,14 +15,9 @@ export default function AddMarkerOnRightClick() {
     img: "",
     link: "",
     tipo: "",
-  });
-
-
-  
+  });  
   const handleSubmit = (e) => {
-     dispatch(postMarker(input)); 
-    /* alert("Marker was created successfully!!");
-     location.reload(); */    
+     dispatch(postMarker(input));     
   };
    
   useMapEvents({
@@ -43,10 +38,7 @@ export default function AddMarkerOnRightClick() {
 
   return markerPosition === null ? null : (
     <Marker position={markerPosition}>
-      <Popup>
-        <button onClick={(e) => handleSubmit(e)}>Guardar</button>
-        {markerPosition.toString()}</Popup>
-
+      <Popup><button onClick={(e) => handleSubmit(e)}>Guardar</button></Popup>
     </Marker>
   );
 }

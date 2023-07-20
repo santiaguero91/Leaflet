@@ -86,8 +86,7 @@ const UserButton = () => {
                   onRequestClose={closeModal}
                   style={modaltyle}
                 >
-                  <button onClick={closeModal}>close</button>
-                  <button onClick={() => ver(false)}>ver</button>
+                  <button onClick={closeModal}>X</button>
                   <DashboardADmin />
                 </Modal>
                 <li></li>

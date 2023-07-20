@@ -1,9 +1,11 @@
+import { MainContainerDiv } from "./UserCardStyle";
 
-const UserCard = ({ id, email}) => {
+const UserCard = ({ id, email,admin}) => {
   return (
-    <div>
+    <MainContainerDiv>
         <p>{email}</p>
-    </div>
+        <button>{admin===true ? <p>admin</p>: <p>user</p>}</button>
+    </MainContainerDiv>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../App.css";
 import {
   DivMarcador,
@@ -8,7 +8,9 @@ import {
 } from "./LateralItemsStyle";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
-import { useMap } from "react-leaflet";
+import { Marker, Popup, useMap } from "react-leaflet";
+import ButtonsPopUp from "./ButtonsPopUp";
+import { postMarker } from "../../redux/actions";
 
 function LateralItems() {
   const allMarkers = useSelector((state) => state.markers);
@@ -21,25 +23,52 @@ function LateralItems() {
   const indexOfFirstMarker = indexOfLastMarker - markersPerPage;
   const locationMarkers = allMarkers.filter((el) => el.tipo !== "hoja");
   const currentMarkers = locationMarkers.slice(0, currentPage * markersPerPage);
+  
+  const [markerPosition, setMarkerPosition] = useState(null);
 
-  function ver() {
-    console.log(currentMarkers , "currentMarkers");
-    console.log(locationMarkers , "locationMarkers");
-    console.log(currentPage , "currentPage");
+  const dispatch = useDispatch();
 
-  }
+  let [input, setInput] = useState({
+    name: "",
+    latitude: "",
+    longitude:"",
+    img: "",
+    link: "",
+    tipo: "",
+  });  
   const map = useMap();
 
   const addPage = () => {
-    console.log("cargando");
-    /* setTimeout(() => {
-      setCurrentPage(currentPage + 1);
-    }, 500); */
   };
 
   const moverMapa = (lat, lng) => {
-    map.setView([lat, lng], 17);
+    map.flyTo([lat, lng], 17);
   };
+  const saveLocation = () => {
+    console.log(input);
+    dispatch(postMarker(input)); 
+  };
+
+
+  const myLocation = () => {
+    map.locate();
+    map.on("locationfound", (e) => {
+      moverMapa(e.latlng.lat, e.latlng.lng);
+      setMarkerPosition({lat: e.latlng.lat, lng: e.latlng.lng})
+      setInput({
+        name: "newmarker",
+        latitude: e.latlng.lat,
+        longitude: e.latlng.lng,
+        img: "",
+        link: "",
+        tipo: "",
+      });
+      var marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);      
+
+
+
+  });
+   };
 
   return (
     <LateralItemsDiv
@@ -48,9 +77,12 @@ function LateralItems() {
       exit={{ width: 0, duration: 0.8 }}
     >
       <h2>Puntos de interes</h2>
+      <button onClick={() => myLocation()}> My Location</button>
+      {(markerPosition) && <button onClick={() => saveLocation()}> Save Location</button>
+}
 
       <InfiniteScroll
-        dataLength={  locationMarkers.length }
+        dataLength={locationMarkers.length}
         next={() => addPage()}
         hasMore={true}
         loader={
@@ -68,12 +100,16 @@ function LateralItems() {
           )
         }
       >
-        
         <MarkersNamesDiv>
           {locationMarkers.map((el) => {
             return (
               <div>
-                <DivMarcador key={el._id} onClick={()=>moverMapa(el.latitude, el.longitude)}>{el.name}</DivMarcador>
+                <DivMarcador
+                  key={el._id}
+                  onClick={() => moverMapa(el.latitude, el.longitude)}
+                >
+                  {el.name}
+                </DivMarcador>
               </div>
             );
           })}

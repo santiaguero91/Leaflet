@@ -20,6 +20,7 @@ const DashboardADmin = () => {
                 <UserCard 
                 key={el._id}
                 email={el.email}
+                admin={el.admin}
                 />
             )
         })
