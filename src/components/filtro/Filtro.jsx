@@ -38,35 +38,35 @@ function Filtro() {
             onClick={(e) => handleNoFilter(e)}
             id="All"
           >
-            ALL
+            Todos
           </ButtonFilter>
           <ButtonFilter
             className={`${filtro.includes("educacion") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
             id="educacion"
           >
-            EDUCACION
+            Educacion
           </ButtonFilter>
           <ButtonFilter
             className={`${filtro.includes("pto turstico") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
             id="pto turstico"
           >
-            PUNTOS TURISTICOS
+            Punto De Interes
           </ButtonFilter>
           <ButtonFilter
             className={`${filtro.includes("castillo") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
             id="castillo"
           >
-            CASTILLOS
+            Reservas
           </ButtonFilter>
           <ButtonFilter
             className={`${filtro.includes("iglesia") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
             id="iglesia"
           >
-            IGLESIAS
+            Casas
           </ButtonFilter>
     </MainContainer>
   )

@@ -26,16 +26,11 @@ const UserCard = ({ id, family_name, email, picture, admin}) => {
     )
 }
 
-  const ver =()=>{
-    console.log(input,"input");
-}
-
 
   return (
     <MainContainerDiv>
         <p>{email}</p>
         <button onClick={()=>changeAdminstate()}>{admin===true ? <p>admin</p>: <p>user</p>}</button>
-        <button onClick={()=>ver()}>VER</button>
     </MainContainerDiv>
   );
 };

@@ -95,7 +95,6 @@ function FormModify() {
       <Background>
         <form className="form">
           <h4>Modificar Marcador</h4>
-          <div onClick={()=>ver()}>VER</div>
           <div>
             <label>Nuevo Nombre:</label>
             <input
@@ -108,32 +107,6 @@ function FormModify() {
             />
             {errors.name && <p>{errors.name}</p>}
           </div>
-          <div>
-            <label>Latitud:</label>
-            <input
-              id="totaLAT"
-              type="number"
-              step="0.01"
-              value={input.latitude}
-              name="latitude"
-              onChange={(e) => handleChange(e)}
-              title="latitude"
-            />
-            {errors.latitude && <p>{errors.latitude}</p>}
-          </div>
-          <div>
-            <label>Longitud:</label>
-            <input
-              id="totalLONG"
-              type="number"
-              step="0.01"
-              value={input.longitude}
-              name="longitude"
-              onChange={(e) => handleChange(e)}
-              title="longitude"
-            />
-            {errors.duration && <p>{errors.duration}</p>}
-          </div>
           <div className="SeasonCheckboxs">
             <label>Tipo:</label> <br></br>
             <label>
@@ -143,7 +116,7 @@ function FormModify() {
                 value="educacion"
                 onChange={(e) => handleCheck(e)}
               />{" "}
-              educacion
+              Educacion
             </label>
             <label>
               <input
@@ -152,7 +125,7 @@ function FormModify() {
                 value="iglesia"
                 onChange={(e) => handleCheck(e)}
               />
-              iglesia
+              Casas
             </label>
             <label>
               <input
@@ -161,7 +134,7 @@ function FormModify() {
                 value="castillo"
                 onChange={(e) => handleCheck(e)}
               />
-              castillo
+              Reservas
             </label>
             <label>
               <input
@@ -170,7 +143,7 @@ function FormModify() {
                 value="pto turstico"
                 onChange={(e) => handleCheck(e)}
               />
-              pto turstico
+              Punto De Interes
             </label>
           </div>
           <div>
@@ -181,7 +154,7 @@ function FormModify() {
       id="file"
       onChange={e=> setFile(e.target.files[0])}
       ></input>
-      <button onClick={handleSubmitImage}>Confirmar</button>
+      <button onClick={handleSubmitImage}>Confirmar Foto</button>
       {imagen && <div><img src={imagen} alt="Descripción de la imagen" width="100"/></div>}
           </div>
           <div className="divSubmitButton">
@@ -194,7 +167,7 @@ function FormModify() {
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
-                Actuaizar Marcador
+                Actualizar Marcador
               </button>
             ) : (
               <button
