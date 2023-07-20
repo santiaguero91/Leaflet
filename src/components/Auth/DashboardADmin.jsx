@@ -19,7 +19,10 @@ const DashboardADmin = () => {
             return(
                 <UserCard 
                 key={el._id}
+                id={el._id}
+                family_name={el.family_name}
                 email={el.email}
+                picture={el.picture}
                 admin={el.admin}
                 />
             )

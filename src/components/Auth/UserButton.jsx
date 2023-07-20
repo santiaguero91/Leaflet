@@ -8,6 +8,7 @@ import Logout from "./LogOut";
 import Modal from "react-modal";
 import DashboardADmin from "./DashboardADmin";
 import { getUsers } from "../../redux/actions";
+import io from 'socket.io-client'
 
 const UserButton = () => {
   const { user } = useAuth();
@@ -15,6 +16,15 @@ const UserButton = () => {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
+
+
+  const socket = io('http://localhost:3001')
+  socket.connect('connect', console.log("estamos online maestro"))
+
+   socket.on('update', (data) => { 
+    dispatch(getUsers());
+  });  
+
 
   useEffect(() => {
     dispatch(getUsers());
@@ -68,9 +78,8 @@ const UserButton = () => {
                   <Link
                     className="Li"
                     to="/admin"
-                    onClick={() => setActive(!active)}
                   >
-                    Dashboard
+                    Modo Admin
                   </Link>
                 </li>
                 <div
@@ -79,7 +88,7 @@ const UserButton = () => {
                     openModal();
                   }}
                 >
-                  MODAL
+                  Usuarios
                 </div>
                 <Modal
                   isOpen={modalIsOpen}

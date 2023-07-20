@@ -9,6 +9,7 @@ import {
   GET_DETAILS,
   CHANGE_MAP,
   GET_USERS,
+  MODIFY_USER,
 } from "./action-types";
 
 const initialState = {
@@ -79,7 +80,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
-
+      case MODIFY_USER:
+        return {
+          ...state,
+        };
     default:
       return { ...state };
   }
