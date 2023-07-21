@@ -9,11 +9,7 @@ import Footer from "../components/Footer/Footer";
 
 
 function Home() {
-
-  const openMain = useSelector((state) => state.openMain);
-  const openLateralList = useSelector((state) => state.openLateralList);
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
-
 
   useEffect(() => {
     console.log(openModifyPanel);
@@ -30,7 +26,6 @@ console.log(openModifyPanel);
       <NavBar> 
       <TopBar />
       </NavBar>
-    <PopUpDiv>{openMain === 1 && <Form/>}</PopUpDiv>
     <PopUpDiv>{openModifyPanel !== 0 && <FormModify/>}</PopUpDiv>
 
 

@@ -5,6 +5,7 @@ import { UserBtnDiv } from "./UserButtonStyled";
 import { useDispatch } from "react-redux";
 import { useAuth } from "./authContext";
 import Logout from "./LogOut";
+import {Login} from "./Login";
 import Modal from "react-modal";
 import DashboardADmin from "./DashboardADmin";
 import { getUsers } from "../../redux/actions";
@@ -40,7 +41,7 @@ const UserButton = () => {
       transform: "translate(-50%, -50%)",
       zIndex: " 2000 !important",
     },
-  };
+  }; 
 
   function openModal() {
     setIsOpen(true);
@@ -109,7 +110,7 @@ const UserButton = () => {
         ) : (
           <ul className="Ul">
             <li className="Li">
-              <Login />
+               <Login /> 
             </li>
           </ul>
         )}

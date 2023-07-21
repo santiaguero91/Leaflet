@@ -24,16 +24,13 @@ import {
   TituloMarker,
 } from "./MapStyle";
 import leafIcon from "./leaf.png";
-import LeafletFileLayer from "../FileLayer/FileLayer";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 import { useNavigate } from "react-router-dom";
-import AddMarkerOnRightClick from "../AddMarkerOnRightClick/AddMarkerOnRightClick";
 import Footer from "../Footer/Footer";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
 
 function Mapa2() {
-  const [count, setCount] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);

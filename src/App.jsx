@@ -30,8 +30,7 @@ function App() {
     <AuthProvider>
     <AnimatePresence>
     <Routes location={location} key={location.pathname}> 
-    <Route exact path="/" element={<Landing />} /> 
-    <Route exact path="/home" element={<Home />} /> 
+    <Route exact path="/" element={<Home />} /> 
     <Route exact path="/2" element={<View2 />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
     
