@@ -7,6 +7,8 @@ export const MapDiv = styled.div`
   button {
     width: fit-content;
   }
+  .leaflet-popup-content-wrapper {
+background-color: rgba(231,231,231,0.9)}
 `;
 
 export const MapcontainerDiv = styled.div`
@@ -24,7 +26,7 @@ export const LatYLongDiv = styled.div`
 `;
 
 export const PopupPlateDiv = styled.div`
-place-self: center;
+  place-self: center;
   display: flex;
   flex-direction: column;
   border: none;
@@ -34,7 +36,7 @@ place-self: center;
   cursor: pointer;
   font-weight: 800;
   z-index: -2;
-  .popupTitle{
+  .popupTitle {
     font-size: 20px;
   }
   .botones {
@@ -44,7 +46,7 @@ place-self: center;
   button {
     width: fit-content;
   }
-  img{
+  img {
     border-radius: 10px;
   }
 `;
