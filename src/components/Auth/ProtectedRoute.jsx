@@ -5,7 +5,7 @@ export const ProtectedRoute = ({children}) => {
   const {user, loading} = useAuth()
 
   if(loading) return <h1>loading</h1>
-  if(!user) return <Navigate to="/Inicio" />
+  if(!user) return <Navigate to="/" />
 
   return <>{children}</>
   

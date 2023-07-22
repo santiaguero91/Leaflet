@@ -3,7 +3,7 @@ import { useAuth } from "./authContext";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Login() {
-  const { loginWithGoogle, user, logout } = useAuth();
+  const { loginWithGoogle, logout } = useAuth();
   const navigate = useNavigate();
 
   const logOut = async () => {

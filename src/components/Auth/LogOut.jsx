@@ -7,7 +7,7 @@ const Logout = () => {
   return (
     <div
       className="Li"
-      onClick={() => logout({ returnTo: window.location.origin })}
+      onClick={() => logout()}
     >
       Cerrar sesion
     </div>
