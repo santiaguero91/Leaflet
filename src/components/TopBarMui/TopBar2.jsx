@@ -1,23 +1,13 @@
-import "../../App.css";
-import {
-  MainContainer,
-  TopBarContainer,
-  SidebarDiv,
-  UserButtonContainer,
-  MarcadoresButton,
-} from "./TopBarStyle";
-import Filtro from "../filtro/Filtro";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeMap,
-  setOpenLateralList,
-  setOpenOnMain,
-} from "../../redux/actions";
-import { useAuth } from "../../components/Auth/authContext";
-import { useNavigate } from "react-router-dom";
 import UserButton from "../Auth/UserButton";
+import { useAuth } from "../Auth/authContext";
+import { MainStack, StyledButton } from "./TopBar2Style";
+import { useNavigate } from "react-router-dom";
+import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
+import { SidebarDiv } from "../TopBar/TopBarStyle";
+import Filtro from "../filtro/Filtro";
 
-function TopBar() {
+function TopBar2() {
   const { user, logout, loading } = useAuth();
   const dispatch = useDispatch();
   const openState = useSelector((state) => state.openMain);
@@ -50,34 +40,31 @@ function TopBar() {
   function cambiarmapa() {
     dispatch(changeMap(mapstate === 1 ? 2 : 1));
   }
-
   return (
-    <MainContainer>
-      <TopBarContainer>
-        <div >
-          <button onClick={() => OpenOnMain(2)}> Filtros</button>
-          {openState === 2 && (
+    <MainStack>
+        <div style={{ width: openState === 2 ? "40vw" : "0", transition: "1s" }}>
+        <StyledButton variant="contained" onClick={() => OpenOnMain(2)}> Filtros</StyledButton>
+        {/* {openState === 2 && (
             <SidebarDiv>
               <Filtro />
             </SidebarDiv>
-          )}
+          )} */}
         </div>
-      </TopBarContainer>
-      <button onClick={() => cambiarmapa()}>CAMBIAR MAPA</button>
-      <MarcadoresButton
-        style={{
+
+
+        <StyledButton style={{
+          transition: "1s",
+          backgroundColor: mapstate === 1 ? "white" : "rgb(2,112,67)",
+          color: mapstate === 1 ? "black" : "initial",
+        }} variant="contained" onClick={() => cambiarmapa()}>CAMBIAR MAPA</StyledButton>
+        <StyledButton style={{
           transition: "1s",
           backgroundColor: openLateralList === 1 ? "white" : "rgb(2,112,67)",
           color: openLateralList === 1 ? "black" : "initial",
-        }} onClick={() => OpenLateralList(1)} >Marcadores
-      </MarcadoresButton>
-      <UserButtonContainer>
-        <div>
-          <UserButton />
-        </div>
-      </UserButtonContainer>
-    </MainContainer>
+        }} variant="contained" onClick={() => OpenLateralList(1)} >Marcadores</StyledButton>
+        <UserButton />
+    </MainStack>
   );
 }
 
-export default TopBar;
+export default TopBar2;

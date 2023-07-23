@@ -12,6 +12,7 @@ import HomeAdmin from "./Views/HomeAdmin/HomeAdmin";
 import { AuthProvider } from "./components/Auth/authContext";
 import TopBar from "./components/TopBar/TopBar";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import Mui from "./Views/MUI/MUI";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
     <Route exact path="/" element={<Home />} /> 
     <Route exact path="/2" element={<View2 />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
+    <Route exact path="/mui" element={<Mui />} /> 
     
     <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin/></ProtectedRoute>} /> 
     

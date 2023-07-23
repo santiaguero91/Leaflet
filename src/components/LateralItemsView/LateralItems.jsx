@@ -9,8 +9,10 @@ import {
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
-import ButtonsPopUp from "./ButtonsPopUp";
+import MyLocationIcon from '@mui/icons-material/MyLocation';
+import AddLocationIcon from '@mui/icons-material/AddLocation';
 import { postMarker } from "../../redux/actions";
+import { LocationButton } from "../TopBarMui/TopBar2Style";
 
 function LateralItems() {
   const allMarkers = useSelector((state) => state.markers);
@@ -77,8 +79,8 @@ function LateralItems() {
       exit={{ width: 0, duration: 0.8 }}
     >
       <h2>Puntos de interes</h2>
-      <button onClick={() => myLocation()}> My Location</button>
-      {(markerPosition) && <button onClick={() => saveLocation()}> Save Location</button>
+      <LocationButton title="Get my location" onClick={() => myLocation()}><MyLocationIcon/></LocationButton>
+      {(markerPosition) && <button onClick={() => saveLocation()}> <AddLocationIcon /></button>
 }
 
       <InfiniteScroll

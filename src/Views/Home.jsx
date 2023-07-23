@@ -6,6 +6,7 @@ import { LateralListDiv, MainHomeDiv, NavBar, PopUpDiv } from "./HomeAdmin/HomeS
 import FormModify from "../components/FormModify/FormModify";
 import { useEffect } from "react";
 import Footer from "../components/Footer/Footer";
+import TopBar2 from "../components/TopBarMui/TopBar2";
 
 
 function Home() {
@@ -23,9 +24,10 @@ console.log(openModifyPanel);
     whileInView={{ opacity: 1, 
     transition:{duration:1}}}
     >
-      <NavBar> 
+{/*       <NavBar> 
       <TopBar />
-      </NavBar>
+      </NavBar> */}
+      <TopBar2/>
     <PopUpDiv>{openModifyPanel !== 0 && <FormModify/>}</PopUpDiv>
 
 
