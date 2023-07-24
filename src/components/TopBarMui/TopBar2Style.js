@@ -52,7 +52,7 @@ export const StyledButton = styled(Button)`
   background-color: #2e8b57;
   color: black;
   transition: 2s;
-  border-radius: 25px;
+  border-radius: 12px;
   @media (min-width: 400px) {
       font-size: 10px;
       padding: 15px;

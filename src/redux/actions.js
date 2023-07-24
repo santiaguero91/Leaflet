@@ -128,3 +128,16 @@ export function putUser(payload){
     }
     }
 } 
+
+
+export function postUser(payload){
+    return async function() {
+        try{       
+            console.log(payload, "posteando data");
+        const response = await axios.post(`${Url}user`, payload)
+        return response
+    } catch (error){
+        console.log(error);
+    }
+    }
+} 

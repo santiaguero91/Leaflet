@@ -10,6 +10,7 @@ import {
   CHANGE_MAP,
   GET_USERS,
   MODIFY_USER,
+  POST_USER,
 } from "./action-types";
 
 const initialState = {
@@ -84,6 +85,10 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
         };
+        case POST_USER:
+          return{
+              ...state,
+          }
     default:
       return { ...state };
   }

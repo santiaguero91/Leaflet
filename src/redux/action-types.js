@@ -9,4 +9,6 @@ export const GET_DETAILS= "GET_DETAILS"
 export const CHANGE_MAP= "CHANGE_MAP"
 export const GET_USERS= "GET_USERS"
 export const MODIFY_USER= "MODIFY_USER"
+export const POST_USER= "POST_USER"
+
 

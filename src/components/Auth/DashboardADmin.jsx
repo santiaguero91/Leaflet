@@ -10,7 +10,7 @@ const DashboardADmin = () => {
   // eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line
-  const [usersPerPage, setUsersPerPage] = useState(1);
+  const [usersPerPage, setUsersPerPage] = useState(5);
   const indexOfLastUser = currentPage * usersPerPage;
   // eslint-disable-next-line
   const indexOfFirstMarker = indexOfLastUser - usersPerPage;
