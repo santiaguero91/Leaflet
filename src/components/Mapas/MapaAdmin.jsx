@@ -22,6 +22,7 @@ import AddMarkerOnRightClick from "../AddMarkerOnRightClick/AddMarkerOnRightClic
 import Footer from "../Footer/Footer";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
+import GerminarIcon from "../../assets/germinarIcon.png";
 
 function MapaAdmin() {
   const [count, setCount] = useState(1);
@@ -33,9 +34,13 @@ function MapaAdmin() {
 
 
   const defaultMarkerIcon = new L.icon({
-    iconUrl: 'https://firebasestorage.googleapis.com/v0/b/leafletgerminar.appspot.com/o/66334dee-c7ad-49e2-90c6-59f622fb481c?alt=media&token=8b567678-5fb3-4bcd-9a1b-c21994a352bb',
-    iconSize: [40, 40],
-    popupAnchor: [3, -46], 
+    iconUrl: GerminarIcon,
+    iconSize: [50, 50],
+    /* iconUrl:
+      "https://firebasestorage.googleapis.com/v0/b/leafletgerminar.appspot.com/o/66334dee-c7ad-49e2-90c6-59f622fb481c?alt=media&token=8b567678-5fb3-4bcd-9a1b-c21994a352bb",
+     */
+  
+    popupAnchor: [3, -46],
   });
 
   const markerIcon = new L.icon({
@@ -82,7 +87,7 @@ function MapaAdmin() {
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
           ></TileLayer>
         ) : (
-          <ReactLeafletGoogleLayer type={'hybrid'} />
+            <ReactLeafletGoogleLayer type={"satellite"} />
         )}  
         <LayersControl position="topright">
           <MarkerClusterGroup>

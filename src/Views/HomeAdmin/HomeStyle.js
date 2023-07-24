@@ -2,6 +2,15 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const MainHomeDiv = styled(motion.div)`
+    background: linear-gradient(45deg,  red,  yellow);
+    h4{
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+      font-size: 16px;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
 `;
 
 export const PopUpDiv = styled(motion.div)`

@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
 import validate from "./FormValidation";
 import { motion } from "framer-motion";
-import { Background } from "./FormStyle";
+import {
+  Background,
+  StyledButton,
+  StyledInputFile,
+  StyledTextField,
+} from "./FormStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { putMarker, setOpenModifyPanel } from "../../redux/actions";
 import { uploadFile } from "../../firebase/config";
+import { Button, TextField } from "@mui/material";
 
 function FormModify() {
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
 
-/////////
-  const [file, setFile] = useState(null)
-  const [imagen, setImage] = useState(null)
-//////
+  /////////
+  const [file, setFile] = useState(null);
+  const [imagen, setImage] = useState(null);
+  //////
 
   const [input, setInput] = useState({
     id: openModifyPanel._id,
@@ -36,7 +42,6 @@ function FormModify() {
   });
 
   const handleChange = (e) => {
-    
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -65,18 +70,18 @@ function FormModify() {
   };
   const handleSubmitImage = async (e) => {
     e.preventDefault();
-    try{
+    try {
       const result = await uploadFile(file);
-      setImage(result)
+      setImage(result);
       setInput({
         ...input,
         img: result,
       });
-      console.log(result,);
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(putMarker(input));
@@ -96,14 +101,20 @@ function FormModify() {
         <form className="form">
           <h4>Modificar Marcador</h4>
           <div>
-            <label>Nuevo Nombre:</label>
-            <input
+            <StyledTextField
+              label="Nuevo Nombre"
               id="inputname"
               type="text"
               value={input.name}
               name="name"
               onChange={(e) => handleChange(e)}
               title="name"
+              InputProps={{
+                style: { color: "white" },
+              }}
+              InputLabelProps={{
+                style: { color: "white" },
+              }}
             />
             {errors.name && <p>{errors.name}</p>}
           </div>
@@ -147,41 +158,63 @@ function FormModify() {
             </label>
           </div>
           <div>
-            <label>Elegir Imagen:</label>
+            <label htmlFor="file">
+            <input
+              style={{ display: "none" }}
+              type="file"
+              name="file"
+              id="file"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+            <Button color="secondary" variant="contained" component="span">
+              Seleccionar Foto
+            </Button>
+            </label>
+            <StyledButton onClick={handleSubmitImage}>
+              Confirmar Foto
+            </StyledButton>
+
+            {/* <label>Elegir Imagen:</label>
             <input 
       type="file"
       name="file"
       id="file"
       onChange={e=> setFile(e.target.files[0])}
-      ></input>
-      <button onClick={handleSubmitImage}>Confirmar Foto</button>
-      {imagen && <div><img src={imagen} alt="Descripción de la imagen" width="100"/></div>}
+      ></input> 
+      <StyledButton onClick={handleSubmitImage}>Confirmar Foto</StyledButton>
+      */}
+
+            {imagen && (
+              <div>
+                <img src={imagen} alt="Descripción de la imagen" width="100" />
+              </div>
+            )}
           </div>
           <div className="divSubmitButton">
             {input.name !== "" &&
             input.latitude !== "" &&
             input.longitude !== "" &&
             input.tipo !== "" ? (
-              <button
+              <StyledButton
                 id="submitButton"
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
                 Actualizar Marcador
-              </button>
+              </StyledButton>
             ) : (
-              <button
+              <StyledButton
                 id="submitButton"
                 disabled
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
                 ACTUALIZAR
-              </button>
+              </StyledButton>
             )}
           </div>
         </form>
-        <button onClick={() => closeModifyForm()}>CERRAR</button>
+        <StyledButton onClick={() => closeModifyForm()}>CERRAR</StyledButton>
       </Background>
     </motion.div>
   );

@@ -10,6 +10,7 @@ import Modal from "react-modal";
 import DashboardADmin from "./DashboardADmin";
 import { getUsers } from "../../redux/actions";
 import io from 'socket.io-client'
+import { motion } from "framer-motion";
 
 const UserButton = () => {
   const { user } = useAuth();
@@ -67,7 +68,9 @@ const UserButton = () => {
           <HiOutlineUserCircle size={45} />
         )}
       </div>
-      <div className="Menu" style={active ? null : { display: "none" }}>
+
+      <div
+      className="Menu" style={active ? null : { display: "none" }}>
         {user ? (
           <ul className="Ul">
             <div className="profile">

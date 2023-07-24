@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
-import { FormGroup, Switch, Card } from "@mui/material";
+import { FormGroup, Switch, Card,Paper } from "@mui/material";
 
 export const CustomizedButton = styled(Button)`
   background-color: #2e8b57;
@@ -18,7 +18,12 @@ export const CustomizedButton = styled(Button)`
     border: none;
   }
 `;
-
+export const StyledPaper = styled(Paper)`
+border-radius: 25px;
+width: 25vw;
+height: 25vh;
+margin: 10px auto 10px auto;
+`;
 export const StyledCard = styled(Card)`
 border-radius: 25px;
 background-color: pink;

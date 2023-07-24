@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
+import {Stack, Button,Typography, TextField } from "@mui/material";
 
-export const Background = styled.div`
+export const Background = styled(Stack)`
 display: grid;
     place-content: center;
     .form{
@@ -24,7 +25,7 @@ h4{
 }
 `;
 
-export const ButtonsDiv = styled.div`
+export const ButtonsDiv = styled(Stack)`
   
   background-color: rgba(89, 89, 89);
     border: none;
@@ -41,7 +42,7 @@ export const ButtonsDiv = styled.div`
     }
   `;
 
-export const Clean = styled.div`
+export const Clean = styled(Stack)`
   cursor: pointer;
   background-color: rgb(35,35,35);
     border: none;
@@ -57,3 +58,43 @@ export const Clean = styled.div`
   background-color: rgb(50,50,50);
     }
   `;
+
+export const StyledButton = styled(Button)`
+  background-color: #2e8b57;
+  color: white;
+  transition: 2s;
+  border-radius: 25px;
+  @media (min-width: 400px) {
+      font-size: 10px;
+      padding: 15px;
+    }
+  :hover {
+    background-color: #4fbd7f;
+  }
+  :focus {
+    outline: none;
+    border: none;
+  }
+  `;
+
+
+export const StyledTextField = styled(TextField)`
+background-color: grey;
+transition: 2s;
+border-radius: 25px;
+.InputProps{
+  color: white;
+}
+`;
+
+export const StyledInputFile = styled(TextField)`
+background-color: grey;
+transition: 2s;
+border-radius: 25px;
+color: black;
+.InputProps{
+  color: white;
+}
+`;
+
+

@@ -1,13 +1,23 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  z-index: 2000 !important;
   color: black;
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  width: 100%;
+  width: 50vw;
   margin: 0 auto;
-  padding-bottom: 4%;
   z-index: 2000 !important ;
-`; 
+`;
+
+export const UsersListDiv = styled.div`
+  color: black;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  width: 50vw;
+  margin: 0 auto;
+  z-index: 2000 !important ;
+  max-height: 70vh;
+  overflow-x: hidden;
+`;

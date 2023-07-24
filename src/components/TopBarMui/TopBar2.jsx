@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import UserButton from "../Auth/UserButton";
 import { useAuth } from "../Auth/authContext";
-import { MainStack, StyledButton } from "./TopBar2Style";
+import { MainStack, StyledButton, StyledTypography } from "./TopBar2Style";
 import { useNavigate } from "react-router-dom";
 import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
-import { SidebarDiv } from "../TopBar/TopBarStyle";
-import Filtro from "../filtro/Filtro";
+import logo from "../../assets/Logo germinar.png"
 
 function TopBar2() {
   const { user, logout, loading } = useAuth();
@@ -42,26 +41,32 @@ function TopBar2() {
   }
   return (
     <MainStack>
-        <div style={{ width: openState === 2 ? "40vw" : "0", transition: "1s" }}>
-        <StyledButton variant="contained" onClick={() => OpenOnMain(2)}> Filtros</StyledButton>
+      <img src={logo}/>
+
+
+        <StyledButton style={{ 
+          backgroundColor: openState === 2 ? "white" : "rgb(2,112,67)", 
+          color: openState === 2 ? "black" : "initial",
+          transition: "1s" }}
+          variant="contained" onClick={() => OpenOnMain(2)}> <StyledTypography>Filtros</StyledTypography></StyledButton>
         {/* {openState === 2 && (
             <SidebarDiv>
               <Filtro />
             </SidebarDiv>
           )} */}
-        </div>
+
 
 
         <StyledButton style={{
           transition: "1s",
           backgroundColor: mapstate === 1 ? "white" : "rgb(2,112,67)",
           color: mapstate === 1 ? "black" : "initial",
-        }} variant="contained" onClick={() => cambiarmapa()}>CAMBIAR MAPA</StyledButton>
+        }} variant="contained" onClick={() => cambiarmapa()}> <StyledTypography>CAMBIAR MAPA <StyledTypography/></StyledTypography></StyledButton>
         <StyledButton style={{
           transition: "1s",
           backgroundColor: openLateralList === 1 ? "white" : "rgb(2,112,67)",
           color: openLateralList === 1 ? "black" : "initial",
-        }} variant="contained" onClick={() => OpenLateralList(1)} >Marcadores</StyledButton>
+        }} variant="contained" onClick={() => OpenLateralList(1)} > <StyledTypography>Marcadores <StyledTypography/></StyledTypography></StyledButton>
         <UserButton />
     </MainStack>
   );

@@ -11,6 +11,12 @@ export const MainContainer = styled.div`
     z-index: 2000 !important;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+
+
+    
+
+
+
 `;
 
 export const TopBarContainer = styled.div`

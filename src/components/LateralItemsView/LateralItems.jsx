@@ -13,6 +13,7 @@ import MyLocationIcon from '@mui/icons-material/MyLocation';
 import AddLocationIcon from '@mui/icons-material/AddLocation';
 import { postMarker } from "../../redux/actions";
 import { LocationButton } from "../TopBarMui/TopBar2Style";
+import { Box } from "@mui/material";
 
 function LateralItems() {
   const allMarkers = useSelector((state) => state.markers);
@@ -65,13 +66,11 @@ function LateralItems() {
         link: "",
         tipo: "",
       });
-      var marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);      
-
-
-
+      var marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);        
   });
    };
 
+   //TODO BOTON LOCATION SOLO TIENE QUE FUNCIONAR 1 VEZ
   return (
     <LateralItemsDiv
       initial={{ width: 0 }}
@@ -79,10 +78,11 @@ function LateralItems() {
       exit={{ width: 0, duration: 0.8 }}
     >
       <h2>Puntos de interes</h2>
+      <Box>
       <LocationButton title="Get my location" onClick={() => myLocation()}><MyLocationIcon/></LocationButton>
-      {(markerPosition) && <button onClick={() => saveLocation()}> <AddLocationIcon /></button>
+      {(markerPosition) && <LocationButton onClick={() => saveLocation()}> <AddLocationIcon /></LocationButton>
 }
-
+</Box>
       <InfiniteScroll
         dataLength={locationMarkers.length}
         next={() => addPage()}

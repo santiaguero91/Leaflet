@@ -6,10 +6,24 @@ export const MainStack = styled(Stack)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5%;
+
+img{
+  border-radius: 30px;
+  width: 15vw; 
+  @media (max-width: 400px) {
+    width: 20vw; 
+    }
+}
+
 `;
 
 export const StyledTypography = styled(Typography)`
+ font-size: 13px;
+ @media (max-width: 400px) {
+  font-size: 8px;
+    }
 `;
 
 export const CustomizedBox = styled(Stack)`
@@ -20,12 +34,12 @@ export const CustomizedBox = styled(Stack)`
 
 export const LocationButton = styled(Button)`
   background-color: #2e8b57;
-  color: black;
+  color: rgba(225,225,225);
   transition: 2s;
   border-radius: 25px;
 
   :hover {
-    background-color: #3e9e68;
+    background-color: #4fbd7f;
   }
   :focus {
     outline: none;
@@ -39,12 +53,20 @@ export const StyledButton = styled(Button)`
   color: black;
   transition: 2s;
   border-radius: 25px;
-
+  @media (min-width: 400px) {
+      font-size: 10px;
+      padding: 15px;
+    }
   :hover {
-    background-color: #3e9e68;
+    background-color: #4fbd7f;
   }
   :focus {
     outline: none;
     border: none;
   }
+
+
+
+
+
 `;

@@ -24,6 +24,7 @@ import {
   TituloMarker,
 } from "./MapStyle";
 import leafIcon from "./leaf.png";
+import GerminarIcon from "../../assets/germinarIcon.png";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
@@ -38,9 +39,12 @@ function Mapa2() {
   const openLateralList = useSelector((state) => state.openLateralList);
 
   const defaultMarkerIcon = new L.icon({
-    iconUrl:
+    iconUrl: GerminarIcon,
+    iconSize: [50, 50],
+    /* iconUrl:
       "https://firebasestorage.googleapis.com/v0/b/leafletgerminar.appspot.com/o/66334dee-c7ad-49e2-90c6-59f622fb481c?alt=media&token=8b567678-5fb3-4bcd-9a1b-c21994a352bb",
-    iconSize: [40, 40],
+     */
+  
     popupAnchor: [3, -46],
   });
 
@@ -73,6 +77,7 @@ function Mapa2() {
     <MapDiv>
       <MapcontainerDiv>
         <MapContainer
+        className="map-container"
           center={center}
           zoom={12}
           scrollWheelZoom={true}
@@ -84,7 +89,7 @@ function Mapa2() {
               attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
             ></TileLayer>
           ) : (
-            <ReactLeafletGoogleLayer type={"hybrid"} />
+            <ReactLeafletGoogleLayer type={"satellite"} />
           )}
           <LayersControl position="topright">
             <MarkerClusterGroup>

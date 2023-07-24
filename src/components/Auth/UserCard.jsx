@@ -1,36 +1,41 @@
 import { useState } from "react";
-import { MainContainerDiv } from "./UserCardStyle";
+import { AdminButton, MailDiv, MainContainerDiv, UserButton } from "./UserCardStyle";
 import { useDispatch } from "react-redux";
 import { putUser } from "../../redux/actions";
 
-const UserCard = ({ id, family_name, email, picture, admin}) => {
+const UserCard = ({ id, family_name, email, picture, admin }) => {
   const dispatch = useDispatch();
 
-   const [input, setInput] = useState({
+  const [input, setInput] = useState({
     id: id,
     name: family_name,
     picture: picture,
     email: email,
-    admin: !admin
-  }); 
-  const changeAdminstate =()=>{
-    dispatch(putUser(input))
-    setInput(
-      {
-        id: input.id,
-        name: input.name,
-        picture: input.picture,
-        email: input.email,
-        admin:!input.admin
-      }
-    )
-}
-
+    admin: !admin,
+  });
+  const changeAdminstate = () => {
+    dispatch(putUser(input));
+    setInput({
+      id: input.id,
+      name: input.name,
+      picture: input.picture,
+      email: input.email,
+      admin: !input.admin,
+    });
+  };
 
   return (
     <MainContainerDiv>
-        <p>{email}</p>
-        <button onClick={()=>changeAdminstate()}>{admin===true ? <p>admin</p>: <p>user</p>}</button>
+      <MailDiv>{email}</MailDiv>
+      {admin === true ? (
+        <AdminButton onClick={() => changeAdminstate()}>
+          <p>admin</p>
+        </AdminButton>
+      ) : (
+        <UserButton onClick={() => changeAdminstate()}>
+          <p>user</p>
+        </UserButton>
+      )}
     </MainContainerDiv>
   );
 };

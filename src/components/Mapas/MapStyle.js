@@ -4,6 +4,9 @@ export const MapDiv = styled.div`
   position: relative;
   flex-direction: column;
   z-index: 0 !important;
+  background: linear-gradient(45deg,  rgba(231,231,231,1),  rgba(189,189,189,1));
+
+
   button {
     width: fit-content;
   }

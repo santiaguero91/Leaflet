@@ -12,11 +12,12 @@ export const UserBtnDiv = styled.div`
 
   .Menu {
     position: absolute;
-    top: 3em;
+    top: 4em;
     right: 0em;
     z-index: 100;
-    //border: 1px solid red;
+    transition: opacity 1s ease-in-out;
   }
+
   .profile {
     border-bottom: #333;
     border-bottom: 1px solid #333;
