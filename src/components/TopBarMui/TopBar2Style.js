@@ -26,6 +26,14 @@ export const StyledTypography = styled(Typography)`
     }
 `;
 
+export const StyledTypographyHome = styled(Typography)`
+color: white;
+ font-size: 13px;
+ @media (max-width: 400px) {
+  font-size: 8px;
+    }
+`;
+
 export const CustomizedBox = styled(Stack)`
   background-color: black;
   width: 25vw;

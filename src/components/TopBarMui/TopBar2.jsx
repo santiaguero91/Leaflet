@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import UserButton from "../Auth/UserButton";
 import { useAuth } from "../Auth/authContext";
-import { MainStack, StyledButton, StyledTypography } from "./TopBar2Style";
+import { MainStack, StyledButton, StyledTypography, StyledTypographyHome } from "./TopBar2Style";
 import { useNavigate } from "react-router-dom";
 import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
 import logo from "../../assets/Logo germinar.png"
@@ -13,6 +13,7 @@ function TopBar2() {
   const openLateralList = useSelector((state) => state.openLateralList);
   const mapstate = useSelector((state) => state.map);
   const navigate = useNavigate();
+  const { pathname } = window.location;
 
   function OpenOnMain(id) {
     if (openState === id) {
@@ -36,14 +37,20 @@ function TopBar2() {
     }
   }
 
+  function volver() {
+    navigate("/")
+  }
+
+  function germinar() {
+    window.open("https://germinar.org.ar", '_blank');
+  }
+
   function cambiarmapa() {
     dispatch(changeMap(mapstate === 1 ? 2 : 1));
   }
   return (
     <MainStack>
-      <img src={logo}/>
-
-
+      <img src={logo} onClick={() => germinar()} style={{ cursor: 'pointer' }}/>
         <StyledButton style={{ 
           backgroundColor: openState === 2 ? "white" : "rgb(2,112,67)", 
           color: openState === 2 ? "black" : "initial",
@@ -61,13 +68,20 @@ function TopBar2() {
           transition: "1s",
           backgroundColor: mapstate === 1 ? "white" : "rgb(2,112,67)",
           color: mapstate === 1 ? "black" : "initial",
-        }} variant="contained" onClick={() => cambiarmapa()}> <StyledTypography>CAMBIAR MAPA <StyledTypography/></StyledTypography></StyledButton>
+        }} variant="contained" onClick={() => cambiarmapa()}> <StyledTypography>CAMBIAR MAPA </StyledTypography></StyledButton>
+        
+        
         <StyledButton style={{
           transition: "1s",
           backgroundColor: openLateralList === 1 ? "white" : "rgb(2,112,67)",
           color: openLateralList === 1 ? "black" : "initial",
-        }} variant="contained" onClick={() => OpenLateralList(1)} > <StyledTypography>Marcadores <StyledTypography/></StyledTypography></StyledButton>
-        <UserButton />
+        }} variant="contained" onClick={() => OpenLateralList(1)} > <StyledTypography>Marcadores </StyledTypography></StyledButton>
+{
+  pathname === "/admin" && 
+  <StyledButton variant="contained" onClick={() => volver()}> <StyledTypographyHome>Home</StyledTypographyHome></StyledButton>
+  
+}
+
     </MainStack>
   );
 }

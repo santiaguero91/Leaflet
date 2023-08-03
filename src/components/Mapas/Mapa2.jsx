@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import {
@@ -25,12 +25,13 @@ import {
 } from "./MapStyle";
 import leafIcon from "./leaf.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
+import PawIcon from "../../assets/germinarIcon.png";
+import TreeIcon from "../../assets/germinarIcon.png";
+import SchoolIcon from "../../assets/germinarIcon.png";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 import { useNavigate } from "react-router-dom";
-import Footer from "../Footer/Footer";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
-
 function Mapa2() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,13 +42,30 @@ function Mapa2() {
   const defaultMarkerIcon = new L.icon({
     iconUrl: GerminarIcon,
     iconSize: [50, 50],
-    /* iconUrl:
-      "https://firebasestorage.googleapis.com/v0/b/leafletgerminar.appspot.com/o/66334dee-c7ad-49e2-90c6-59f622fb481c?alt=media&token=8b567678-5fb3-4bcd-9a1b-c21994a352bb",
-     */
-  
     popupAnchor: [3, -46],
   });
 
+  const pawMarkerIcon = new L.icon({
+    iconUrl: PawIcon,
+    iconSize: [50, 50],
+    popupAnchor: [3, -46],
+  });
+  const TreeMarkerIcon = new L.icon({
+    iconUrl: TreeIcon,
+    iconSize: [50, 50],
+    popupAnchor: [3, -46],
+  });    
+
+  const SchoolIcon = new L.icon({
+    iconUrl: GerminarIcon,
+    iconSize: [50, 50],
+    popupAnchor: [3, -46],
+  });
+
+
+     const ver =()=>{
+      console.log("");
+     }
   const markerIcon = new L.icon({
     iconUrl: leafIcon,
     iconSize: [20, 20],

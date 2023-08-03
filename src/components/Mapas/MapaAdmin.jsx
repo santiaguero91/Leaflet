@@ -43,6 +43,9 @@ function MapaAdmin() {
     popupAnchor: [3, -46],
   });
 
+     const ver =()=>{
+      console.log(allMarkers);
+     }
   const markerIcon = new L.icon({
     iconUrl: leafIcon,
     iconSize: [20, 20],
@@ -64,16 +67,14 @@ function MapaAdmin() {
     navigate(`/details/${id}`);
   }
 
-  function ver() {
-    console.log(allMarkers);
-  }
   useEffect(() => {
     dispatch(getMarkers());
   }, [dispatch]);
 
   return (
     <MapDiv>
-{/* <button onClick={()=>ver()}>VER</button> */}
+            <button onClick={()=>ver()}>VER</button>
+
 <MapcontainerDiv>
       <MapContainer
         center={center}

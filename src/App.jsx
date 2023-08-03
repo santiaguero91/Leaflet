@@ -29,10 +29,11 @@ function App() {
 
   return (
     <AuthProvider>
-    <AnimatePresence>
+    <AnimatePresence >
     <Routes location={location} key={location.pathname}> 
     <Route exact path="/" element={<Home />} /> 
     <Route exact path="/2" element={<View2 />} /> 
+    <Route exact path="/login" element={<Landing />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
     <Route exact path="/mui" element={<Mui />} /> 
     

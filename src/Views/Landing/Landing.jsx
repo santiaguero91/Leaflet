@@ -13,10 +13,6 @@ import { useAuth } from "../../components/Auth/authContext";
 function Landing() {
   const { user } = useAuth();
 
-  function ver() {
-    console.log(user);
-  }
-
   const styles = {
     backgroundSize: "cover",
     height: "100vh",
