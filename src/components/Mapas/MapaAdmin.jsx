@@ -35,6 +35,8 @@ import AddMarkerOnRightClick from "../AddMarkerOnRightClick/AddMarkerOnRightClic
 import Footer from "../Footer/Footer";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
+import { SidebarDiv } from "../TopBar/TopBarStyle";
+import Filtro from "../filtro/Filtro";
 
 function MapaAdmin() {
   const [count, setCount] = useState(1);
@@ -43,6 +45,7 @@ function MapaAdmin() {
   const allMarkers = useSelector((state) => state.markers);
   const mapstate = useSelector((state) => state.map);
   const openLateralList = useSelector((state) => state.openLateralList);
+  const openState = useSelector((state) => state.openMain);
 
   const defaultMarkerIcon = new L.icon({
     iconUrl: GerminarIcon,
@@ -94,8 +97,13 @@ function MapaAdmin() {
     dispatch(getMarkers());
   }, [dispatch]);
 
-  return (
-    <MapDiv>
+
+     const ver =()=>{
+      console.log(openState, "openState");
+    }
+    return (
+      <MapDiv>
+      <button onClick={()=>ver()}>VER</button>
       <MapcontainerDiv>
         <MapContainer
           center={center}
@@ -210,6 +218,11 @@ function MapaAdmin() {
                     <LateralItems />
                   </LateralListDiv>
                 )}
+          {openState === 2 && (
+            <SidebarDiv>
+              <Filtro />
+            </SidebarDiv>
+          )}
               </LayerGroup>
             </LayersControl.Overlay>
           </LayersControl>

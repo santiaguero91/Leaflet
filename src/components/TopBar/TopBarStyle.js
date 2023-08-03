@@ -45,10 +45,11 @@ export const UserButtonContainer = styled.div`
 `;
 
 export const SidebarDiv = styled.div`
-  background-color: #1a1a1a;
+ /*  background-color: #1a1a1a;
   color: #fff;
   font-size: 22px;
   top: 0;
+  z-index: 2000 !important; */
 `;
 
 export const MarcadoresButton = styled.button`

@@ -20,8 +20,7 @@ export const Background = styled(Stack)`
     border-radius: 30px;
     padding: 50px;
     padding-bottom: 80px;
-    margin-top: 2rem;
-
+    margin-top: 0rem;
     color: aliceblue;
     font-weight: 500;
     font-size: large;

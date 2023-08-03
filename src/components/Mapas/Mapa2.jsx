@@ -54,18 +54,13 @@ function Mapa2() {
     iconUrl: TreeIcon,
     iconSize: [50, 50],
     popupAnchor: [3, -46],
-  });    
+  });
 
-  const SchoolIcon = new L.icon({
-    iconUrl: GerminarIcon,
+  const SchoolMarkerIcon = new L.icon({
+    iconUrl: SchoolIcon,
     iconSize: [50, 50],
     popupAnchor: [3, -46],
   });
-
-
-     const ver =()=>{
-      console.log("");
-     }
   const markerIcon = new L.icon({
     iconUrl: leafIcon,
     iconSize: [20, 20],
@@ -119,7 +114,13 @@ function Mapa2() {
                       lng: el.longitude,
                     }}
                     key={el.updatedAt}
-                    icon={el.tipo === "hoja" ? markerIcon : defaultMarkerIcon}
+                    icon={
+                      el.tipo === "hoja" ? markerIcon :
+                      el.tipo === "paw" ? pawMarkerIcon :
+                      el.tipo === "school" ? SchoolMarkerIcon :
+                      el.tipo === "Tree" ? TreeMarkerIcon :
+                      defaultMarkerIcon
+                    }
                   >
                     <Popup key={el.id}>
                       <PopupPlateDiv>

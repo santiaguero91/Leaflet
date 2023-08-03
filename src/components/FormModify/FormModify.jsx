@@ -90,9 +90,6 @@ function FormModify() {
     dispatch(setOpenModifyPanel(0));
   }
 
-     const ver =()=>{
-      console.log(input);
-     }
   return (
     <motion.div
       initial={{ scaleY: 0 }}
@@ -104,7 +101,6 @@ function FormModify() {
       }}
     >
       <Background>
-        <button onClick={()=>ver()}>VER</button>
         <form className="form">
           <FormTitle variant="h4">Modificar Marcador</FormTitle>
           <div>

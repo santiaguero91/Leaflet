@@ -27,7 +27,7 @@ function Filtro() {
   
     function handleNoFilter(event) {
       setFiltro("All");
-       dispatch(filterMarkersByType(event.target.id));
+      dispatch(filterMarkersByType(event.target.id));
       setContador(contador + 1);
     }
 
@@ -41,32 +41,32 @@ function Filtro() {
             Todos
           </ButtonFilter>
           <ButtonFilter
-            className={`${filtro.includes("educacion") ? "special" : ""}`}
+            className={`${filtro.includes("school") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
-            id="educacion"
+            id="school"
           >
-            Educacion
+            Escuela
           </ButtonFilter>
           <ButtonFilter
-            className={`${filtro.includes("pto turstico") ? "special" : ""}`}
+            className={`${filtro.includes("ptoDeInteres") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
-            id="pto turstico"
+            id="ptoDeInteres"
           >
-            Punto De Interes
+            Germinar
           </ButtonFilter>
           <ButtonFilter
-            className={`${filtro.includes("castillo") ? "special" : ""}`}
+            className={`${filtro.includes("paw") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
-            id="castillo"
+            id="paw"
           >
-            Reservas
+            Huella
           </ButtonFilter>
           <ButtonFilter
-            className={`${filtro.includes("iglesia") ? "special" : ""}`}
+            className={`${filtro.includes("Tree") ? "special" : ""}`}
             onClick={(e) => handleFilterMarkers(e)}
-            id="iglesia"
+            id="Tree"
           >
-            Casas
+            Arbol
           </ButtonFilter>
     </MainContainer>
   )
