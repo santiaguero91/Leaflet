@@ -3,15 +3,21 @@ import validate from "./FormValidation";
 import { motion } from "framer-motion";
 import {
   Background,
+  FormTitle,
+  IconsGrid,
   StyledButton,
   StyledInputFile,
   StyledTextField,
 } from "./FormStyle";
 import { useDispatch, useSelector } from "react-redux";
+import SchoolIcon from "../../assets/Schoolcon.png";
+import PawIcon from "../../assets/PawIcon.png";
+import TreeIcon from "../../assets/TreeIcon.png";
+import GerminarIcon from "../../assets/germinarIcon.png";
 import { putMarker, setOpenModifyPanel } from "../../redux/actions";
 import { uploadFile } from "../../firebase/config";
 import { Button, TextField } from "@mui/material";
-
+import { SelectIcon } from "../TopBar/TopBarStyle";
 function FormModify() {
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
@@ -55,18 +61,10 @@ function FormModify() {
   };
 
   const handleCheck = (e) => {
-    if (e.target.checked) {
-      setInput({
-        ...input,
-        tipo: e.target.value,
-      });
-      setErrors(
-        validate({
-          ...input,
-          tipo: e.target.value,
-        })
-      );
-    }
+    setInput({
+      ...input,
+      tipo: e,
+    });
   };
   const handleSubmitImage = async (e) => {
     e.preventDefault();
@@ -91,15 +89,24 @@ function FormModify() {
   function closeModifyForm() {
     dispatch(setOpenModifyPanel(0));
   }
+
+     const ver =()=>{
+      console.log(input);
+     }
   return (
     <motion.div
       initial={{ scaleY: 0 }}
       animate={{ scaleY: 1 }}
       exit={{ scaleY: 0, transition: { duration: 0.1 } }}
+      style={{
+        backgroundColor: "rgba(211, 211, 211, 1)",
+        borderRadius: "15px",
+      }}
     >
       <Background>
+        <button onClick={()=>ver()}>VER</button>
         <form className="form">
-          <h4>Modificar Marcador</h4>
+          <FormTitle variant="h4">Modificar Marcador</FormTitle>
           <div>
             <StyledTextField
               label="Nuevo Nombre"
@@ -119,70 +126,57 @@ function FormModify() {
             {errors.name && <p>{errors.name}</p>}
           </div>
           <div className="SeasonCheckboxs">
-            <label>Tipo:</label> <br></br>
-            <label>
-              <input
-                type="checkbox"
-                name="educacion"
-                value="educacion"
-                onChange={(e) => handleCheck(e)}
-              />{" "}
-              Educacion
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="iglesia"
-                value="iglesia"
-                onChange={(e) => handleCheck(e)}
+            <label>Selecciona un Icono</label> <br></br>
+            <IconsGrid>
+            <SelectIcon
+                name="Tree"
+                value="Tree"
+                src={TreeIcon}
+                onClick={() => handleCheck("Tree")}
+                style={ input.tipo=== "Tree"? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
+
               />
-              Casas
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="castillo"
-                value="castillo"
-                onChange={(e) => handleCheck(e)}
+              <SelectIcon
+                name="school"
+                value="school"
+                src={SchoolIcon}
+                onClick={() => handleCheck("school")}
+                style={ input.tipo=== "school"? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
+
               />
-              Reservas
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="pto turstico"
-                value="pto turstico"
-                onChange={(e) => handleCheck(e)}
+              <SelectIcon
+                name="paw"
+                value="paw"
+                src={PawIcon}
+                onClick={() => handleCheck("paw")}
+                style={ input.tipo=== "paw"? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
+              /> 
+            <SelectIcon
+                name="ptoDeInteres"
+                value="ptoDeInteres"
+                src={GerminarIcon}
+                onClick={() => handleCheck("ptoDeInteres")}
+                style={ input.tipo=== "ptoDeInteres" || !input.tipo ? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
+
               />
-              Punto De Interes
-            </label>
+              </IconsGrid>
           </div>
           <div>
             <label htmlFor="file">
-            <input
-              style={{ display: "none" }}
-              type="file"
-              name="file"
-              id="file"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-            <Button color="secondary" variant="contained" component="span">
-              Seleccionar Foto
-            </Button>
+              <input
+                style={{ display: "none" }}
+                type="file"
+                name="file"
+                id="file"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <Button color="secondary" variant="contained" component="span">
+                Seleccionar Foto
+              </Button>
             </label>
             <StyledButton onClick={handleSubmitImage}>
               Confirmar Foto
             </StyledButton>
-
-            {/* <label>Elegir Imagen:</label>
-            <input 
-      type="file"
-      name="file"
-      id="file"
-      onChange={e=> setFile(e.target.files[0])}
-      ></input> 
-      <StyledButton onClick={handleSubmitImage}>Confirmar Foto</StyledButton>
-      */}
 
             {imagen && (
               <div>

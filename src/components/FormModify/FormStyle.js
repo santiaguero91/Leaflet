@@ -1,11 +1,21 @@
 import { styled } from "@mui/material/styles";
-import {Stack, Button,Typography, TextField } from "@mui/material";
+import { Stack, Button, Typography, TextField } from "@mui/material";
+
+
+export const IconsGrid = styled(Stack)`
+display: flex;
+flex-direction: row;
+`;
+
+export const FormTitle = styled(Typography)`
+
+`;
 
 export const Background = styled(Stack)`
-display: grid;
-    place-content: center;
-    .form{
-    background-color: rgba(15, 15, 15);
+  display: grid;
+  place-content: center;
+  .form {
+    background-color: transparent;
     border: none;
     border-radius: 30px;
     padding: 50px;
@@ -15,49 +25,48 @@ display: grid;
     color: aliceblue;
     font-weight: 500;
     font-size: large;
-}
+  }
 
-h4{
+  h4 {
     font-size: 34px;
     font-weight: 900;
     color: white;
     margin-top: 0;
-}
+  }
 `;
 
 export const ButtonsDiv = styled(Stack)`
-  
   background-color: rgba(89, 89, 89);
-    border: none;
-    border-radius: 10px;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px;
-    margin: 10px auto 0px 0;
-    font-weight: 800;
-    transition: 1s;
+  border: none;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin: 10px auto 0px 0;
+  font-weight: 800;
+  transition: 1s;
 
-    :hover{
-      background-color: rgba(150, 150, 150);
-    }
-  `;
+  :hover {
+    background-color: rgba(150, 150, 150);
+  }
+`;
 
 export const Clean = styled(Stack)`
   cursor: pointer;
-  background-color: rgb(35,35,35);
-    border: none;
-    border-radius: 10px;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px;
-    margin: 0 auto ;
-    font-weight: 800;
-    transition: 1s;
+  background-color: rgb(35, 35, 35);
+  border: none;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin: 0 auto;
+  font-weight: 800;
+  transition: 1s;
 
-    :hover{
-  background-color: rgb(50,50,50);
-    }
-  `;
+  :hover {
+    background-color: rgb(50, 50, 50);
+  }
+`;
 
 export const StyledButton = styled(Button)`
   background-color: #2e8b57;
@@ -65,9 +74,9 @@ export const StyledButton = styled(Button)`
   transition: 2s;
   border-radius: 25px;
   @media (min-width: 400px) {
-      font-size: 10px;
-      padding: 15px;
-    }
+    font-size: 10px;
+    padding: 15px;
+  }
   :hover {
     background-color: #4fbd7f;
   }
@@ -75,26 +84,23 @@ export const StyledButton = styled(Button)`
     outline: none;
     border: none;
   }
-  `;
-
+`;
 
 export const StyledTextField = styled(TextField)`
-background-color: grey;
-transition: 2s;
-border-radius: 25px;
-.InputProps{
-  color: white;
-}
+  background-color: grey;
+  transition: 2s;
+  border-radius: 25px;
+  .InputProps {
+    color: white;
+  }
 `;
 
 export const StyledInputFile = styled(TextField)`
-background-color: grey;
-transition: 2s;
-border-radius: 25px;
-color: black;
-.InputProps{
-  color: white;
-}
+  background-color: grey;
+  transition: 2s;
+  border-radius: 25px;
+  color: black;
+  .InputProps {
+    color: white;
+  }
 `;
-
-

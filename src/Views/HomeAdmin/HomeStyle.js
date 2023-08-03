@@ -17,7 +17,7 @@ export const PopUpDiv = styled(motion.div)`
   display: flex;
   position: absolute;
   transition: 1s;
-  background-color: #000;
+  background-color: transparent;
   height: fit-content;
   width: fit-content;
   top: 50%;
