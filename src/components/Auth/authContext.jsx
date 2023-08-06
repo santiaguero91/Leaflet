@@ -22,12 +22,12 @@ export function AuthProvider({children}){
 
     const loginWithGoogle = () =>{
        const googleProvider = new GoogleAuthProvider()
-       console.log(googleProvider);
        signInWithPopup(auth, googleProvider)
     }
 
     useEffect(()=> {
         onAuthStateChanged(auth, currentUser =>{
+            console.log(currentUser);
             setUser(currentUser);
             setLoading(false)
         })

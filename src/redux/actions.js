@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN,OPEN_MODIFY_PANEL, GET_DETAILS, CHANGE_MAP, GET_USERS} from "./action-types";
+import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN,OPEN_MODIFY_PANEL, GET_DETAILS, CHANGE_MAP, GET_USERS, ADMIN} from "./action-types";
 
 const Url = `http://localhost:3001/`
 
@@ -84,6 +84,12 @@ export function setOpenLateralList(payload){
 export function setOpenModifyPanel(payload){
     return{
         type: OPEN_MODIFY_PANEL,
+        payload
+    }
+}
+export function setAdmin(payload){
+    return{
+        type: ADMIN,
         payload
     }
 }

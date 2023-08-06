@@ -4,12 +4,11 @@ import { Navigate } from "react-router-dom";
 
 export const ProtectedRoute = ({children}) => {
   const {user, loading} = useAuth()
-  const allUsers = useSelector((state) => state.users);
+  const admin = useSelector((state) => state.admin);
 
   
   if(loading) return <h1>loading</h1>
-  if(!user) return <Navigate to="/" />
-  if(user?.displayName !== allUsers[0]?.family_name) return <Navigate to="/" />
+  if(!admin) return <Navigate to="/" />
 
   return <>{children}</>
 };

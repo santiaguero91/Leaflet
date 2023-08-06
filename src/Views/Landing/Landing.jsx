@@ -1,17 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
 import { LogInDiv, MainLandingDiv } from "./LandingStyle";
-import { Link } from "react-router-dom";
 import {
   MouseParallaxContainer,
   MouseParallaxChild,
 } from "react-parallax-mouse";
 import { Formulario } from "../../components/Auth/Formulario";
-import { useAuth } from "../../components/Auth/authContext";
 
 function Landing() {
-  const { user } = useAuth();
 
   const styles = {
     backgroundSize: "cover",

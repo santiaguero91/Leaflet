@@ -11,6 +11,7 @@ import {
   GET_USERS,
   MODIFY_USER,
   POST_USER,
+  ADMIN,
 } from "./action-types";
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   allMarkers: [],
   detail: "",
   users: "",
+  admin: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -88,6 +90,11 @@ const rootReducer = (state = initialState, action) => {
         case POST_USER:
           return{
               ...state,
+          };
+        case ADMIN:
+          return{
+              ...state,
+              admin: action.payload,
           }
     default:
       return { ...state };

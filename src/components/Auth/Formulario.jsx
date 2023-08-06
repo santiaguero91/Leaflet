@@ -1,24 +1,15 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "./authContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../redux/actions";
+import { getUsers, setAdmin } from "../../redux/actions";
 
 export function Formulario() {
-  const { loginWithGoogle, user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const allUsers = useSelector((state) => state.users);
+  const admin = useSelector((state) => state.admin);
   const dispatch = useDispatch();
-
-  
-   const logOut = async () => {
-    await logout();
-  };
-
-  const handleGoogleSignIn = async () => {
-    await loginWithGoogle();
-    /* navigate("/home") */
-  }; 
   
 
   useEffect(() => {
@@ -26,7 +17,7 @@ export function Formulario() {
   }, []);
 
   const [input, setInput] = useState({
-    name: "",
+    name: "Santiago Agüero",
     password: "",
   });
 
@@ -39,15 +30,15 @@ export function Formulario() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (console.log(allUsers[0].family_name === input.name) && console.log(allUsers[0].email === input.password)) ?
-    navigate("/") : 
-    navigate("/admin")
+    console.log(allUsers[0].email, input.password);
 
-    /*     setInput({
-      name: "",
-      latitude: "",
-    }); */
-    /* location.reload(); */
+    if(allUsers[0].family_name === input.name && allUsers[0].email === input.password){
+      dispatch(setAdmin(!admin))
+      navigate("/admin")
+    } else {
+      navigate("/")
+    }
+
   };
 
   const ver = () => {
@@ -58,8 +49,8 @@ export function Formulario() {
   return (
     <div>
 
-{/*       <form className="form">
-        <div>
+       <form className="form">
+{/*         <div>
           <label>Nombre:</label>
           <input
             id="inputname"
@@ -69,7 +60,7 @@ export function Formulario() {
             onChange={(e) => handleChange(e)}
             title="name"
           />
-        </div>
+        </div> */}
         <div>
           <label>Contraseña:</label>
           <input
@@ -101,12 +92,12 @@ export function Formulario() {
             </button>
           )}
         </div>
-      </form> */}
+      </form>
 
-        <div>
+{/*         <div>
           {!user && <button onClick={handleGoogleSignIn}>Login with Google</button>}
           {user && <button onClick={()=>navigate("/admin")}>Log In</button>   }
-        </div>
+        </div> */}
     </div>
   );
 }
