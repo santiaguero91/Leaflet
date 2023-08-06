@@ -14,7 +14,7 @@ export default function AddMarkerOnRightClick() {
     longitude:"",
     img: "",
     link: "",
-    tipo: "",
+    tipo: "ptoDeInteres",
   });  
   const handleSubmit = (e) => {
      dispatch(postMarker(input));     

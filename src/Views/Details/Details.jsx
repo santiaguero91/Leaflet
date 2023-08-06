@@ -3,62 +3,60 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getInfoById } from "../../redux/actions";
 import { MainDiv } from "./DetailsStyle";
+import DetailTextForm from "../../components/DetailComponents/DetailForm/DetailTextForm";
 
 const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detailInfo = useSelector((state) => state.detail);
   const navigate = useNavigate();
-  const [isFlipped, setIsFlipped] = React.useState(false);
+  const [detailForm, setDetailForm] = useState(false);
 
   useEffect(() => {
-    dispatch(getInfoById(id));
+    getInfo()
   }, [dispatch, id]);
 
   const volver = () => {
     navigate("/");
   };
 
-  const handleClick = () => {
-    setIsFlipped(!isFlipped);
+
+  const getInfo = () => {
+    dispatch(getInfoById(id));
   };
 
-
-  const [input, setInput] = useState({
-    id: detailInfo.id,
-    name: detailInfo.name,
-    latitude: detailInfo.latitude,
-    longitude: detailInfo.longitude,
-    img: detailInfo.img,
-    link: detailInfo.link,
-    tipo: detailInfo.tipo,
-    data: "data"
-  });
-
-  const ver = () => {
-    console.log(detailInfo, "detailInfo");
-    console.log(input, "input");
+  const changeDetailForm = () => {
+    setDetailForm(!detailForm);
   };
 
   return (
     <MainDiv>
       <h1>{detailInfo.name}</h1>
+      <p>{detailInfo.link}</p>
       <div>
         <img width="250px" src={detailInfo.img} />
       </div>
       <button onClick={() => volver()} className="boton">
         Volver al inicio
       </button>
-      <button onClick={() => ver()}>ver</button>
       <div className="formButtons">
-
-
-        {/* agregar aca la data del item */}
-
-
-      <button className="boton">Agregar Texto</button>
-      <button className="boton">Agregar Imagen</button>
+        <button onClick={() => changeDetailForm()} className="boton">Cambiar Texto</button>
       </div>
+      {detailForm && (
+                  <div>
+                    <DetailTextForm
+                    id={detailInfo._id}
+                    name={detailInfo.name}
+                    latitude={detailInfo.latitude}
+                    longitude={detailInfo.longitude}
+                    img={detailInfo.img}
+                    tipo={detailInfo.tipo}
+                    link={detailInfo.link}
+                    changeDetailForm={changeDetailForm}
+                    getInfo={getInfo}
+                    />
+                  </div>
+                )}
     </MainDiv>
   );
 };

@@ -33,7 +33,7 @@ export function postMarker(payload){
 export function getInfoById(id) {
     return async function (dispatch) {
       try {
-        const json = await axios.get(`${Url}+markers/${id}`);
+        const json = await axios.get(`${Url}markers/${id}`);
         return dispatch({
           type: GET_DETAILS,
           payload: json.data,

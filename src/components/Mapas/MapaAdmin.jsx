@@ -89,8 +89,7 @@ function MapaAdmin() {
   }
 
   function verMasInfo(id) {
-    console.log();
-    navigate(`/details/${id}`);
+     navigate(`/details/${id}`); 
   }
 
   useEffect(() => {
@@ -99,7 +98,7 @@ function MapaAdmin() {
 
 
      const ver =()=>{
-      console.log(openState, "openState");
+      console.log(allMarkers[0]);
     }
     return (
       <MapDiv>
@@ -137,19 +136,19 @@ function MapaAdmin() {
                       defaultMarkerIcon
                     }
                   >
-                    <Popup key={el.id}>
+                    <Popup key={el._id}>
                       <PopupPlateDiv>
                         <TituloMarker>
                           <div className="popupTitle">{el.name}</div>
                         </TituloMarker>
-                        {el.link && <a href={el.link}>{el.name}</a>}
+                        {el.link && <p>{el.link}</p>}
                         {el.img && <img width="250px" src={el.img} />}
                         <div className="botones">
                           <button onClick={() => close(el._id)}>
                             {" "}
                             Borrar{" "}
                           </button>
-                          <button onClick={() => verMasInfo(el.id)}>
+                          <button onClick={() => verMasInfo(el._id)}>
                             {" "}
                             Mas Info{" "}
                           </button>

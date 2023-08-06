@@ -127,7 +127,7 @@ function Mapa2() {
                         <TituloMarker>
                           <div className="popupTitle">{el.name}</div>
                         </TituloMarker>
-                        {el.link && <a href={el.link}>{el.name}</a>}
+                        {el.link && <p>{el.link}</p>}
                         {el.img && <img width="250px" src={el.img} />}
                         <div className="botones">
                         </div>
