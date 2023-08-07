@@ -118,7 +118,6 @@ function MapaAdmin() {
           ) : (
             <ReactLeafletGoogleLayer type={"satellite"} />
           )}
-          <LayersControl position="topright">
             <MarkerClusterGroup>
               {allMarkers.map((el) => {
                 return (
@@ -163,55 +162,7 @@ function MapaAdmin() {
                 );
               })}
             </MarkerClusterGroup>
-            <LeafletFileLayer />
-
-            <LayersControl.Overlay checked name="Estados">
-              <LayerGroup>
-                {statesData.features.map((state) => {
-                  const coordinates = state.geometry.coordinates[0].map(
-                    (item) => [item[1], item[0]]
-                  );
-
-                  return (
-                    <Polygon
-                      key={coordinates}
-                      pathOptions={{
-                        fillColor: "#b1b0b0",
-                        fillOpacity: 0.7,
-                        weight: 2,
-                        opacity: 1,
-                        dashArray: 3,
-                        color: "white",
-                      }}
-                      positions={coordinates}
-                      eventHandlers={{
-                        mouseover: (e) => {
-                          const layer = e.target;
-                          layer.setStyle({
-                            dashArray: "",
-                            fillColor: "#464646",
-                            fillOpacity: 0.7,
-                            weight: 2,
-                            opacity: 1,
-                            color: "white",
-                          });
-                        },
-                        mouseout: (e) => {
-                          const layer = e.target;
-                          layer.setStyle({
-                            fillOpacity: 0.7,
-                            weight: 2,
-                            dashArray: "3",
-                            color: "white",
-                            fillColor: "#797979",
-                          });
-                        },
-                        click: (e) => {},
-                      }}
-                    />
-                  );
-                })}
-                <AddMarkerOnRightClick />
+            <AddMarkerOnRightClick />
                 {openLateralList === 1 && (
                   <LateralListDiv>
                     <LateralItems />
@@ -222,9 +173,8 @@ function MapaAdmin() {
               <Filtro />
             </SidebarDiv>
           )}
-              </LayerGroup>
-            </LayersControl.Overlay>
-          </LayersControl>
+            <LeafletFileLayer />
+
         </MapContainer>
       </MapcontainerDiv>
     </MapDiv>

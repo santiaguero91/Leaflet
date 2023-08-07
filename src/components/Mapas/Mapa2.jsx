@@ -24,20 +24,23 @@ import {
   TituloMarker,
 } from "./MapStyle";
 import leafIcon from "./leaf.png";
+import SchoolIcon from "../../assets/Schoolcon.png";
+import PawIcon from "../../assets/PawIcon.png";
+import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
-import PawIcon from "../../assets/germinarIcon.png";
-import TreeIcon from "../../assets/germinarIcon.png";
-import SchoolIcon from "../../assets/germinarIcon.png";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 import { useNavigate } from "react-router-dom";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
+import { SidebarDiv } from "../TopBar/TopBarStyle";
+import Filtro from "../filtro/Filtro";
 function Mapa2() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
   const mapstate = useSelector((state) => state.map);
   const openLateralList = useSelector((state) => state.openLateralList);
+  const openState = useSelector((state) => state.openMain);
 
   const defaultMarkerIcon = new L.icon({
     iconUrl: GerminarIcon,
@@ -77,10 +80,9 @@ function Mapa2() {
     dispatch(setOpenModifyPanel(id));
   }
 
-  function verMasInfo(id) {
-    console.log();
-    navigate(`/details/${id}`);
-  }
+  const ver = () => {
+    console.log(allMarkers);
+  };
 
   useEffect(() => {
     dispatch(getMarkers());
@@ -90,7 +92,7 @@ function Mapa2() {
     <MapDiv>
       <MapcontainerDiv>
         <MapContainer
-        className="map-container"
+          className="map-container"
           center={center}
           zoom={12}
           scrollWheelZoom={true}
@@ -104,97 +106,52 @@ function Mapa2() {
           ) : (
             <ReactLeafletGoogleLayer type={"satellite"} />
           )}
-          <LayersControl position="topright">
-            <MarkerClusterGroup>
-              {allMarkers.map((el) => {
-                return (
-                  <Marker
-                    position={{
-                      lat: el.latitude,
-                      lng: el.longitude,
-                    }}
-                    key={el.updatedAt}
-                    icon={
-                      el.tipo === "hoja" ? markerIcon :
-                      el.tipo === "paw" ? pawMarkerIcon :
-                      el.tipo === "school" ? SchoolMarkerIcon :
-                      el.tipo === "Tree" ? TreeMarkerIcon :
-                      defaultMarkerIcon
-                    }
-                  >
-                    <Popup key={el.id}>
-                      <PopupPlateDiv>
-                        <TituloMarker>
-                          <div className="popupTitle">{el.name}</div>
-                        </TituloMarker>
-                        {el.link && <p>{el.link}</p>}
-                        {el.img && <img width="250px" src={el.img} />}
-                        <div className="botones">
-                        </div>
-                      </PopupPlateDiv>
-                    </Popup>
-                  </Marker>
-                );
-              })}
-            </MarkerClusterGroup>
-
-            <LayersControl.Overlay checked name="Estados">
-              <LayerGroup>
-                {statesData.features.map((state) => {
-                  const coordinates = state.geometry.coordinates[0].map(
-                    (item) => [item[1], item[0]]
-                  );
-
-                  return (
-                    <Polygon
-                      key={coordinates}
-                      pathOptions={{
-                        fillColor: "#b1b0b0",
-                        fillOpacity: 0.7,
-                        weight: 2,
-                        opacity: 1,
-                        dashArray: 3,
-                        color: "white",
-                      }}
-                      positions={coordinates}
-                      eventHandlers={{
-                        mouseover: (e) => {
-                          const layer = e.target;
-                          layer.setStyle({
-                            dashArray: "",
-                            fillColor: "#464646",
-                            fillOpacity: 0.7,
-                            weight: 2,
-                            opacity: 1,
-                            color: "white",
-                          });
-                        },
-                        mouseout: (e) => {
-                          const layer = e.target;
-                          layer.setStyle({
-                            fillOpacity: 0.7,
-                            weight: 2,
-                            dashArray: "3",
-                            color: "white",
-                            fillColor: "#797979",
-                          });
-                        },
-                        click: (e) => {},
-                      }}
-                    />
-                  );
-                })}
-                {openLateralList === 1 && (
-                  <LateralListDiv>
-                    <LateralItems />
-                  </LateralListDiv>
-                )}
-              </LayerGroup>
-            </LayersControl.Overlay>
-          </LayersControl>
+          <MarkerClusterGroup>
+            {allMarkers.map((el) => {
+              return (
+                <Marker
+                  position={{
+                    lat: el.latitude,
+                    lng: el.longitude,
+                  }}
+                  key={el.updatedAt}
+                  icon={
+                    el.tipo === "hoja"
+                      ? markerIcon
+                      : el.tipo === "paw"
+                      ? pawMarkerIcon
+                      : el.tipo === "school"
+                      ? SchoolMarkerIcon
+                      : el.tipo === "Tree"
+                      ? TreeMarkerIcon
+                      : defaultMarkerIcon
+                  }
+                >
+                  <Popup key={el._id}>
+                    <PopupPlateDiv>
+                      <TituloMarker>
+                        <div className="popupTitle">{el.name}</div>
+                      </TituloMarker>
+                      {el.link && <p>{el.link}</p>}
+                      {el.img && <img width="250px" src={el.img} />}
+                    </PopupPlateDiv>
+                  </Popup>
+                </Marker>
+              );
+            })}
+          </MarkerClusterGroup>
+          {openLateralList === 1 && (
+            <LateralListDiv>
+              <LateralItems />
+            </LateralListDiv>
+          )}
+          {openState === 2 && (
+            <SidebarDiv>
+              <Filtro />
+            </SidebarDiv>
+          )}
         </MapContainer>
       </MapcontainerDiv>
-      {/* <Footer/> */}
     </MapDiv>
   );
 }

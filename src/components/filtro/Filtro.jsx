@@ -1,4 +1,7 @@
-
+import SchoolIcon from "../../assets/Schoolcon.png";
+import PawIcon from "../../assets/PawIcon.png";
+import TreeIcon from "../../assets/TreeIcon.png";
+import GerminarIcon from "../../assets/germinarIcon.png";
 
 import { useDispatch} from "react-redux";
 import "../../App.css"
