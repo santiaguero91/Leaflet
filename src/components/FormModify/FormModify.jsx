@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import validate from "./FormValidation";
 import { motion } from "framer-motion";
 import {
@@ -16,7 +16,7 @@ import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
 import { putMarker, setOpenModifyPanel } from "../../redux/actions";
 import { uploadFile } from "../../firebase/config";
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { SelectIcon } from "../TopBar/TopBarStyle";
 function FormModify() {
   const dispatch = useDispatch();
@@ -153,7 +153,6 @@ function FormModify() {
                 src={GerminarIcon}
                 onClick={() => handleCheck("ptoDeInteres")}
                 style={ input.tipo=== "ptoDeInteres" || !input.tipo ? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
-
               />
               </IconsGrid>
           </div>
