@@ -8,8 +8,13 @@ flex-direction: row;
 `;
 
 export const FormTitle = styled(Typography)`
-
 `;
+export const LabelTitle = styled(Typography)`
+color: black;
+`;
+export const Label2Title = styled(Typography)`
+`;
+
 
 export const Background = styled(Stack)`
   display: grid;
@@ -29,7 +34,7 @@ export const Background = styled(Stack)`
   h4 {
     font-size: 34px;
     font-weight: 900;
-    color: white;
+    color: black;
     margin-top: 0;
   }
 `;

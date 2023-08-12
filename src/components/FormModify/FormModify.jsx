@@ -5,6 +5,7 @@ import {
   Background,
   FormTitle,
   IconsGrid,
+  LabelTitle,
   StyledButton,
   StyledInputFile,
   StyledTextField,
@@ -14,6 +15,7 @@ import SchoolIcon from "../../assets/Schoolcon.png";
 import PawIcon from "../../assets/PawIcon.png";
 import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
+import leafIcon from "../Mapas/leaf.png";
 import { putMarker, setOpenModifyPanel } from "../../redux/actions";
 import { uploadFile } from "../../firebase/config";
 import { Button } from "@mui/material";
@@ -113,16 +115,16 @@ function FormModify() {
               onChange={(e) => handleChange(e)}
               title="name"
               InputProps={{
-                style: { color: "white" },
+                style: { color: "black" },
               }}
               InputLabelProps={{
-                style: { color: "white" },
+                style: { color: "black" },
               }}
             />
             {errors.name && <p>{errors.name}</p>}
           </div>
           <div className="SeasonCheckboxs">
-            <label>Selecciona un Icono</label> <br></br>
+            <LabelTitle variant="h6">Selecciona un Icono</LabelTitle> <br></br>
             <IconsGrid>
             <SelectIcon
                 name="Tree"
@@ -130,7 +132,6 @@ function FormModify() {
                 src={TreeIcon}
                 onClick={() => handleCheck("Tree")}
                 style={ input.tipo=== "Tree"? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
-
               />
               <SelectIcon
                 name="school"
@@ -154,9 +155,16 @@ function FormModify() {
                 onClick={() => handleCheck("ptoDeInteres")}
                 style={ input.tipo=== "ptoDeInteres" || !input.tipo ? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
               />
+              <SelectIcon
+                name="hoja"
+                value="hoja"
+                src={leafIcon}
+                onClick={() => handleCheck("hoja")}
+                style={ input.tipo=== "hoja"? { boxShadow:"rgba(00, 00, 00, 0.8) 0px 2px 8px 0px" } : { border:"none" }}
+              /> 
               </IconsGrid>
           </div>
-          <div>
+          <div> 
             <label htmlFor="file">
               <input
                 style={{ display: "none" }}

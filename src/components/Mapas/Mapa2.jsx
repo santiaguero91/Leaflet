@@ -6,9 +6,6 @@ import {
   TileLayer,
   Marker,
   Popup,
-  LayerGroup,
-  LayersControl,
-  Polygon,
 } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,7 +13,6 @@ import {
   getMarkers,
   setOpenModifyPanel,
 } from "../../redux/actions";
-import { statesData } from "../../data";
 import {
   MapDiv,
   MapcontainerDiv,

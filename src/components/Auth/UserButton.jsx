@@ -10,7 +10,6 @@ import Modal from "react-modal";
 import DashboardADmin from "./DashboardADmin";
 import { getUsers, postUser } from "../../redux/actions";
 import io from "socket.io-client";
-import { motion } from "framer-motion";
 
 const UserButton = () => {
   const { user } = useAuth();

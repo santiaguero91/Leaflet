@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
+import Modal from "react-modal";
+
 import {
   MapContainer,
   TileLayer,
@@ -13,6 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteMarker,
+  getInfoById,
   getMarkers,
   setOpenModifyPanel,
 } from "../../redux/actions";
@@ -37,15 +40,43 @@ import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
 import { SidebarDiv } from "../TopBar/TopBarStyle";
 import Filtro from "../filtro/Filtro";
+import Details from "../../Views/Details/Details";
 
 function MapaAdmin() {
-  const [count, setCount] = useState(1);
+  //* MODAL Functions
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [detailId, setDetailId] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
   const mapstate = useSelector((state) => state.map);
   const openLateralList = useSelector((state) => state.openLateralList);
   const openState = useSelector((state) => state.openMain);
+
+  ///modalstyle
+  const modaltyle = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: " 2000 !important",
+      backgroundColor:"transparent",
+      boxShadow: "rgba(189,189,189,1)",
+    },
+  };
+
+  //* MODAL Functions
+  function openModal(id) {
+    setIsOpen(true);
+    setDetailId(id);
+  }
+  function closeModal() {
+    setIsOpen(!modalIsOpen);
+  }
 
   const defaultMarkerIcon = new L.icon({
     iconUrl: GerminarIcon,
@@ -88,21 +119,23 @@ function MapaAdmin() {
     dispatch(setOpenModifyPanel(id));
   }
 
+  function opendetailPanel(id) {
+    dispatch(/* setdetailPanel(id) */);
+  }
+
   function verMasInfo(id) {
-     navigate(`/details/${id}`); 
+    navigate(`/details/${id}`);
   }
 
   useEffect(() => {
     dispatch(getMarkers());
   }, [dispatch]);
 
-
-     const ver =()=>{
-      console.log(allMarkers[0]);
-    }
-    return (
-      <MapDiv>
-      <button onClick={()=>ver()}>VER</button>
+  const ver = () => {
+    console.log(allMarkers[0]);
+  };
+  return (
+    <MapDiv>
       <MapcontainerDiv>
         <MapContainer
           center={center}
@@ -118,63 +151,81 @@ function MapaAdmin() {
           ) : (
             <ReactLeafletGoogleLayer type={"satellite"} />
           )}
-            <MarkerClusterGroup>
-              {allMarkers.map((el) => {
-                return (
-                  <Marker
-                    position={{
-                      lat: el.latitude,
-                      lng: el.longitude,
-                    }}
-                    key={el.updatedAt}
-                    icon={
-                      el.tipo === "hoja" ? markerIcon :
-                      el.tipo === "paw" ? pawMarkerIcon :
-                      el.tipo === "school" ? SchoolMarkerIcon :
-                      el.tipo === "Tree" ? TreeMarkerIcon :
-                      defaultMarkerIcon
-                    }
-                  >
-                    <Popup key={el._id}>
-                      <PopupPlateDiv>
-                        <TituloMarker>
-                          <div className="popupTitle">{el.name}</div>
-                        </TituloMarker>
-                        {el.link && <p>{el.link}</p>}
-                        {el.img && <img width="250px" src={el.img} />}
-                        <div className="botones">
-                          <button onClick={() => close(el._id)}>
-                            {" "}
-                            Borrar{" "}
-                          </button>
-                          <button onClick={() => verMasInfo(el._id)}>
-                            {" "}
-                            Mas Info{" "}
-                          </button>
-                          <button onClick={() => openModifyPanel(el)}>
-                            {" "}
-                            Modificar{" "}
-                          </button>
-                        </div>
-                      </PopupPlateDiv>
-                    </Popup>
-                  </Marker>
-                );
-              })}
-            </MarkerClusterGroup>
-            <AddMarkerOnRightClick />
-                {openLateralList === 1 && (
-                  <LateralListDiv>
-                    <LateralItems />
-                  </LateralListDiv>
-                )}
+          <MarkerClusterGroup>
+            {allMarkers.map((el) => {
+              return (
+                <Marker
+                  position={{
+                    lat: el.latitude,
+                    lng: el.longitude,
+                  }}
+                  key={el.updatedAt}
+                  icon={
+                    el.tipo === "hoja"
+                      ? markerIcon
+                      : el.tipo === "paw"
+                      ? pawMarkerIcon
+                      : el.tipo === "school"
+                      ? SchoolMarkerIcon
+                      : el.tipo === "Tree"
+                      ? TreeMarkerIcon
+                      : defaultMarkerIcon
+                  }
+                >
+                  <Popup key={el._id}>
+                    <PopupPlateDiv>
+                      <TituloMarker>
+                        <div className="popupTitle">{el.name}</div>
+                      </TituloMarker>
+                      {el.link && <p>{el.link}</p>}
+                      {el.img && <img width="250px" src={el.img} />}
+                      <div className="botones">
+                        <button onClick={() => close(el._id)}> Borrar </button>
+                        {/* openmodal button */}
+                        <button
+                          onClick={() => {
+                            openModal(el._id);
+                          }}
+                        >
+                          Mas Info
+                        </button>
+                        {/*                           <button onClick={() => verMasInfo(el._id)}>
+                            Mas Info
+                          </button> */}
+                        <button onClick={() => openModifyPanel(el)}>
+                          Modificar
+                        </button>
+                      </div>
+                    </PopupPlateDiv>
+                  </Popup>
+                </Marker>
+              );
+            })}
+            //*modal component
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={modaltyle}
+              ariaHideApp={false}
+            >
+              <button onClick={closeModal}>X</button>
+              <Details 
+              id={detailId}
+              />
+            </Modal>
+          </MarkerClusterGroup>
+          <AddMarkerOnRightClick />
+          {openLateralList === 1 && (
+            <LateralListDiv>
+              <LateralItems />
+            </LateralListDiv>
+          )}
           {openState === 2 && (
             <SidebarDiv>
               <Filtro />
             </SidebarDiv>
           )}
-            <LeafletFileLayer />
-
+          <LeafletFileLayer />
         </MapContainer>
       </MapcontainerDiv>
     </MapDiv>

@@ -23,6 +23,18 @@ export const SelectIcon = styled.img`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 
+export const FilterIcon = styled.img`
+  cursor: pointer;
+  gap: 2%;
+  margin: 0 auto;
+  width: 20%;
+  height: 20%;
+  border-radius: 15px;
+  background-color: rgba(185, 185, 185);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+`;
+
+
 export const TopBarContainer = styled.div`
   position: relative;
   transition: 1s;

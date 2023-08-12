@@ -5,8 +5,7 @@ import { getInfoById } from "../../redux/actions";
 import { MainDiv } from "./DetailsStyle";
 import DetailTextForm from "../../components/DetailComponents/DetailForm/DetailTextForm";
 
-const Details = () => {
-  const { id } = useParams();
+const Details = ({id}) => {
   const dispatch = useDispatch();
   const detailInfo = useSelector((state) => state.detail);
   const navigate = useNavigate();
@@ -20,9 +19,8 @@ const Details = () => {
     navigate("/");
   };
 
-
   const getInfo = () => {
-    dispatch(getInfoById(id));
+    dispatch(getInfoById(id))
   };
 
   const changeDetailForm = () => {
