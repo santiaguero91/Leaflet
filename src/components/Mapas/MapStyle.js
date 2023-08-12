@@ -6,7 +6,15 @@ export const MapDiv = styled.div`
   z-index: 0 !important;
   background: linear-gradient(45deg,  rgba(231,231,231,1),  rgba(189,189,189,1));
 
-
+  .Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: transparent;
+    box-shadow: rgba(189,189,189,1);
+  }
   button {
     width: fit-content;
   }
