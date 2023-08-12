@@ -19,16 +19,24 @@ export const Label2Title = styled(Typography)`
 export const Background = styled(Stack)`
   display: grid;
   place-content: center;
+
+.fotosBtns{
+  margin: 1% auto;
+}
+
   .form {
     background-color: transparent;
     border: none;
     border-radius: 30px;
     padding: 50px;
-    padding-bottom: 80px;
     margin-top: 0rem;
     color: aliceblue;
     font-weight: 500;
     font-size: large;
+    @media (max-width: 650px) {
+    font-size: 10px;
+    padding: 15px;
+  }
   }
 
   h4 {
@@ -89,6 +97,27 @@ export const StyledButton = styled(Button)`
     border: none;
   }
 `;
+
+export const CloseBtn = styled(Button)`
+  background-color: #2e8b57;
+  color: white;
+  transition: 2s;
+  border-radius: 25px;
+  width: 50%;
+  margin: 0 auto 2% auto;
+  @media (min-width: 400px) {
+    font-size: 10px;
+    padding: 15px;
+  }
+  :hover {
+    background-color: #4fbd7f;
+  }
+  :focus {
+    outline: none;
+    border: none;
+  }
+`;
+
 
 export const StyledTextField = styled(TextField)`
   background-color: grey;

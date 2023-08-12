@@ -34,9 +34,6 @@ const Details = ({id}) => {
         <img width="250px" src={detailInfo.img} />
       <DeTxt variant="subtitle1">{detailInfo.link}</DeTxt>
       </ImgTxtDiv>
-      <BackBtn onClick={() => volver()} className="boton">
-        Volver al inicio
-      </BackBtn>
       <div className="formButtons">
         <AddTxtBtn onClick={() => changeDetailForm()} className="boton">Cambiar Texto</AddTxtBtn>
       </div>

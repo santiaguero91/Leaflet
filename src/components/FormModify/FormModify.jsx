@@ -3,6 +3,7 @@ import validate from "./FormValidation";
 import { motion } from "framer-motion";
 import {
   Background,
+  CloseBtn,
   FormTitle,
   IconsGrid,
   LabelTitle,
@@ -164,7 +165,7 @@ function FormModify() {
               /> 
               </IconsGrid>
           </div>
-          <div> 
+          <div className="fotosBtns"> 
             <label htmlFor="file">
               <input
                 style={{ display: "none" }}
@@ -211,7 +212,7 @@ function FormModify() {
             )}
           </div>
         </form>
-        <StyledButton onClick={() => closeModifyForm()}>CERRAR</StyledButton>
+        <CloseBtn onClick={() => closeModifyForm()}>CERRAR</CloseBtn>
       </Background>
     </motion.div>
   );
