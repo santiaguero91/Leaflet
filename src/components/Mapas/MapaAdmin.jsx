@@ -41,6 +41,7 @@ import LateralItems from "../LateralItemsView/LateralItems";
 import { SidebarDiv } from "../TopBar/TopBarStyle";
 import Filtro from "../filtro/Filtro";
 import Details from "../../Views/Details/Details";
+import { Backdrop } from "@mui/material";
 
 function MapaAdmin() {
   //* MODAL Functions
@@ -65,9 +66,14 @@ function MapaAdmin() {
       transform: "translate(-50%, -50%)",
       zIndex: " 2000 !important",
       backgroundColor:"transparent",
-      boxShadow: "rgba(189,189,189,1)",
     },
-  };
+  }
+
+  const Modal__Overlay = {
+    content: {
+      backgroundColor:"transparent",
+  }
+  }
 
   //* MODAL Functions
   function openModal(id) {
@@ -207,7 +213,8 @@ function MapaAdmin() {
               onRequestClose={closeModal}
               style={modaltyle}
               ariaHideApp={false}
-            >
+              overlayClassName= {Modal__Overlay}
+            > 
               <button onClick={closeModal}>X</button>
               <Details 
               id={detailId}
