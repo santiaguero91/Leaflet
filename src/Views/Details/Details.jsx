@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getInfoById } from "../../redux/actions";
-import { MainDiv } from "./DetailsStyle";
+import { AddTxtBtn, BackBtn, DeTiltle, DeTxt, ImgTxtDiv, MainDiv } from "./DetailsStyle";
 import DetailTextForm from "../../components/DetailComponents/DetailForm/DetailTextForm";
 
 const Details = ({id}) => {
@@ -29,16 +29,16 @@ const Details = ({id}) => {
 
   return (
     <MainDiv>
-      <h1>{detailInfo.name}</h1>
-      <p>{detailInfo.link}</p>
-      <div>
+      <DeTiltle variant="h4">{detailInfo.name}</DeTiltle>
+      <ImgTxtDiv>
         <img width="250px" src={detailInfo.img} />
-      </div>
-      <button onClick={() => volver()} className="boton">
+      <DeTxt variant="subtitle1">{detailInfo.link}</DeTxt>
+      </ImgTxtDiv>
+      <BackBtn onClick={() => volver()} className="boton">
         Volver al inicio
-      </button>
+      </BackBtn>
       <div className="formButtons">
-        <button onClick={() => changeDetailForm()} className="boton">Cambiar Texto</button>
+        <AddTxtBtn onClick={() => changeDetailForm()} className="boton">Cambiar Texto</AddTxtBtn>
       </div>
       {detailForm && (
                   <div>

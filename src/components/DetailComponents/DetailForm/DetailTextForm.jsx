@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormText } from "./DetailTextFormStyle";
+import { FormText, FormBtn,FormStack } from "./DetailTextFormStyle";
 import { useDispatch } from "react-redux";
 import { putMarker } from "../../../redux/actions";
 
@@ -41,7 +41,7 @@ export default function DetailTextForm(
       };
 
   return (
-    <div>
+    <FormStack>
       <FormText
           label="Agregar Descripción"
           id="inputname"
@@ -61,7 +61,7 @@ export default function DetailTextForm(
           }}
         >
         </FormText>
-        <button onClick={(e) => handleSubmit(e)}>Confirmar</button>
-    </div>
+        <FormBtn onClick={(e) => handleSubmit(e)}>Confirmar</FormBtn>
+    </FormStack>
   );
 }

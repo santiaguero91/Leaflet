@@ -65,7 +65,7 @@ function MapaAdmin() {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       zIndex: " 2000 !important",
-      backgroundColor:"transparent",
+      backgroundColor:"rgba(231,231,231,0.9)",
     },
   }
 
@@ -75,7 +75,6 @@ function MapaAdmin() {
   }
   }
 
-  //* MODAL Functions
   function openModal(id) {
     setIsOpen(true);
     setDetailId(id);
@@ -187,7 +186,6 @@ function MapaAdmin() {
                       {el.img && <img width="250px" src={el.img} />}
                       <div className="botones">
                         <button onClick={() => close(el._id)}> Borrar </button>
-                        {/* openmodal button */}
                         <button
                           onClick={() => {
                             openModal(el._id);
@@ -195,9 +193,6 @@ function MapaAdmin() {
                         >
                           Mas Info
                         </button>
-                        {/*                           <button onClick={() => verMasInfo(el._id)}>
-                            Mas Info
-                          </button> */}
                         <button onClick={() => openModifyPanel(el)}>
                           Modificar
                         </button>
@@ -207,7 +202,6 @@ function MapaAdmin() {
                 </Marker>
               );
             })}
-            //*modal component
             <Modal
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
