@@ -182,7 +182,7 @@ function MapaAdmin() {
                       <TituloMarker>
                         <div className="popupTitle">{el.name}</div>
                       </TituloMarker>
-                      {el.link && <p>{el.link}</p>}
+                      {el.link && <p>{el.link.substring(0,100)+"..."}</p>}
                       {el.img && <img width="250px" src={el.img} />}
                       <div className="botones">
                         <button onClick={() => close(el._id)}> Borrar </button>
