@@ -123,31 +123,15 @@ function MapaAdmin() {
     }, 1000);
   }
 
-  /*   
-setTimeout(() => {
-      dispatch(getMarkers());
-  }, 2000); 
-  */
-
   function openModifyPanel(id) {
     dispatch(setOpenModifyPanel(id));
   }
 
-  function opendetailPanel(id) {
-    dispatch(/* setdetailPanel(id) */);
-  }
-
-  function verMasInfo(id) {
-    navigate(`/details/${id}`);
-  }
 
   useEffect(() => {
     dispatch(getMarkers());
   }, [dispatch]);
 
-  const ver = () => {
-    console.log(allMarkers[0]);
-  };
   return (
     <MapDiv>
       <MapcontainerDiv>
@@ -173,7 +157,7 @@ setTimeout(() => {
                     lat: el.latitude,
                     lng: el.longitude,
                   }}
-                  key={el.updatedAt}
+                  key={el.updatedAt + el.latitude + el.longitude}
                   icon={
                     el.tipo === "hoja"
                       ? markerIcon
