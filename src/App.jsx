@@ -34,6 +34,7 @@ function App() {
     <Route exact path="/details/:id" element={<Details />} /> 
     <Route exact path="/mui" element={<Mui />} /> 
     
+    <Route exact path="/admin2" element={<HomeAdmin/>} /> 
     <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin/></ProtectedRoute>} /> 
     
     </Routes>
