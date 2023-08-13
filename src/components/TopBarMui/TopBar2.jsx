@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import UserButton from "../Auth/UserButton";
 import { useAuth } from "../Auth/authContext";
 import { MainStack, StyledButton, StyledTypography, StyledTypographyHome } from "./TopBar2Style";
 import { useNavigate } from "react-router-dom";

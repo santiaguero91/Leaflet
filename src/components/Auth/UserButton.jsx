@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/* import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { UserBtnDiv } from "./UserButtonStyled";
@@ -136,3 +136,4 @@ const UserButton = () => {
   );
 };
 export default UserButton;
+ */

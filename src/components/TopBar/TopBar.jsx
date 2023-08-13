@@ -72,9 +72,9 @@ function TopBar() {
         }} onClick={() => OpenLateralList(1)} >Marcadores
       </MarcadoresButton>
       <UserButtonContainer>
-        <div>
+{/*         <div>
           <UserButton />
-        </div>
+        </div> */}
       </UserButtonContainer>
     </MainContainer>
   );
