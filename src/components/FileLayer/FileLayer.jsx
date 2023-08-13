@@ -31,12 +31,12 @@ export default function LeafletFileLayer() {
       fitBounds: true,
       layerOptions: {
         style: style,
-        pointToLayer: function (data, latlng) { 
-            axios.post(`${Url}`, ({"name": data.properties.name,
-           "latitude": latlng.lat,
-           "longitude":  latlng.lng,
-            "tipo": "hoja",
-          }))  
+        pointToLayer: function (data, latlng) {            
+         axios.post(`${Url}`, ({"name": data.properties.name,
+          "latitude": latlng.lat,
+          "longitude":  latlng.lng,
+          "tipo": "hoja",
+          }))   
            return null;
         }
       }
@@ -44,12 +44,13 @@ export default function LeafletFileLayer() {
     control.addTo(map);
     control.loader.on("data:loaded", function (e) {
       var layer = e.layer;
-    });}
+    }
+    
+    );}
   }, []);
-
   setTimeout(() => {
     dispatch(getMarkers());
   }, 7000); 
-
+  console.log("termine");
   return null;
 }
