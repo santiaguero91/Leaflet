@@ -4,6 +4,8 @@ import { useMap } from "react-leaflet";
 import togeojson from "togeojson";
 import fileLayer from "leaflet-filelayer";
 import axios from "axios";
+import { getMarkers } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 fileLayer(null, L, togeojson);
 
@@ -16,10 +18,11 @@ const style = {
 };
 
 export default function LeafletFileLayer() {
+  const dispatch = useDispatch();
   const [count, setCount] = useState(0); 
   let input = []
   const map = useMap();
-  const Url = `http://localhost:3001/markers`
+  const Url = `https://leaflet-api-santiaguero91.vercel.app/markers`
 
   useEffect(() => {
     if(count===0){
@@ -29,7 +32,6 @@ export default function LeafletFileLayer() {
       layerOptions: {
         style: style,
         pointToLayer: function (data, latlng) { 
-         
             axios.post(`${Url}`, ({"name": data.properties.name,
            "latitude": latlng.lat,
            "longitude":  latlng.lng,
@@ -45,6 +47,9 @@ export default function LeafletFileLayer() {
     });}
   }, []);
 
+  setTimeout(() => {
+    dispatch(getMarkers());
+  }, 7000); 
 
   return null;
 }

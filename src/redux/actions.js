@@ -1,7 +1,7 @@
 import axios from "axios";
 import {FILTER_BY_TYPE, GET_MARKERS, OPEN_LATERL_LIST, SET_OPEN,OPEN_MODIFY_PANEL, GET_DETAILS, CHANGE_MAP, GET_USERS, ADMIN} from "./action-types";
 
-const Url = `http://localhost:3001/`
+const Url = `https://leaflet-api-santiaguero91.vercel.app/`
 
 
 export function getMarkers(){

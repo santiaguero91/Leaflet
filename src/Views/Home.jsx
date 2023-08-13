@@ -12,7 +12,6 @@ function Home() {
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
 
   useEffect(() => {
-    console.log(openModifyPanel);
   }, [openModifyPanel]);
 
   return (

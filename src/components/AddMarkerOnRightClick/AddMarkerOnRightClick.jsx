@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Marker, Popup, useMapEvents } from 'react-leaflet';
 import { useDispatch } from 'react-redux';
-import { postMarker } from '../../redux/actions';
+import { getMarkers, postMarker } from '../../redux/actions';
 
 export default function AddMarkerOnRightClick() {
   const [markerPosition, setMarkerPosition] = useState(null);
@@ -18,6 +18,10 @@ export default function AddMarkerOnRightClick() {
   });  
   const handleSubmit = (e) => {
      dispatch(postMarker(input));     
+     setTimeout(() => {
+      dispatch(getMarkers());
+    }, 1000); 
+
   };
    
   useMapEvents({

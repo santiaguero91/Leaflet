@@ -17,7 +17,7 @@ import PawIcon from "../../assets/PawIcon.png";
 import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
 import leafIcon from "../Mapas/leaf.png";
-import { putMarker, setOpenModifyPanel } from "../../redux/actions";
+import { getMarkers, putMarker, setOpenModifyPanel } from "../../redux/actions";
 import { uploadFile } from "../../firebase/config";
 import { Button } from "@mui/material";
 import { SelectIcon } from "../TopBar/TopBarStyle";
@@ -87,6 +87,10 @@ function FormModify() {
     e.preventDefault();
     dispatch(putMarker(input));
     dispatch(setOpenModifyPanel(0));
+
+    setTimeout(() => {
+      dispatch(getMarkers());
+    }, 1000);
   };
 
   function closeModifyForm() {

@@ -65,15 +65,15 @@ function MapaAdmin() {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       zIndex: " 2000 !important",
-      backgroundColor:"rgba(231,231,231,0.9)",
+      backgroundColor: "rgba(231,231,231,0.9)",
     },
-  }
+  };
 
   const Modal__Overlay = {
     content: {
-      backgroundColor:"transparent",
-  }
-  }
+      backgroundColor: "transparent",
+    },
+  };
 
   function openModal(id) {
     setIsOpen(true);
@@ -118,7 +118,16 @@ function MapaAdmin() {
 
   function close(id) {
     dispatch(deleteMarker(id));
+    setTimeout(() => {
+      dispatch(getMarkers());
+    }, 1000);
   }
+
+  /*   
+setTimeout(() => {
+      dispatch(getMarkers());
+  }, 2000); 
+  */
 
   function openModifyPanel(id) {
     dispatch(setOpenModifyPanel(id));
@@ -182,7 +191,7 @@ function MapaAdmin() {
                       <TituloMarker>
                         <div className="popupTitle">{el.name}</div>
                       </TituloMarker>
-                      {el.link && <p>{el.link.substring(0,100)+"..."}</p>}
+                      {el.link && <p>{el.link.substring(0, 100) + "..."}</p>}
                       {el.img && <img width="250px" src={el.img} />}
                       <div className="botones">
                         <button onClick={() => close(el._id)}> Borrar </button>
@@ -207,12 +216,10 @@ function MapaAdmin() {
               onRequestClose={closeModal}
               style={modaltyle}
               ariaHideApp={false}
-              overlayClassName= {Modal__Overlay}
-            > 
+              overlayClassName={Modal__Overlay}
+            >
               <button onClick={closeModal}>X</button>
-              <Details 
-              id={detailId}
-              />
+              <Details id={detailId} />
             </Modal>
           </MarkerClusterGroup>
           <AddMarkerOnRightClick />

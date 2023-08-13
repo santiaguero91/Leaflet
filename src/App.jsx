@@ -10,22 +10,19 @@ import { useDispatch } from "react-redux";
 import Landing from "./Views/Landing/Landing";
 import HomeAdmin from "./Views/HomeAdmin/HomeAdmin";
 import { AuthProvider } from "./components/Auth/authContext";
-import TopBar from "./components/TopBar/TopBar";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import Mui from "./Views/MUI/MUI";
 
 
 function App() {
   const location = useLocation();
-  const [isConected, setisConnected] = useState(false)
   const dispatch = useDispatch();
 
-  const socket = io('http://localhost:3001')
+  /* const socket = io('http://localhost:3001')
   socket.connect('connect', console.log("estamos online maestro"))
-
    socket.on('update', (data) => { 
     dispatch(getMarkers());
-  });  
+  });   */
 
   return (
     <AuthProvider>
