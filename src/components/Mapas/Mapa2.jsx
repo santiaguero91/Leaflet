@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import {
@@ -24,11 +24,43 @@ import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
 import { SidebarDiv } from "../TopBar/TopBarStyle";
 import Filtro from "../filtro/Filtro";
+import Modal from "react-modal";
+import Details from "../../Views/Details/Details";
 function Mapa2({loadMarkers}) {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [detailId, setDetailId] = useState("");
   const allMarkers = useSelector((state) => state.markers);
   const mapstate = useSelector((state) => state.map);
   const openLateralList = useSelector((state) => state.openLateralList);
   const openState = useSelector((state) => state.openMain);
+
+
+  const modaltyle = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: " 2000 !important",
+      backgroundColor: "rgba(231,231,231,0.9)",
+    },
+  };
+  const Modal__Overlay = {
+    content: {
+      backgroundColor: "transparent",
+    },
+  };
+  function openModal(id) {
+    setIsOpen(true);
+    setDetailId(id);
+  }
+  function closeModal() {
+    setIsOpen(!modalIsOpen);
+  }
+
+
 
   const defaultMarkerIcon = new L.icon({
     iconUrl: GerminarIcon,
@@ -107,11 +139,28 @@ function Mapa2({loadMarkers}) {
                       </TituloMarker>
                       {el.link && <p>{el.link}</p>}
                       {el.img && <img width="250px" src={el.img} />}
+                      <button
+                          onClick={() => {
+                            openModal(el._id);
+                          }}
+                        >
+                          Mas Info
+                        </button>
                     </PopupPlateDiv>
                   </Popup>
                 </Marker>
               );
             })}
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={modaltyle}
+              ariaHideApp={false}
+              overlayClassName={Modal__Overlay}
+            >
+              <button onClick={closeModal}>X</button>
+              <Details id={detailId} loadMarkers={loadMarkers} />
+            </Modal>
           </MarkerClusterGroup>
           {openLateralList === 1 && (
             <LateralListDiv>

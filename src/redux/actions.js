@@ -124,9 +124,9 @@ export function getUsers(){
 
 export function putUser(payload){
     const id = payload.id
+    console.log(id);
     return async function() {
         try{
-        console.log(payload);
         const response = await axios.put(`${Url}user/`+ id, payload)
         return response
     } catch (error){

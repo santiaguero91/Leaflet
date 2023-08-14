@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../Auth/authContext";
-import { MainStack, StyledButton, StyledTypography, StyledTypographyHome } from "./TopBar2Style";
+import { MainStack, Passmenu, StyledButton, StyledTypography, StyledTypographyHome } from "./TopBar2Style";
 import { useNavigate } from "react-router-dom";
 import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
 import logo from "../../assets/Logo germinar.png"
+import { useState } from "react";
+import { Password } from "../Auth/Password";
 
 function TopBar2() {
   const { user, logout, loading } = useAuth();
@@ -13,6 +15,12 @@ function TopBar2() {
   const mapstate = useSelector((state) => state.map);
   const navigate = useNavigate();
   const { pathname } = window.location;
+  const [active, setActive] = useState(0);
+
+
+  function menu() {
+    active === 0 ? setActive(2) : setActive(0)
+  }
 
   function OpenOnMain(id) {
     if (openState === id) {
@@ -23,10 +31,6 @@ function TopBar2() {
   }
 
   if (loading) return <h1>loading</h1>;
-  const handleLogout = async () => {
-    await logout();
-    navigate("/");
-  };
 
   function OpenLateralList(id) {
     if (openLateralList === id) {
@@ -35,6 +39,8 @@ function TopBar2() {
       dispatch(setOpenLateralList(id));
     }
   }
+
+
 
   function volver() {
     navigate("/")
@@ -50,17 +56,12 @@ function TopBar2() {
   return (
     <MainStack>
       <img src={logo} onClick={() => germinar()} style={{ cursor: 'pointer' }}/>
+      <div onClick={() => menu()}>open</div>
         <StyledButton style={{ 
           backgroundColor: openState === 2 ? "white" : "rgb(2,112,67)", 
           color: openState === 2 ? "black" : "initial",
           transition: "1s" }}
           variant="contained" onClick={() => OpenOnMain(2)}> <StyledTypography>Filtros</StyledTypography></StyledButton>
-        {/* {openState === 2 && (
-            <SidebarDiv>
-              <Filtro />
-            </SidebarDiv>
-          )} */}
-
 
 
         <StyledButton style={{
@@ -78,7 +79,11 @@ function TopBar2() {
 {
   pathname === "/admin" && 
   <StyledButton variant="contained" onClick={() => volver()}> <StyledTypographyHome>Home</StyledTypographyHome></StyledButton>
-  
+}
+{
+  active !== 0 && <Passmenu>
+    <Password menu={menu}/>
+  </Passmenu>
 }
 
     </MainStack>

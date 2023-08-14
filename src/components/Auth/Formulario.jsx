@@ -31,14 +31,12 @@ export function Formulario() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(allUsers[0].email, input.password);
-
     if(allUsers[0].family_name === input.name && allUsers[0].email === input.password){
       dispatch(setAdmin(!admin))
       navigate("/admin")
     } else {
       navigate("/")
     }
-
   };
 
   const ver = () => {
@@ -50,17 +48,6 @@ export function Formulario() {
     <div>
 
        <form className="form">
-{/*         <div>
-          <label>Nombre:</label>
-          <input
-            id="inputname"
-            type="text"
-            value={input.name}
-            name="name"
-            onChange={(e) => handleChange(e)}
-            title="name"
-          />
-        </div> */}
         <div>
           <label>Contraseña:</label>
           <input
@@ -93,11 +80,6 @@ export function Formulario() {
           )}
         </div>
       </form>
-
-{/*         <div>
-          {!user && <button onClick={handleGoogleSignIn}>Login with Google</button>}
-          {user && <button onClick={()=>navigate("/admin")}>Log In</button>   }
-        </div> */}
     </div>
   );
 }

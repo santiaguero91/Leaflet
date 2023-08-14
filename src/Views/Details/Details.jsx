@@ -9,6 +9,7 @@ const Details = ({id,loadMarkers}) => {
   const dispatch = useDispatch();
   const detailInfo = useSelector((state) => state.detail);
   const [detailForm, setDetailForm] = useState(false);
+  const { pathname } = window.location;
 
   useEffect(() => {
     getInfo()
@@ -30,7 +31,10 @@ const Details = ({id,loadMarkers}) => {
       <DeTxt variant="subtitle1">{detailInfo.link}</DeTxt>
       </ImgTxtDiv>
       <div className="formButtons">
-        <AddTxtBtn onClick={() => changeDetailForm()} className="boton">Cambiar Texto</AddTxtBtn>
+      {
+  pathname !== "/" && 
+  <AddTxtBtn onClick={() => changeDetailForm()} className="boton">Cambiar Texto</AddTxtBtn>
+}
       </div>
       {detailForm && (
                   <div>

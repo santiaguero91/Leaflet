@@ -16,7 +16,6 @@ img{
     width: 20vw; 
     }
 }
-
 `;
 
 export const StyledTypography = styled(Typography)`
@@ -72,9 +71,13 @@ export const StyledButton = styled(Button)`
     outline: none;
     border: none;
   }
-
-
-
-
-
 `;
+
+export const Passmenu = styled(Stack)`
+background-color: rgb(87,87,87);
+position: absolute;
+left: 5%;
+color: white;
+width: fit-content;
+`;
+

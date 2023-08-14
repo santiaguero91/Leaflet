@@ -33,9 +33,9 @@ function App() {
     <Route exact path="/" element={<Home loadMarkers={loadMarkers}/>} /> 
     <Route exact path="/login" element={<Landing />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
-    <Route exact path="/admin" element={<HomeAdmin loadMarkers={loadMarkers} />} /> 
+    <Route exact path="/admin2" element={<HomeAdmin loadMarkers={loadMarkers} />} /> 
 
-    {/* <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin loadMarkers={loadMarkers}/></ProtectedRoute>} />  */} 
+     <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin loadMarkers={loadMarkers}/></ProtectedRoute>} />  
     </Routes>
     </AnimatePresence>
     </AuthProvider>
