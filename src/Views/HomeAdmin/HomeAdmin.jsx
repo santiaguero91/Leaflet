@@ -1,17 +1,11 @@
 import { useSelector } from "react-redux";
-import { MainHomeDiv, NavBar, PopUpDiv } from "./HomeStyle";
-import { useEffect } from "react";
+import { MainHomeDiv, PopUpDiv } from "./HomeStyle";
 import MapaAdmin from "../../components/Mapas/MapaAdmin";
 import FormModify from "../../components/FormModify/FormModify";
 import TopBar2 from "../../components/TopBarMui/TopBar2";
 
-function HomeAdmin() {
+function HomeAdmin({loadMarkers}) {
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
-
-  useEffect(() => {
-    console.log(openModifyPanel);
-  }, [openModifyPanel]);
-
   return (
     <MainHomeDiv
       initial={{ opacity: 0 }}
@@ -23,7 +17,7 @@ function HomeAdmin() {
       <div className="modoAdmin">
         <h4>Estas en modo administrador</h4>
       </div>
-      <MapaAdmin />
+      <MapaAdmin loadMarkers={loadMarkers}/>
     </MainHomeDiv>
   );
 }

@@ -19,6 +19,7 @@ export default function AddMarkerOnRightClick() {
   const handleSubmit = (e) => {
      dispatch(postMarker(input));     
      setTimeout(() => {
+      console.log("alo");
       dispatch(getMarkers());
     }, 1000); 
 

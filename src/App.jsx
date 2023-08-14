@@ -8,22 +8,35 @@ import HomeAdmin from "./Views/HomeAdmin/HomeAdmin";
 import { AuthProvider } from "./components/Auth/authContext";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import Mui from "./Views/MUI/MUI";
+import { useDispatch } from "react-redux";
+import { getMarkers } from "./redux/actions";
+import { useEffect } from "react";
 
 
 function App() {
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    loadMarkers()
+  }, []);
+  function loadMarkers() {
+    dispatch(getMarkers());
+  }
+
 
   return (
     <AuthProvider>
     <AnimatePresence >
     <Routes location={location} key={location.pathname}> 
-    <Route exact path="/" element={<Home />} /> 
+    <Route exact path="/" element={<Home loadMarkers={loadMarkers}/>} /> 
     <Route exact path="/2" element={<View2 />} /> 
     <Route exact path="/login" element={<Landing />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
     <Route exact path="/mui" element={<Mui />} /> 
-    
-    <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin/></ProtectedRoute>} /> 
+    <Route exact path="/admin" element={<HomeAdmin loadMarkers={loadMarkers}/>} /> 
+
+    {/* <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin loadMarkers={loadMarkers}/></ProtectedRoute>} />  */}
     
     </Routes>
     </AnimatePresence>

@@ -23,7 +23,6 @@ function TopBar() {
   const openState = useSelector((state) => state.openMain);
   const openLateralList = useSelector((state) => state.openLateralList);
   const mapstate = useSelector((state) => state.map);
-  const navigate = useNavigate();
 
   function OpenOnMain(id) {
     if (openState === id) {
@@ -34,10 +33,6 @@ function TopBar() {
   }
 
   if (loading) return <h1>loading</h1>;
-  const handleLogout = async () => {
-    await logout();
-    navigate("/");
-  };
 
   function OpenLateralList(id) {
     if (openLateralList === id) {
@@ -72,9 +67,6 @@ function TopBar() {
         }} onClick={() => OpenLateralList(1)} >Marcadores
       </MarcadoresButton>
       <UserButtonContainer>
-{/*         <div>
-          <UserButton />
-        </div> */}
       </UserButtonContainer>
     </MainContainer>
   );

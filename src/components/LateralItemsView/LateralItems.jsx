@@ -11,11 +11,11 @@ import { useState } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import AddLocationIcon from '@mui/icons-material/AddLocation';
-import { postMarker } from "../../redux/actions";
+import { getMarkers, postMarker } from "../../redux/actions";
 import { LocationButton } from "../TopBarMui/TopBar2Style";
 import { Box } from "@mui/material";
 
-function LateralItems() {
+function LateralItems({loadMarkers}) {
   const allMarkers = useSelector((state) => state.markers);
   // eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +30,6 @@ function LateralItems() {
   const [markerPosition, setMarkerPosition] = useState(null);
 
   const dispatch = useDispatch();
-
   let [input, setInput] = useState({
     name: "",
     latitude: "",
@@ -48,8 +47,11 @@ function LateralItems() {
     map.flyTo([lat, lng], 17);
   };
   const saveLocation = () => {
-    console.log(input);
     dispatch(postMarker(input)); 
+    setTimeout(() => {
+      loadMarkers()
+    }, 1000); 
+
   };
 
 

@@ -51,6 +51,5 @@ export default function LeafletFileLayer() {
   setTimeout(() => {
     dispatch(getMarkers());
   }, 7000); 
-  console.log("termine");
   return null;
 }

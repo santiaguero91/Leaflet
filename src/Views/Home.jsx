@@ -8,7 +8,7 @@ import FormModify from "../components/FormModify/FormModify";
 import { useEffect } from "react";
 import TopBar2 from "../components/TopBarMui/TopBar2";
 
-function Home() {
+function Home({loadMarkers}) {
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Home() {
       <TopBar2 />
       <PopUpDiv>{openModifyPanel !== 0 && <FormModify />}</PopUpDiv>
 
-      <Mapa2 />
+      <Mapa2 loadMarkers={loadMarkers}/>
     </MainHomeDiv>
   );
 }

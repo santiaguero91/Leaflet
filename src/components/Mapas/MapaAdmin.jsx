@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import Modal from "react-modal";
-
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
-  LayerGroup,
-  LayersControl,
-  Polygon,
 } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteMarker,
-  getInfoById,
-  getMarkers,
   setOpenModifyPanel,
 } from "../../redux/actions";
-import { statesData } from "../../data";
 import {
   MapDiv,
   MapcontainerDiv,
@@ -33,29 +26,23 @@ import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
 import LeafletFileLayer from "../../components/FileLayer/FileLayer";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
-import { useNavigate } from "react-router-dom";
 import AddMarkerOnRightClick from "../AddMarkerOnRightClick/AddMarkerOnRightClick";
-import Footer from "../Footer/Footer";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
 import { SidebarDiv } from "../TopBar/TopBarStyle";
 import Filtro from "../filtro/Filtro";
 import Details from "../../Views/Details/Details";
-import { Backdrop } from "@mui/material";
 
-function MapaAdmin() {
-  //* MODAL Functions
+function MapaAdmin({loadMarkers}) {
+  const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [detailId, setDetailId] = useState("");
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const allMarkers = useSelector((state) => state.markers);
   const mapstate = useSelector((state) => state.map);
   const openLateralList = useSelector((state) => state.openLateralList);
   const openState = useSelector((state) => state.openMain);
 
-  ///modalstyle
+  s
   const modaltyle = {
     content: {
       top: "50%",
@@ -86,9 +73,6 @@ function MapaAdmin() {
   const defaultMarkerIcon = new L.icon({
     iconUrl: GerminarIcon,
     iconSize: [50, 50],
-    /* iconUrl:
-      "https://firebasestorage.googleapis.com/v0/b/leafletgerminar.appspot.com/o/66334dee-c7ad-49e2-90c6-59f622fb481c?alt=media&token=8b567678-5fb3-4bcd-9a1b-c21994a352bb",
-     */
     popupAnchor: [3, -46],
   });
 
@@ -115,22 +99,17 @@ function MapaAdmin() {
   });
 
   const center = [-34.61315, -58.37723];
-
   function close(id) {
     dispatch(deleteMarker(id));
-    setTimeout(() => {
-      dispatch(getMarkers());
-    }, 1000);
+    /* setTimeout(() => {
+      loadMarkers()
+    }, 1000); */
   }
 
   function openModifyPanel(id) {
     dispatch(setOpenModifyPanel(id));
   }
 
-
-  useEffect(() => {
-    dispatch(getMarkers());
-  }, [dispatch]);
 
   return (
     <MapDiv>
@@ -209,7 +188,7 @@ function MapaAdmin() {
           <AddMarkerOnRightClick />
           {openLateralList === 1 && (
             <LateralListDiv>
-              <LateralItems />
+              <LateralItems loadMarkers={loadMarkers}/>
             </LateralListDiv>
           )}
           {openState === 2 && (

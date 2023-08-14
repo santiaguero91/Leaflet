@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 import {
@@ -7,12 +7,7 @@ import {
   Marker,
   Popup,
 } from "react-leaflet";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteMarker,
-  getMarkers,
-  setOpenModifyPanel,
-} from "../../redux/actions";
+import { useSelector } from "react-redux";
 import {
   MapDiv,
   MapcontainerDiv,
@@ -25,14 +20,11 @@ import PawIcon from "../../assets/PawIcon.png";
 import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
-import { useNavigate } from "react-router-dom";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
 import { SidebarDiv } from "../TopBar/TopBarStyle";
 import Filtro from "../filtro/Filtro";
-function Mapa2() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+function Mapa2({loadMarkers}) {
   const allMarkers = useSelector((state) => state.markers);
   const mapstate = useSelector((state) => state.map);
   const openLateralList = useSelector((state) => state.openLateralList);
@@ -68,21 +60,6 @@ function Mapa2() {
 
   const center = [-34.61315, -58.37723];
 
-  function close(id) {
-    dispatch(deleteMarker(id));
-  }
-
-  function openModifyPanel(id) {
-    dispatch(setOpenModifyPanel(id));
-  }
-
-  const ver = () => {
-    console.log(allMarkers);
-  };
-
-  useEffect(() => {
-    dispatch(getMarkers());
-  }, [dispatch]);
 
   return (
     <MapDiv>
@@ -138,7 +115,7 @@ function Mapa2() {
           </MarkerClusterGroup>
           {openLateralList === 1 && (
             <LateralListDiv>
-              <LateralItems />
+              <LateralItems loadMarkers={loadMarkers}/>
             </LateralListDiv>
           )}
           {openState === 2 && (
