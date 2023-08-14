@@ -1,15 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Passmenu } from "./PasswordStyle";
-import { useEffect, useState } from "react";
-import { getUsers, putUser } from "../../redux/actions";
+import { useState } from "react";
+import { putUser } from "../../redux/actions";
 
 export function Password({menu}) {
     const allUsers = useSelector((state) => state.users);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getUsers());
-      }, []);
 
     const [input, setInput] = useState({
         id: allUsers[0]._id,
@@ -31,16 +27,10 @@ export function Password({menu}) {
         dispatch(putUser(input))
         menu()
       };
-
-         const ver =()=>{
-          console.log(input);
-          console.log(allUsers);          
-        }
         
         return (
             <div>
         <Passmenu>
-        <button onClick={()=>ver()}>VER</button>
           <form className="form">
           <label>Contraseña:</label>
           <input

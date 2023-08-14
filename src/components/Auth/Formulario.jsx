@@ -30,7 +30,6 @@ export function Formulario() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(allUsers[0].email, input.password);
     if(allUsers[0].family_name === input.name && allUsers[0].email === input.password){
       dispatch(setAdmin(!admin))
       navigate("/admin")
@@ -39,11 +38,6 @@ export function Formulario() {
     }
   };
 
-  const ver = () => {
-    console.log(user?.displayName, "1");
-    console.log(allUsers[0]?.family_name,"2");
-    <button onClick={() => ver()}>VER</button>
-  };
   return (
     <div>
 

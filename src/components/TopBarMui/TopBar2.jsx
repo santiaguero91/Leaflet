@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../Auth/authContext";
 import { MainStack, Passmenu, StyledButton, StyledTypography, StyledTypographyHome } from "./TopBar2Style";
 import { useNavigate } from "react-router-dom";
-import { changeMap, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
+import { changeMap, getUsers, setOpenLateralList, setOpenOnMain } from "../../redux/actions";
 import logo from "../../assets/Logo germinar.png"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Password } from "../Auth/Password";
 
 function TopBar2() {
@@ -17,7 +17,9 @@ function TopBar2() {
   const { pathname } = window.location;
   const [active, setActive] = useState(0);
 
-
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
   function menu() {
     active === 0 ? setActive(2) : setActive(0)
   }
@@ -31,6 +33,8 @@ function TopBar2() {
   }
 
   if (loading) return <h1>loading</h1>;
+
+
 
   function OpenLateralList(id) {
     if (openLateralList === id) {
@@ -47,7 +51,15 @@ function TopBar2() {
   }
 
   function germinar() {
-    window.open("https://germinar.org.ar", '_blank');
+
+    {
+      pathname === "/" && 
+      window.open("https://germinar.org.ar", '_blank');
+    }
+    {
+      pathname !== "/" && 
+      menu()    
+    }
   }
 
   function cambiarmapa() {
@@ -56,7 +68,7 @@ function TopBar2() {
   return (
     <MainStack>
       <img src={logo} onClick={() => germinar()} style={{ cursor: 'pointer' }}/>
-      <div onClick={() => menu()}>open</div>
+      {/* <div onClick={() => menu()}>open</div> */}
         <StyledButton style={{ 
           backgroundColor: openState === 2 ? "white" : "rgb(2,112,67)", 
           color: openState === 2 ? "black" : "initial",

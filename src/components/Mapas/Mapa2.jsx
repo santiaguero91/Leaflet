@@ -139,13 +139,17 @@ function Mapa2({loadMarkers}) {
                       </TituloMarker>
                       {el.link && <p>{el.link}</p>}
                       {el.img && <img width="250px" src={el.img} />}
-                      <button
-                          onClick={() => {
-                            openModal(el._id);
-                          }}
-                        >
-                          Mas Info
-                        </button>
+
+                      {
+                        el.link && <button
+                        onClick={() => {
+                          openModal(el._id);
+                        }}
+                      >
+                        Mas Info
+                      </button>
+                      }
+                      
                     </PopupPlateDiv>
                   </Popup>
                 </Marker>
