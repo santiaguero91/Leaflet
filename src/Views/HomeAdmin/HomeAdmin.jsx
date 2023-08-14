@@ -3,6 +3,7 @@ import { MainHomeDiv, PopUpDiv } from "./HomeStyle";
 import MapaAdmin from "../../components/Mapas/MapaAdmin";
 import FormModify from "../../components/FormModify/FormModify";
 import TopBar2 from "../../components/TopBarMui/TopBar2";
+import ModoAdmin from "../../components/Mapas/ModoAdmin";
 
 function HomeAdmin({loadMarkers}) {
   const openModifyPanel = useSelector((state) => state.openModifyPanel);
@@ -17,7 +18,7 @@ function HomeAdmin({loadMarkers}) {
       <div className="modoAdmin">
         <h4>Estas en modo administrador</h4>
       </div>
-      <MapaAdmin loadMarkers={loadMarkers}/>
+      <ModoAdmin loadMarkers={loadMarkers}/>
     </MainHomeDiv>
   );
 }

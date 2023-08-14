@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
-import Modal from "react-modal";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteMarker,
-  setOpenModifyPanel,
-} from "../../redux/actions";
 import {
   MapDiv,
   MapcontainerDiv,
@@ -24,17 +14,18 @@ import SchoolIcon from "../../assets/Schoolcon.png";
 import PawIcon from "../../assets/PawIcon.png";
 import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
-import LeafletFileLayer from "../../components/FileLayer/FileLayer";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
-import AddMarkerOnRightClick from "../AddMarkerOnRightClick/AddMarkerOnRightClick";
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
 import { SidebarDiv } from "../TopBar/TopBarStyle";
 import Filtro from "../filtro/Filtro";
+import { deleteMarker, setOpenModifyPanel } from "../../redux/actions";
+import Modal from "react-modal";
 import Details from "../../Views/Details/Details";
+import AddMarkerOnRightClick from "../AddMarkerOnRightClick/AddMarkerOnRightClick";
 
-function MapaAdmin({loadMarkers}) {
-  const dispatch = useDispatch();
+function ModoAdmin({ loadMarkers }) {
+const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [detailId, setDetailId] = useState("");
   const allMarkers = useSelector((state) => state.markers);
@@ -202,4 +193,4 @@ function MapaAdmin({loadMarkers}) {
   );
 }
 
-export default MapaAdmin;
+export default ModoAdmin;

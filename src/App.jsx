@@ -11,6 +11,7 @@ import Mui from "./Views/MUI/MUI";
 import { useDispatch } from "react-redux";
 import { getMarkers } from "./redux/actions";
 import { useEffect } from "react";
+import ModoAdmin from "./components/Mapas/ModoAdmin";
 
 
 function App() {
@@ -33,10 +34,7 @@ function App() {
     <Route exact path="/2" element={<View2 />} /> 
     <Route exact path="/login" element={<Landing />} /> 
     <Route exact path="/details/:id" element={<Details />} /> 
-    <Route exact path="/mui" element={<Mui />} /> 
-    <Route exact path="/admin" element={<HomeAdmin loadMarkers={loadMarkers}/>} /> 
-
-    {/* <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin loadMarkers={loadMarkers}/></ProtectedRoute>} />  */}
+    <Route exact path="/admin" element={<ProtectedRoute><HomeAdmin loadMarkers={loadMarkers}/></ProtectedRoute>} />  
     
     </Routes>
     </AnimatePresence>

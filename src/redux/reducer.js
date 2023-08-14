@@ -32,7 +32,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         markers: action.payload,
-      //  allMarkers: action.payload,
+        allMarkers: action.payload,
       };
     case DELETE_MARKERS:
       return {
