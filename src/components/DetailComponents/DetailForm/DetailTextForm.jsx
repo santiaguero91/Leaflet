@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormText, FormBtn,FormStack } from "./DetailTextFormStyle";
 import { useDispatch } from "react-redux";
-import { putMarker } from "../../../redux/actions";
+import { getMarkers, putMarker } from "../../../redux/actions";
 
 export default function DetailTextForm(
   {id,
@@ -12,7 +12,8 @@ export default function DetailTextForm(
   tipo,
   link,
   changeDetailForm,
-  getInfo}
+  getInfo,
+  loadMarkers}
 ) {
   const dispatch = useDispatch();
 
@@ -37,7 +38,7 @@ export default function DetailTextForm(
   const handleSubmit = () => {
     dispatch(putMarker(input));
     changeDetailForm()
-        setTimeout(() => {getInfo()}, 1000);
+    setTimeout(() => {getInfo(),loadMarkers()}, 1000);
       };
 
   return (

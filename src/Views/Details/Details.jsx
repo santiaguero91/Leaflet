@@ -5,19 +5,14 @@ import { getInfoById } from "../../redux/actions";
 import { AddTxtBtn, BackBtn, DeTiltle, DeTxt, ImgTxtDiv, MainDiv } from "./DetailsStyle";
 import DetailTextForm from "../../components/DetailComponents/DetailForm/DetailTextForm";
 
-const Details = ({id}) => {
+const Details = ({id,loadMarkers}) => {
   const dispatch = useDispatch();
   const detailInfo = useSelector((state) => state.detail);
-  const navigate = useNavigate();
   const [detailForm, setDetailForm] = useState(false);
 
   useEffect(() => {
     getInfo()
   }, [dispatch, id]);
-
-  const volver = () => {
-    navigate("/");
-  };
 
   const getInfo = () => {
     dispatch(getInfoById(id))
@@ -49,6 +44,7 @@ const Details = ({id}) => {
                     link={detailInfo.link}
                     changeDetailForm={changeDetailForm}
                     getInfo={getInfo}
+                    loadMarkers={loadMarkers}
                     />
                   </div>
                 )}

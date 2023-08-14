@@ -17,7 +17,7 @@ const style = {
   clickable: false
 };
 
-export default function LeafletFileLayer() {
+export default function LeafletFileLayer({ loadMarkers }) {
   const dispatch = useDispatch();
   const [count, setCount] = useState(0); 
   let input = []
@@ -47,9 +47,10 @@ export default function LeafletFileLayer() {
     }
     
     );}
+    setTimeout(() => {
+      loadMarkers()
+    }, 20000); 
   }, []);
-  setTimeout(() => {
-    dispatch(getMarkers());
-  }, 7000); 
+
   return null;
 }

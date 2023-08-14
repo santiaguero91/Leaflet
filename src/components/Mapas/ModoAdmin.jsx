@@ -15,6 +15,8 @@ import PawIcon from "../../assets/PawIcon.png";
 import TreeIcon from "../../assets/TreeIcon.png";
 import GerminarIcon from "../../assets/germinarIcon.png";
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
+import LeafletFileLayer from "../../components/FileLayer/FileLayer";
+
 import { LateralListDiv } from "../../Views/HomeAdmin/HomeStyle";
 import LateralItems from "../LateralItemsView/LateralItems";
 import { SidebarDiv } from "../TopBar/TopBarStyle";
@@ -173,10 +175,12 @@ const dispatch = useDispatch();
               overlayClassName={Modal__Overlay}
             >
               <button onClick={closeModal}>X</button>
-              <Details id={detailId} />
+              <Details id={detailId} loadMarkers={loadMarkers} />
             </Modal>
           </MarkerClusterGroup>
           <AddMarkerOnRightClick />
+          <LeafletFileLayer loadMarkers={loadMarkers} />
+
           {openLateralList === 1 && (
             <LateralListDiv>
               <LateralItems loadMarkers={loadMarkers} />

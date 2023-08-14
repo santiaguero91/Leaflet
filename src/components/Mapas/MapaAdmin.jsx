@@ -42,7 +42,6 @@ function MapaAdmin({loadMarkers}) {
   const openLateralList = useSelector((state) => state.openLateralList);
   const openState = useSelector((state) => state.openMain);
 
-  //modal asets
   const modaltyle = {
     content: {
       top: "50%",
@@ -182,10 +181,11 @@ function MapaAdmin({loadMarkers}) {
               overlayClassName={Modal__Overlay}
             >
               <button onClick={closeModal}>X</button>
-              <Details id={detailId} />
+              <Details id={detailId} loadMarkers={loadMarkers}/>
             </Modal>
           </MarkerClusterGroup>
           <AddMarkerOnRightClick />
+          <LeafletFileLayer />
           {openLateralList === 1 && (
             <LateralListDiv>
               <LateralItems loadMarkers={loadMarkers} />

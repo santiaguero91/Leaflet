@@ -5,7 +5,6 @@ const Url = `https://leaflet-api-santiaguero91.vercel.app/`
 
 
 export function getMarkers(){
-    console.log("alo");
     return async function(dispatch) {
         try {
         let json = await axios.get(`${Url}markers`);
